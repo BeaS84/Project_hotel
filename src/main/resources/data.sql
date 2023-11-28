@@ -1,7 +1,7 @@
 INSERT INTO user_model (name, surname, email, password) VALUES
-    ('Adam','Admin','admin@admin.com','$2a$12$AfTOTFJLe/4McVlWWKwt.Ozn6sP4vMCNsg07O71BRwNR.HxmbzVQ.'),
+    ('admin i user','admin i user','au@admin.com','$2a$12$AfTOTFJLe/4McVlWWKwt.Ozn6sP4vMCNsg07O71BRwNR.HxmbzVQ.'),
     ('Anna','user','user@user.com','$2a$12$AfTOTFJLe/4McVlWWKwt.Ozn6sP4vMCNsg07O71BRwNR.HxmbzVQ.'),
-    ('Adam','Admin','test@gmail11.com','$2a$12$AfTOTFJLe/4McVlWWKwt.Ozn6sP4vMCNsg07O71BRwNR.HxmbzVQ.'),
+    ('Admin','Admin','a@admin.com','$2a$12$AfTOTFJLe/4McVlWWKwt.Ozn6sP4vMCNsg07O71BRwNR.HxmbzVQ.'),
 ('Adam','Admin','admin@gmail11111.com','$2a$12$AfTOTFJLe/4McVlWWKwt.Ozn6sP4vMCNsg07O71BRwNR.HxmbzVQ.');
 
 

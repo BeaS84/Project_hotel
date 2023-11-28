@@ -1,13 +1,15 @@
 package com.hotel.pethotel.controller;
 
+import com.hotel.pethotel.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class HomeController {
+    private UserService userService;
+
     @GetMapping("/")
     public String greeting(Model model) {
         model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
@@ -17,15 +19,29 @@ public class HomeController {
     public String login() {
         return "login";
     }
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
+    @GetMapping("/adminpanel")
+    public String adminPanel() {
+        return "adminpanel";
     }
 
-    @GetMapping("/client")
-    public String client() {
-        return "client";
+    @GetMapping("/userpanel")
+    public String userPanel() {
+        return "userpanel";
     }
+
+    @GetMapping("/defaultpanel")
+    public String defaultPanel() {
+        return "defaultpanel";
+    }
+//    @GetMapping("/admin")
+//    public String admin() {
+//        return "admin";
+//    }
+//
+//    @GetMapping("/client")
+//    public String client() {
+//        return "client";
+//    }
 
     @GetMapping("/logout")
     public String logout() {
