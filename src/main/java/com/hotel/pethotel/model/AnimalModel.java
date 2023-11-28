@@ -19,7 +19,8 @@ public class AnimalModel {
     private String type;
 
     @Column(name = "weight")
-    private Integer weight; //Beata enum do dyskusji
+    @Enumerated(EnumType.STRING)
+    private AnimalSize size; //Beata enum do dyskusji
 
     @Column(name = "name")
     private String name;

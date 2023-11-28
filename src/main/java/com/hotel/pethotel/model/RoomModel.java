@@ -24,7 +24,8 @@ public class RoomModel {
 
     @ElementCollection
     @CollectionTable(name = "animal_size", joinColumns = @JoinColumn(name = "room_id"))
-    private List<Integer> animalSize;
+    @Enumerated(EnumType.STRING)
+    private Set<AnimalSize> animalSize;
 
     @Column(name = "is_active")
     private Boolean active;
