@@ -1,15 +1,14 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand">Spring Security Login With Database Authentication</a>
+        <a class="navbar-brand">PET HOTEL CHILLOWY BORSUK</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,15 +18,23 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Warunek sprawdzający rolę użytkownika -->
+                <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <a class="nav-link active" aria-current="page" th:href="@{/adminpanel}">Admin Panel</a>
+                </li>
+                <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                    <a class="nav-link active" aria-current="page" th:href="@{/userpanel}">Twój Panel</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 <br /><br />
 
-
 <div class="container">
     <div class="row">
-        <h1> Welcome to Spring Security world!</h1>
+        <h1>Witam w naszym hotelu!</h1>
         <p th:text="${userRoles}"></p>
     </div>
 </div>
