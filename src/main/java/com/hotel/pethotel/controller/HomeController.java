@@ -15,6 +15,7 @@ public class HomeController {
         model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
         return "home";
     }
+
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -22,6 +23,11 @@ public class HomeController {
     @GetMapping("/adminpanel")
     public String adminPanel() {
         return "adminpanel";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
     }
 
     @GetMapping("/userpanel")

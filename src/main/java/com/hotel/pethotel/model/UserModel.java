@@ -12,7 +12,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Getter
 @Setter
-public class UserModel {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue("admin")//usunąć, przekopiować do adminModel (extends UserModel)
+public abstract class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +34,7 @@ public class UserModel {
     @ManyToMany
     @JoinTable (name = "user_x_roles")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<RoleModel> roles;
+    private Set<RoleModel> roles;//można wywalić i zmodyfować userDetailsServivice
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //relacja 1 do wielu z AnimalModel, wlasciciel relacji
 //    private List<AnimalModel> animals;

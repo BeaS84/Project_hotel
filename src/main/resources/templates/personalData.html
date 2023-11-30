@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th.table-header {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        nav {
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f1f1f1;
+            padding-top: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 8px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/userpanel/userReservation">Moje Rezerwacje</a></li>
+        <li><a href="/userpanel/userAnimals">Moje Zwierzęta</a></li>
+        <li><a href="/userpanel/personalData">Moje Dane Osobowe</a></li>
+        <li><a href="/userpanel/makeReservation">Zarezerwuj</a></li>
+        <li><a href="/userpanel">Strona Główna</a></li>
+    </ul>
+</nav>
+
+<section id="main-content" style="margin-left: 200px; padding: 20px;">
+
+    <section id="daneOsobowe">
+        <h2>Moje dane osobowe</h2>
+
+        <table>
+            <tr>
+                <th class="table-header">Name</th> <td></td></tr>
+            <tr>
+                <th class="table-header">PetUser</th> <td></td></tr>
+            <tr>    <th class="table-header">Surname</th><td></td> </tr>
+            <tr>    <th class="table-header">Email</th> <td></td></tr>
+            <tr>    <th class="table-header">Phone number</th> <td></td></tr>
+            <tr>    <th class="table-header">Animals</th> <td></td></tr>
+        </table>
+    </section>
+</section>
+
+<section id="Wyszukaj">
+    <h2>Wyszukaj</h2>
+    <!-- Tutaj możesz dodać formularz wyszukiwania, jeśli to potrzebne -->
+</section>
+
+</body>
+</html>

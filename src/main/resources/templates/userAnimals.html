@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+
+        th.table-header {
+            font-size: 18px;
+            text-align: center;
+        }
+
+
+        nav {
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f1f1f1;
+            padding-top: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 8px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/userpanel/userReservation">Moje Rezerwacje</a></li>
+        <li><a href="#mojeZwierzeta">Moje Zwierzęta</a></li>
+        <li><a href="#mojeDaneOsobowe">Moje Dane Osobowe</a></li>
+        <li><a href="/userpanel/makeReservation">Zarezerwuj</a></li>
+        <li><a href="/userpanel">Strona Główna</a></li>
+    </ul>
+</nav>
+
+<section id="main-content" style="margin-left: 200px; padding: 20px;">
+
+
+    <section id="mojeZwierzeta">
+        <h2>Moje Zwierzęta</h2>
+
+
+        <form action="/userPanel/animals" method="get">
+            <button type="submit">Dodaj Zwierzęta</button>
+        </form>
+
+
+        <table>
+            <tr>
+                <th colspan="6" class="table-header">TWOJE ZWIERZĘTA</th>
+            </tr>
+            <tr>
+                <th>id</th>
+                <th>type</th>
+                <th>weight</th>
+                <th>name</th>
+                <th>sex</th>
+                <th>owner</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>pies</td>
+                <td>10</td>
+                <td>Burek</td>
+                <td>male</td>
+                <td>Gosia</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>kot</td>
+                <td>5</td>
+                <td>Miau</td>
+                <td>female</td>
+                <td>Adam</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>chomik</td>
+                <td>1</td>
+                <td>Kraksa</td>
+                <td>male</td>
+                <td>Ewa</td>
+            </tr>
+        </table>
+
+    </section>
+    <section id="Wyszukaj">
+        <h2>Wyszukaj</h2>
+
+
+        <form action="/userPanel/search" method="get">
+            <button type="submit">Wyszukaj</button>
+        </form>
+    </section>
+
+
+
+</body>
+</html>

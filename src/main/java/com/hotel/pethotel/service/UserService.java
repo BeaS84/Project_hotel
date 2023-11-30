@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,13 +18,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
-    @Autowired
-    UserRepository userRepo;
+    //  @Autowired
+    private final UserRepository userRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userEmail)
+            throws UsernameNotFoundException {
         UserModel user = findByEmail(userEmail);
 
         Set<GrantedAuthority> authorities = user.getRoles().stream()
@@ -31,8 +34,10 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toSet());
         return new User(userEmail, user.getPassword(), authorities);
     }
+
     private UserModel findByEmail(String email) {
-        return userRepo.findByEmail(email).orElseThrow(()-> new RuntimeException("Couldn't find user by email"));
+        return userRepo.findByEmail(email).orElseThrow(() ->
+                new RuntimeException("Couldn't find user by email"));
     }
 /// na razie nie umiem zrobic dla sytuacji, kiedy user jest zarowno adminem jak i userem
 //    public String determineUserRole() {
@@ -46,4 +51,9 @@ public class UserService implements UserDetailsService {
 //        // W przypadku braku dopasowania zwracamy wartość domyślną lub null
 //        return null;
 //    }
+
+    public List<UserModel> getAllClients() {
+        return userRepo.findAll();
+    }
 }
+
