@@ -36,7 +36,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize.anyRequest().authenticated()
 
-
                 )
                 .formLogin(
                         form -> form

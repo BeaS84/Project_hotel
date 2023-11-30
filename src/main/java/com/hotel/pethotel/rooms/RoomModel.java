@@ -1,16 +1,22 @@
-package com.hotel.pethotel.model;
+package com.hotel.pethotel.rooms;
 
 
+import com.hotel.pethotel.model.AnimalSize;
+import com.hotel.pethotel.model.ReservationModel;
+import com.hotel.pethotel.model.Standard;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Data
+@Getter
+@Setter
 @Table(name="room_model")
 public class RoomModel {
+    public RoomModel() {}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,8 +24,12 @@ public class RoomModel {
     @Column(name = "name")
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @Column(name = "description")
+    private String description;
+
+
     @Column(name = "standard")
+    @Enumerated(EnumType.STRING)
     private Standard standard; //enum
 
     @ElementCollection
