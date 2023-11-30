@@ -29,7 +29,7 @@ public class AnimalModel {
     private Sex sex;
 
     @ManyToOne
-    private UserModel owner;
+    private ClientModel client;//lub client
 
     @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
     private Set<TreatmentModel> treatments;

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+
+    th.table-header {
+        font-size: 18px;
+        text-align: center;
+    }
+
+
+    nav {
+        width: 200px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #f1f1f1;
+        padding-top: 20px;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        padding: 8px;
+        text-align: center;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/allReservations">Wszystkie Rezerwacje</a></li>
+        <li><a href="#mojeZwierzeta">Wszystkie Zwierzęta</a></li>
+        <li><a href="#użytkownicy">Wszyscy Użytkownicy</a></li>
+        <li><a href="#pokoje">Pokoje</a></li>
+        <!--        <li><a href="#zarezerwuj">REZERWACJE</a></li>-->
+        <!--        <li><a href="/userPanel/animals/addAnimal">Dodaj Zwierzęta</a></li>-->
+
+    </ul>
+</nav>
+
+<section id="main-content" style="margin-left: 200px; padding: 20px;">
+
+    <section id="mojeRezerwacje">
+        <h2>Moje Rezerwacje</h2>
+
+
+        <form action="/userPanel/reservations/addReservation" method="get">
+            <button type="submit">Dodaj Rezerwację</button>
+        </form>
+
+
+        <table>
+            <tr>
+                <th colspan="6" class="table-header">TWOJE REZERWACJE</th>
+            </tr>
+            <tr>
+                <th>reservation number</th>
+                <th>startDate</th>
+                <th>endDate</th>
+                <th>price</th>
+                <th>reservationStatus</th>
+            </tr>
+            <tr>
+                <td>12345</td>
+                <td>2023-12-01</td>
+                <td>2023-12-10</td>
+                <td>150.00</td>
+                <td>Confirmed</td>
+            </tr>
+            <tr>
+                <td>67890</td>
+                <td>2023-12-15</td>
+                <td>2023-12-20</td>
+                <td>120.00</td>
+                <td>Pending</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="mojeZwierzeta">
+        <h2>Moje Zwierzęta</h2>
+
+
+        <form action="/userPanel/animals" method="get">
+            <button type="submit">Dodaj Zwierzęta</button>
+        </form>
+
+
+        <table>
+            <tr>
+                <th colspan="6" class="table-header">TWOJE ZWIERZĘTA</th>
+            </tr>
+            <tr>
+                <th>id</th>
+                <th>type</th>
+                <th>weight</th>
+                <th>name</th>
+                <th>sex</th>
+                <th>owner</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>pies</td>
+                <td>10</td>
+                <td>Burek</td>
+                <td>male</td>
+                <td>Gosia</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>kot</td>
+                <td>5</td>
+                <td>Miau</td>
+                <td>female</td>
+                <td>Adam</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>chomik</td>
+                <td>1</td>
+                <td>Kraksa</td>
+                <td>male</td>
+                <td>Ewa</td>
+            </tr>
+        </table>
+
+    </section>
+    <section id="Wyszukaj">
+        <h2>Wyszukaj</h2>
+
+
+        <form action="/userPanel/search" method="get">
+            <button type="submit">Wyszukaj</button>
+        </form>
+    </section>
+
+</body>
+</html>
