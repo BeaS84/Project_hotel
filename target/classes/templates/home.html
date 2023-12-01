@@ -21,7 +21,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Warunek sprawdzający rolę użytkownika -->
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                    <a class="nav-link active" aria-current="page" th:href="@{/admin}">Admin Panel</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/adminpanel}">Admin Panel</a>
                 </li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
                     <a class="nav-link active" aria-current="page" th:href="@{/userpanel}">Twój Panel</a>

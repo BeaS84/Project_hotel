@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/adminpanel")
 public class AdminController {
 
     private final AnimalService animalService;

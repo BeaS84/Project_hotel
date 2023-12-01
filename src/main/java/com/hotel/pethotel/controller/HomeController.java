@@ -25,10 +25,6 @@ public class HomeController {
         return "adminpanel";
     }
 
-    @GetMapping("/admin")
-    public String admin() {
-        return "adminpanel";
-    }
 
     @GetMapping("/userpanel")
     public String userPanel() {
