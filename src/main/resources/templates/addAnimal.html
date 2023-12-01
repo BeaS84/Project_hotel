@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Formularz Dodawania Animala</title>
+</head>
+<body>
+
+<h2>Dodaj nowego zwierzaka</h2>
+
+<form th:action="@{/clientpanel/clientAnimals/addAnimal}" method="post" th:object="${newAnimal}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required/>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" th:field="*{type}" required/>
+
+
+
+    <button type="submit">Dodaj Nowego Zwierzaka</button>
+</form>
+
+</body>
+</html>

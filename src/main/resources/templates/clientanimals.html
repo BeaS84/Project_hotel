@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
@@ -56,11 +55,39 @@
     </style>
 </head>
 <body>
-<h1>Moje dane osobowe</h1>
+<h1>Twoje zwierzęta</h1>
 
+
+<table>
+    <tr>
+        <th colspan="4" class="table-header">TWOJE ZWIERZĘTA</th>
+    </tr>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>type</th>
+        <th>sex</th>
+        <th>weight</th>
+    </tr>
+    <tr th:each="animal: ${clientAnimals}">
+        <td th:text="${animal.id}" />
+        <td th:text="${animal.name}"></td>
+        <td th:text="${animal.type}" />
+        <td th:text="${animal.sex}" />
+
+    </tr>
+</table>
+
+<section id="DODAJ">
+    <form action="/clientpanel/clientAnimals/addAnimal" method="get">
+        <button type="submit">Dodaj zwierzaka</button>
+    </form>
 </section>
 
-
-
+<section id="wróć">
+    <form action="/clientpanel" method="get">
+        <button type="submit">Wróć</button>
+    </form>
+</section>
 </body>
 </html>

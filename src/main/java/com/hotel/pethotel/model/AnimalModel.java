@@ -19,9 +19,9 @@ public class AnimalModel {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @Column(name = "weight")
-    @Enumerated(EnumType.STRING)
-    private AnimalSize size; //Beata enum do dyskusji
+//    @Column(name = "weight")
+//    @Enumerated(EnumType.STRING)
+//    private AnimalSize size; //Beata enum do dyskusji
 
     @Column(name = "name")
     private String name;

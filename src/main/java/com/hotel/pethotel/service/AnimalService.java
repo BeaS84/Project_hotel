@@ -31,12 +31,15 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
-    public AnimalDto addAnimal(AnimalDto animalDto){
-        AnimalModel animalModel = AnimalMapper.toAnimalModel(animalDto);
-        AnimalModel addAnimal = animalRepository.save(animalModel);
-        return AnimalMapper.toAnimalDto(addAnimal);
+//    public AnimalDto addAnimal(AnimalDto animalDto){
+//        AnimalModel animalModel = AnimalMapper.toAnimalModel(animalDto);
+//        AnimalModel addAnimal = animalRepository.save(animalModel);
+//        return AnimalMapper.toAnimalDto(addAnimal);
+//    }
+
+
+    public void addAnimal(AnimalModel animal) {
+        System.out.println("Adding animal: " + animal);
+        animalRepository.save(animal);
     }
-
-
-
 }
