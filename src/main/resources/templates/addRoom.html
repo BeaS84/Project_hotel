@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Formularz Dodawania Pokoju</title>
+</head>
+<body>
+
+<h2>Formularz Dodawania Pokoju</h2>
+
+<form th:action="@{/adminpanel/addRoom}" method="post" th:object="${newRoom}">
+    <!-- ID nie jest edytowalne przez użytkownika, ale może być używane jako wartość ukryta -->
+    <!--    <input type="hidden" th:field="*{id}"/>-->
+    <!--    <label for="id">ID:</label>-->
+    <!--    <input type="number" id="id" name="id" th:field="*{id}">-->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required/>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" th:field="*{description}" required/>
+
+    <label for="standard">Standard:</label>
+    <!--    Wyrażenie T(com.hotel.pethotel.model.Standard) odnosi się do klasy enum Standard, a values() zwraca tablicę wszystkich stałych enuma.-->
+    <select id="standard" name="standard" required>
+        <option th:each="option : ${T(com.hotel.pethotel.model.Standard).values()}"
+                th:value="${option}" th:text="${option}">
+        </option>
+    </select>
+    <label for="animalSize">Animal Size:</label>
+    <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{animalSize}" required>
+        <option value="SMALL">Small</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LARGE">Large</option>
+        <!-- Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt -->
+    </select>
+    <label for="active">Active:</label>
+    <input type="checkbox" id="active" name="active" th:field="*{active}"/>
+    <button type="submit">Dodaj Pokój</button>
+</form>
+
+</body>
+</html>

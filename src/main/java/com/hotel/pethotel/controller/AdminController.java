@@ -5,7 +5,6 @@ import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.service.AnimalService;
 import com.hotel.pethotel.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +42,8 @@ public class AdminController {
 //        return "clients";
 //    }
 
-    @GetMapping("/allRooms")
-    public String getAllRooms() {
-        return "rooms";
-    }
+//    @GetMapping("/allRooms")
+//    public String getAllRooms() {
+//        return "rooms";
+//    }
 }
