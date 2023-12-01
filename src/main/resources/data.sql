@@ -16,10 +16,8 @@ INSERT INTO animal_model (type,name) VALUES ('pies','Frania');
 
 INSERT INTO room_model(name, standard) VALUES
                                              ('bialy','BASIC');
-INSERT INTO room_model(name,description,standard, is_active) VALUES
-                                             ('bialy','jakis opis','BASIC',false);
 
-INSERT INTO animal_size(room_id, animal_size)VALUES(1,'SMALL');
-INSERT INTO animal_size(room_id, animal_size)VALUES(1,'MEDIUM');
+-- INSERT INTO animal_size(room_id, animal_size)VALUES(1,'SMALL');
+-- INSERT INTO animal_size(room_id, animal_size)VALUES(1,'MEDIUM');
 
 
