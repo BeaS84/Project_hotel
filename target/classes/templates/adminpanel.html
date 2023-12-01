@@ -1,158 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Witaj Adminie </title>
-  <style>
-    body {
-      background-color: #f0f0f0;
-    }
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
 
-    .header {
-      background-color: black;
-      color: white;
-      padding: 10px;
-      text-align: center;
-      font-size: 24px;
-    }
+    <style>
 
-    .welcome {
-      padding: 20px;
-      text-align: center;
-    }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
 
-    .buttons {
-      text-align: center;
-      margin-top: 20px;
-    }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
 
-    .logout-btn, .add-animal-btn, .reservation-btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-    }
 
-    .section {
-      margin-top: 30px;
-    }
-  </style>
+        th.table-header {
+            font-size: 18px;
+            text-align: center;
+        }
+
+
+        nav {
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f1f1f1;
+            padding-top: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 8px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-<div class="header">
-  HOTEL DLA ZWIERZĄT
-</div>
 
-<div class="welcome">
-  <h1>Witaj Adminie</h1>
-  <p>Witaj, <span th:text="${username}"></span>!</p>
-</div>
-
-<div class="section">
-  <h2>Zarejestrowane zwierzaki</h2>
-  <p>Tutaj możesz zarządzać informacjami o zwierzakach.</p>
-  <form action="/animals" method="get">
-    <button class="add-animal-btn" type="submit" name="">Zobacz Zwierzęta</button>
-  </form>
-</div>
-
-<div class="section">
-  <h2>Twoje Rezerwacje</h2>
-  <p>Tutaj możesz przeglądać i zarządzać swoimi rezerwacjami.</p>
-  <form action="/make-reservation" method="get">
-    <button class="reservation-btn" type="submit">Zarezerwuj</button>
-  </form>
-</div>
-
-<div class="section">
-  <h2>Dokonaj Rezerwacji</h2>
-  <p>Tutaj możesz dokonać nowej rezerwacji.</p>
-  <form action="/make-reservation" method="get">
-    <button class="reservation-btn" type="submit">Zarezerwuj</button>
-  </form>
-</div>
-
-<!-- Przycisk wylogowania -->
-</div> <div class="form-group mb-3">
-  <a href="/logout" class="btn btn-primary" role="button">LOGOUT</a>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<nav>
+    <ul>
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/admin/allReservations">Wszystkie rezerwacje</a></li>
+        <li><a href="/admin/allAnimals">Wszystkie zwierzęta</a></li>
+        <li><a href="/admin/allClients">Wszyscy użytkownicy</a></li>
+        <li><a href="/admin/allRooms">Pokoje</a></li>
+    </ul>
+</nav>
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>Admin Panel</title>-->
-<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
-<!--  <style>-->
-<!--    body {-->
-<!--      margin: 0;-->
-<!--      padding: 0;-->
-<!--      font-family: 'Arial', sans-serif;-->
-<!--    }-->
-
-<!--    .admin-panel {-->
-<!--      display: flex;-->
-<!--      flex-direction: column;-->
-<!--      width: 100vw;-->
-<!--      height: 100vh;-->
-<!--    }-->
-
-<!--    h1 {-->
-<!--      text-align: center;-->
-<!--      margin-bottom: 20px;-->
-<!--    }-->
-
-<!--    .menu {-->
-<!--      background-color: #333;-->
-<!--      color: #fff;-->
-<!--      padding: 10px;-->
-<!--    }-->
-
-<!--    .menu ul {-->
-<!--      list-style: none;-->
-<!--      padding: 0;-->
-<!--      margin: 0;-->
-<!--    }-->
-
-<!--    .menu li {-->
-<!--      display: inline;-->
-<!--      margin-right: 20px;-->
-<!--    }-->
-
-<!--    .menu a {-->
-<!--      text-decoration: none;-->
-<!--      color: #fff;-->
-<!--      font-weight: bold;-->
-<!--    }-->
-
-<!--    .content {-->
-<!--      padding: 20px;-->
-<!--    }-->
-<!--  </style>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<div class="admin-panel">-->
-<!--  <h1>Welcome to the Admin Panel</h1>-->
-<!--  <div class="menu">-->
-<!--    <ul>-->
-<!--      <li><a th:href="@{/admin/dashboard}">Reservations</a></li>-->
-<!--      <li><a th:href="@{/admin/users}">Users</a></li>-->
-<!--      <li><a th:href="@{/admin/products}">Products</a></li>-->
-<!--      &lt;!&ndash; Dodaj więcej linków do innych sekcji &ndash;&gt;-->
-<!--    </ul>-->
-<!--  </div>-->
-<!--  <div class="content">-->
-<!--    &lt;!&ndash; Tutaj umieść zawartość dla różnych sekcji panelu admina &ndash;&gt;-->
-<!--    <p>Main content goes here.</p>-->
-<!--  </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
