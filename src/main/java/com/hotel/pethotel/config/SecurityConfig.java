@@ -33,11 +33,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http, MvcRequestMatcher.Builder mvcMatcher) throws Exception {
         http
+               // .exceptionHandling().accessDeniedPage("/accessDenied")
                 .authorizeHttpRequests((authorize) ->
-                        authorize.anyRequest().authenticated()
-
+                        authorize
+                                .requestMatchers("/adminpanel/**").hasRole("ADMIN")
+                                .requestMatchers("/userpanel/**").hasRole("USER")
+                                .requestMatchers("/").permitAll()
+                                .anyRequest().authenticated()
 
                 )
+               // .exceptionHandling().accessDeniedPage("/accessDenied.html").and()
                 .formLogin(
                         form -> form
                                 .loginPage("/login")
@@ -48,7 +53,8 @@ public class SecurityConfig {
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
-                );
+                )
+             ;
         return http.build();
     }
 }

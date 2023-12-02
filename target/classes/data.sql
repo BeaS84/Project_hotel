@@ -9,9 +9,9 @@ INSERT INTO role_model (name) VALUES ('ROLE_ADMIN'),('ROLE_USER');
 INSERT INTO user_x_roles VALUES (1,1),(2,2),(3,1);
 INSERT INTO user_x_roles VALUES (1,2);
 
-INSERT INTO animal_model (type,name,sex,client_id) VALUES ('pies','Pika','GIRL',2);
-INSERT INTO animal_model (type,name,sex,weight) VALUES ('pies','Borys','BOY','MEDIUM');
-INSERT INTO animal_model (type,name) VALUES ('pies','Frania');
+INSERT INTO animal_model (type,name,sex,client_id) VALUES ('DOG','Pika','GIRL',2);
+INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Borys','BOY','MEDIUM',2);
+INSERT INTO animal_model (type,name,client_id) VALUES ('DOG','Frania',2);
 
 
 INSERT INTO room_model(name, standard) VALUES

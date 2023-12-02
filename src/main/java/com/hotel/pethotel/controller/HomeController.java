@@ -12,7 +12,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String greeting(Model model) {
-        model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
+        model.addAttribute("userRoles", SecurityContextHolder
+                .getContext().getAuthentication().getAuthorities().toString());
+            model.addAttribute("isAuthenticated",SecurityContextHolder.getContext().getAuthentication() != null &&
+                    SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
         return "home";
     }
 
