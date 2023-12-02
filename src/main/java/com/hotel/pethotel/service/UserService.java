@@ -1,6 +1,7 @@
 package com.hotel.pethotel.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,11 @@ public class UserService implements UserDetailsService {
 
     public List<UserModel> getAllClients() {
         return userRepo.findAll();
+    }
+
+    public UserModel getUserByEmail(String userEmail) {
+        Optional<UserModel> userOptional = userRepo.findByEmail(userEmail);
+        return userOptional.orElse(null);
     }
 }
 

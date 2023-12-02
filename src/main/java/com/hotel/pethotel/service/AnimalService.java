@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,4 +43,24 @@ public class AnimalService {
         System.out.println("Adding animal: " + animal);
         animalRepository.save(animal);
     }
+
+    public AnimalModel getAnimalById(Long id) {
+        // Użyj metody findById z AnimalRepository, aby pobrać zwierzę po ID
+        Optional<AnimalModel> optionalAnimal = animalRepository.findById(id);
+
+        // Sprawdź, czy zwierzę istnieje
+        if (optionalAnimal.isPresent()) {
+            return optionalAnimal.get();
+        } else {
+            // Obsłuż sytuację, gdy zwierzę o danym ID nie istnieje
+           // throw new AnimalNotFoundException("Animal not found with id: " + id);
+        }
+        return null;
+    }
+
+    public void saveEditAnimal(AnimalModel editAnimal) {
+        animalRepository.save(editAnimal);
+    }
+
+
 }

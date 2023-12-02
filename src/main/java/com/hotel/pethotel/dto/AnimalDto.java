@@ -8,7 +8,7 @@ import lombok.Data;
 public class AnimalDto {
     private Long id;
     private Type type;
-  //  private Integer weight;
+    //  private Integer weight;
     private String name;
     private Sex sex;
 }
