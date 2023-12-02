@@ -20,12 +20,6 @@ import java.util.List;
 public class AnimalController {
 
     private final AnimalService animalService;
-//    @GetMapping("/addAnimal")
-//    public String getAddAnimal() {
-//        return "animals/addNewAnimal";
-//    }
-//
-
     @PostMapping("/addAnimals")
     public ResponseEntity<AnimalDto> addAnimal(@RequestBody AnimalDto animalDto) {
         try {
