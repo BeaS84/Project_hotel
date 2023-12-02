@@ -28,7 +28,7 @@ public class ClientPanelController {
 
     @GetMapping("/clientAnimals")
     public String listAnimals(Model model) {
-        List<AnimalModel> animalList = animalService.getAnimalList(model);
+        List<AnimalModel> animalList = animalService.getAnimalList();
         model.addAttribute("clientAnimals", animalList);
         return "clientAnimals";
     }

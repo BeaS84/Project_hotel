@@ -20,14 +20,14 @@ import java.util.List;
 public class AnimalController {
 
     private final AnimalService animalService;
-    @PostMapping("/addAnimals")
-    public ResponseEntity<AnimalDto> addAnimal(@RequestBody AnimalDto animalDto) {
-        try {
-            AnimalDto addAnimal = animalService.addAnimal(animalDto);
-            return ResponseEntity.ok(addAnimal);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-    }
+//    @PostMapping("/addAnimals")
+//    public ResponseEntity<AnimalDto> addAnimal(@RequestBody AnimalDto animalDto) {
+//        try {
+//            AnimalDto addAnimal = animalService.addAnimal(animalDto);
+//            return ResponseEntity.ok(addAnimal);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//
+//    }
 }

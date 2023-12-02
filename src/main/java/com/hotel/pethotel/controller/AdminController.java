@@ -44,10 +44,10 @@ public class AdminController {
     }
 
 
-    @GetMapping("/allRooms")
-    public String getAllRooms() {
-        return "rooms";
-    }
+//    @GetMapping("/allRooms")
+//    public String getAllRooms() {
+//        return "rooms";
+//    }
 
 
     @GetMapping ("/client/{id}")//clients/2/animals
