@@ -38,4 +38,3 @@ public class AnimalModel {
     @ManyToMany(mappedBy = "animals")
     private Set<ReservationModel> reservations;
 }
-

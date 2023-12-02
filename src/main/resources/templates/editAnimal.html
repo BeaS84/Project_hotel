@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edytuj Zwierzaka</title>
+</head>
+<body>
+
+<h2>Edytuj zwierzaka</h2>
+
+<form th:action="@{/clientpanel/clientAnimals/editanimal}" method="post" th:object="${editedAnimal}">
+
+    <input type="hidden" id="id" name="id" th:field="*{id}" />
+
+    <label for="name">Imię:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required/>
+
+    <label for="type">Rodzaj:</label>
+    <select id="type" name="type" th:field="*{type}" required>
+        <option th:each="animalType : ${T(com.hotel.pethotel.model.Type).values()}"
+                th:value="${animalType}" th:text="${#strings.capitalize(animalType.name())}">
+        </option>
+    </select>
+
+    <label for="size">Rozmiar:</label>
+    <select id="size" name="size" th:field="*{size}" required>
+        <option th:each="animalSize : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
+                th:value="${animalSize}" th:text="${#strings.capitalize(animalSize.name())}">
+        </option>
+    </select>
+
+    <label for="sex">Płeć:</label>
+    <select id="sex" name="sex" th:field="*{sex}" required>
+        <option th:each="animalSex : ${T(com.hotel.pethotel.model.Sex).values()}"
+                th:value="${animalSex}" th:text="${#strings.capitalize(animalSex.name())}">
+        </option>
+    </select>
+
+
+
+    <button type="submit">Zapisz Edycję Zwierzaka</button>
+</form>
+
+</body>
+</html>

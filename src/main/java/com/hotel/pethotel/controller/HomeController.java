@@ -29,9 +29,9 @@ public class HomeController {
     }
 
 
-    @GetMapping("/userpanel")
+    @GetMapping("/clientpanel")
     public String userPanel() {
-        return "userpanel";
+        return "clientpanel";
     }
 
     @GetMapping("/defaultpanel")

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+
+    th.table-header {
+        font-size: 18px;
+        text-align: center;
+    }
+
+
+    nav {
+        width: 200px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #f1f1f1;
+        padding-top: 20px;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        padding: 8px;
+        text-align: center;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        display: block;
+    }
+</style>
+<body>
+
+<section>
+        <table>
+            <tr>
+                <th colspan="6" class="table-header">MOJE REZERWACJE</th>
+            </tr>
+
+            <tr>
+                <th>ID</th>
+                <th>Numer Rezerwacji</th>
+                <th>Data Rozpoczęcia</th>
+                <th>Data Zakończenia</th>
+                <th>Cena</th>
+                <th>Status Rezerwacji</th>
+            </tr>
+            <tr th:each="reservation : ${reservationList}">
+                <td th:text="${reservation.id}"></td>
+                <td th:text="${reservation.reservationNumber}"></td>
+                <td th:text="${reservation.startDate}"></td>
+                <td th:text="${reservation.endDate}"></td>
+                <td th:text="${reservation.price}"></td>
+                <td th:text="${reservation.reservationStatus}"></td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="Wróć">
+        <form action="/clientpanel" method="get">
+            <button type="submit">Wróć</button>
+        </form>
+    </section>
+
+</body>
+</html>
