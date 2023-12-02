@@ -16,7 +16,8 @@ public class AnimalModel {
     private Long id;
 
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Column(name = "weight")
     @Enumerated(EnumType.STRING)
@@ -37,4 +38,3 @@ public class AnimalModel {
     @ManyToMany(mappedBy = "animals")
     private Set<ReservationModel> reservations;
 }
-

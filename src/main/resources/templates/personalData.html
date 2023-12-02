@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-
     <style>
-
+        /* Styl dla tabeli */
         table {
             border-collapse: collapse;
             width: 50%;
-            border: 1px solid #ddd;
             margin-top: 20px;
         }
 
@@ -24,69 +22,75 @@
             text-align: center;
         }
 
-        nav {
-            width: 200px;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #f1f1f1;
-            padding-top: 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            padding: 8px;
-            text-align: center;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            display: block;
+        .edit-form {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+<h1 style="text-align: center;">Twoje dane osobowe</h1>
 
-<nav>
-    <ul>
-        <li><a href="/userpanel/userReservation">Moje Rezerwacje</a></li>
-        <li><a href="/userpanel/userAnimals">Moje Zwierzęta</a></li>
-        <li><a href="/userpanel/personalData">Moje Dane Osobowe</a></li>
-        <li><a href="/userpanel/makeReservation">Zarezerwuj</a></li>
-        <li><a href="/userpanel">Strona Główna</a></li>
-    </ul>
-</nav>
+<table>
+    <tr>
+        <th class="table-header">Atrybut</th>
+        <th class="table-header">Wartość</th>
+        <th class="table-header">Edycja</th>
+    </tr>
+    <tr>
+        <td>Id</td>
+        <td th:text="${user.id}"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Imię</td>
+        <td>
+            <span th:text="${user.name}" th:unless="${editMode}"></span>
+            <input type="text" th:if="${editMode}" th:field="*{name}" />
+        </td>
+        <td>
+            <button th:unless="${editMode}" th:onclick="${'#editName' + ' input'}.focus()">Edytuj</button>
+            <button th:if="${editMode}" th:onclick="|saveChanges('${editModeAttr}', 'name')|">Zapisz</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Nazwisko</td>
+        <td>
+            <span th:text="${user.surname}" th:unless="${editMode}"></span>
+            <input type="text" th:if="${editMode}" th:field="*{surname}" />
+        </td>
+        <td>
+            <button th:unless="${editMode}" th:onclick="${'#editSurname' + ' input'}.focus()">Edytuj</button>
+            <button th:if="${editMode}" th:onclick="|saveChanges('${editModeAttr}', 'surname')|">Zapisz</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td th:text="${user.email}"></td>
+        <td></td>
+    </tr>
 
-<section id="main-content" style="margin-left: 200px; padding: 20px;">
+    <tr>
+        <td>Telefon</td>
+        <td>
+            <span th:text="${user.phone}" th:unless="${editMode}"></span>
+            <input type="text" th:if="${editMode}" th:field="*{phone}" />
+        </td>
+        <td>
+            <button th:unless="${editMode}" th:onclick="${'#editPhone' + ' input'}.focus()">Edytuj</button>
+            <button th:if="${editMode}" th:onclick="|saveChanges('${editModeAttr}', 'phone')|">Zapisz</button>
+        </td>
+    </tr>
 
-    <section id="daneOsobowe">
-        <h2>Moje dane osobowe</h2>
 
-        <table>
-            <tr>
-                <th class="table-header">Name</th> <td></td></tr>
-            <tr>
-                <th class="table-header">PetUser</th> <td></td></tr>
-            <tr>    <th class="table-header">Surname</th><td></td> </tr>
-            <tr>    <th class="table-header">Email</th> <td></td></tr>
-            <tr>    <th class="table-header">Phone number</th> <td></td></tr>
-            <tr>    <th class="table-header">Animals</th> <td></td></tr>
-        </table>
-    </section>
+</table>
+
+<section id="wróć">
+    <form action="/clientpanel" method="get">
+        <button type="submit">Wróć</button>
+    </form>
 </section>
 
-<section id="Wyszukaj">
-    <h2>Wyszukaj</h2>
-    <!-- Tutaj możesz dodać formularz wyszukiwania, jeśli to potrzebne -->
-</section>
+
 
 </body>
 </html>

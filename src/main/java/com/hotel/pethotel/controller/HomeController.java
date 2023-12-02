@@ -13,6 +13,8 @@ public class HomeController {
     @GetMapping("/")
     public String greeting(Model model) {
         model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
+
+
         return "home";
     }
 
@@ -26,9 +28,9 @@ public class HomeController {
     }
 
 
-    @GetMapping("/userpanel")
+    @GetMapping("/clientpanel")
     public String userPanel() {
-        return "userpanel";
+        return "clientpanel";
     }
 
     @GetMapping("/defaultpanel")

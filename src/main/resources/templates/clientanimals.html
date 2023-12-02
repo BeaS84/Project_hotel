@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th.table-header {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        nav {
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f1f1f1;
+            padding-top: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 8px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+
+
+<h1>Twoje zwierzęta</h1>
+
+<table>
+    <tr>
+        <th colspan="5" class="table-header">TWOJE ZWIERZĘTA</th>
+    </tr>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>type</th>
+        <th>sex</th>
+        <th>size</th>
+
+    </tr>
+    <tr th:each="animal: ${clientAnimals}">
+        <td th:text="${animal.id}" />
+        <td th:text="${animal.name}" />
+        <td th:text="${animal.type}" />
+        <td th:text="${animal.sex}" />
+        <td th:text="${animal.size}" />
+        <td><a th:href="@{/clientpanel/clientAnimals/editanimal/{id}(id=${animal.id})}">Edytuj</a></td>
+    </tr>
+</table>
+
+<section id="DODAJ">
+    <form action="/clientpanel/clientAnimals/addAnimal" method="get">
+        <button type="submit">Dodaj zwierzaka</button>
+    </form>
+</section>
+
+
+
+
+
+<section id="wróć">
+    <form action="/clientpanel" method="get">
+        <button type="submit">Wróć</button>
+    </form>
+</section>
+</body>
+</html>
