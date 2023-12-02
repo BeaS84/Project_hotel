@@ -16,7 +16,8 @@ public class AnimalModel {
     private Long id;
 
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Column(name = "weight")
     @Enumerated(EnumType.STRING)
@@ -29,7 +30,7 @@ public class AnimalModel {
     private Sex sex;
 
     @ManyToOne
-    private ClientModel client;//lub client
+    private ClientModel client;
 
     @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
     private Set<TreatmentModel> treatments;

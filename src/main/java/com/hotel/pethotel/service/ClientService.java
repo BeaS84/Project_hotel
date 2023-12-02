@@ -15,8 +15,17 @@ import java.util.List;
 public class ClientService {
     private final ClientRepository clientRepository;
 
-    public List<AnimalModel> getAnimalListForClient(ClientModel clientModel) {
-       // return clientRepository.getAnimals();
-        return List.of();
+    public List<ClientModel> getAllClients() {
+        return clientRepository.findAll();
     }
+
+    public ClientModel getClientById(Long id) {
+        return clientRepository.findById(id).orElse(null);
+    }
+    public List<AnimalModel> getAnimals(Long id){
+        ClientModel clientModel=clientRepository.findById(id).orElse(null);
+        assert clientModel != null;
+        return clientModel.getAnimals();
+    }
+
 }

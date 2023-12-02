@@ -78,14 +78,33 @@
                 <th>name</th>
                 <th>surname</th>
                 <th>email</th>
-<!--                <th>your animals</th>-->
+                <th>your animals</th>
             </tr>
             <tr th:each="client: ${clients}">
                 <td th:text="${client.id}" />
                 <td th:text="${client.name}" />
                 <td th:text="${client.surname}" />
                 <td th:text="${client.email}" />
-<!--                <td th:text="${client.animals.name}" />-->
+                  <td>
+                      <a th:text="Zwierzęta" th:href="@{/adminpanel/client/{id}(id=${client.id})}">
+<!--                         th:href="@{/adminpanel/sth}">-->
+
+<!--                         -->
+
+<!--                              th:text="${client.id}"-->
+
+<!--                          <form method="get" -->
+
+<!--                      <form method="get" action='<c:url value="/client/${client.id}"/>'>-->
+<!--                          <form method="get" th:action="/client/${client.id}">'>-->
+<!--                      form method="get" th:href="@{/client/${client.id}}">-->
+<!-- method="get" action='<c:url value="/client/${client.id}"/>'>&ndash;&gt;-->
+<!--                    '<c:url value="/editStudent/${student.id}"/>'-->
+<!--                    <form method="post" action='<c:url value="/editStudent/${student.id}"/>'>-->
+                    <button type="submit">Zwierzęta</button>
+                </a>
+<!--                          </form>-->
+                  </td>
             </tr>
         </table>
     </section>

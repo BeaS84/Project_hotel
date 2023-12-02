@@ -23,11 +23,11 @@ public class AnimalService {
 
     private final AnimalRepository animalRepository;
 
-    public List<AnimalModel> getAnimalList(Model model){
+    public List<AnimalModel> getAnimalList(){
         return animalRepository.findAll();
     }
 
-    public List<AnimalModel> getAnimals(ClientModel model){
+    public List<AnimalModel> getAnimals(){
         return animalRepository.findAll();
     }
 
