@@ -38,7 +38,7 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers("/adminpanel/**").hasRole("ADMIN")
                                 .requestMatchers("/userpanel/**").hasRole("USER")
-                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/","/register","/login").permitAll()
                                 .anyRequest().authenticated()
 
                 )
@@ -53,6 +53,8 @@ public class SecurityConfig {
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
+                                .logoutSuccessUrl("/")//po wylogowaniu wracamy na home,
+                        // nie na stronę logowania
                 )
              ;
         return http.build();

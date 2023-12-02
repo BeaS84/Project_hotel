@@ -52,4 +52,9 @@ public class HomeController {
     public String logout() {
         return "redirect:/login";
     }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
 }

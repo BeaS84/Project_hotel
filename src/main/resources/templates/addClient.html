@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Lista Pokoi</title>
+    <style>
+        .alert-fade-out {
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+            position: fixed; /* Ustawienie pozycji na 'fixed' */
+            top: 0; /* Umieszczenie alertu na górze strony */
+            width: 100%; /* Szerokość na 100% */
+            z-index: 1000; /* Z-indeks dla pozycji na górze */
+        }
+
+        .alert-hidden {
+            opacity: 0;
+            display: none;
+        }
+
+        /* Dodane style dla alertu */
+        #alertMessage {
+            background-color: green;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Styl dla reszty treści strony */
+        body {
+            margin-top: 40px; /* Dostosuj margines na górze strony */
+        }
+    </style>
+</head>
+<body>
+
+<h2>Lista Pokoi</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Room standard</th>
+        <th>Animal Size</th>
+        <th>Is Active</th>
+        <th>Is reserved</th>
+        <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iteracja przez listę pokoi i generowanie wierszy tabeli -->
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.getId()}"></td>
+        <td th:text="${room.getName()}"></td>
+        <td th:text="${room.getDescription()}"></td>
+        <td th:text="${room.getStandard()}"></td>
+        <td th:text="${room.getAnimalSize()}"></td>
+        <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>
+        <!--        jesli dlugosc seta jest >0 wyswietla sie Yes, w przeciwnym wypadku wysietla sie No.-->
+        <td th:text="${#lists.size(room.reservations) > 0 ? 'Yes' : 'No'}"></td>
+        <td>
+            <a th:href="@{'/adminpanel/editRoom/' + ${room.getId()}}"
+               th:attr="data-id=${room.getId()}">
+                <button>Edytuj</button>
+            </a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<button onclick="location.href='/adminpanel'">Wróc</button>
+<!-- Dodany przycisk "Dodaj Pokój" -->
+<button onclick="location.href='/adminpanel/addRoom'">Dodaj Pokój</button>
+
+<div id="alertMessage" th:if="${message}" class="alert alert-success alert-fade-out" role="alert">
+    <p th:text="${message}"></p>
+</div>
+<!-- Dodanie kodu JavaScript do obsługi znikania alertu po kilku sekundach -->
+<script>
+    // Pobranie elementu alertu
+    var alertMessage = document.getElementById('alertMessage');
+
+    // Ustawienie czasu (w milisekundach) po którym alert ma zniknąć (zmieniono na 3000 milisekund)
+    var fadeOutTime = 3000; // 3 sekundy
+
+    // Funkcja ukrywająca alert po określonym czasie
+    function hideAlert() {
+        alertMessage.classList.add('alert-hidden');
+    }
+    // Uruchomienie funkcji po określonym czasie
+    setTimeout(hideAlert, fadeOutTime);
+</script>
+
+</body>
+</html>
+

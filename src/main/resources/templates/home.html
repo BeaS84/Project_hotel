@@ -14,12 +14,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                <li class="nav-item">-->
                     <a sec:authorize="isAuthenticated()" class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                     <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
-                </li>
-            </ul>
+                    <a sec:authorize="isAnonymous()" class="nav-link active"
+                       aria-current="page" th:href="@{/register}">Register</a>
+<!--                </li>-->
+<!--            </ul>-->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Warunek sprawdzający rolę użytkownika -->
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
