@@ -1,10 +1,15 @@
 package com.hotel.pethotel.controller;
 
 import com.hotel.pethotel.model.AnimalModel;
+import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.service.AnimalService;
+import com.hotel.pethotel.service.ClientService;
 import com.hotel.pethotel.service.UserService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +23,7 @@ import java.util.List;
 @RequestMapping("/clientpanel")
 public class ClientPanelController {
     private final AnimalService animalService;
+    private final ClientService clientService;
     private final UserService userService;
 
 
@@ -36,13 +42,17 @@ public class ClientPanelController {
 
     @GetMapping("/clientAnimals/addAnimal")
     public String getAddClientAnimal(Model model) {
-        model.addAttribute("newAnimal", new AnimalModel());
+        AnimalModel animal = new AnimalModel();
+        model.addAttribute("newAnimal", animal);
         return "addAnimal";
     }
 
     @PostMapping("/clientAnimals/addAnimal")
     public RedirectView postAddAnimal(@ModelAttribute("newAnimal") AnimalModel animal) {
         System.out.println("Received animal: " + animal);
+        String email = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        ClientModel client = clientService.getClientByEmail(email);
+        animal.setClient(client);
         animalService.addAnimal(animal);
         return new RedirectView("/clientpanel/clientAnimals");
     }
@@ -65,6 +75,9 @@ public class ClientPanelController {
 
     @PostMapping("/clientAnimals/editanimal")
     public RedirectView postEditAnimal(@ModelAttribute("editedAnimal") AnimalModel editedAnimal) {
+        String email = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        ClientModel client = clientService.getClientByEmail(email);
+        editedAnimal.setClient(client);
         animalService.saveEditAnimal(editedAnimal);
         return new RedirectView("/clientpanel/clientAnimals");
     }
