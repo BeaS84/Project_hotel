@@ -3,6 +3,7 @@ package com.hotel.pethotel.controller;
 import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.service.ClientService;
 import com.hotel.pethotel.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
-
+@RequiredArgsConstructor
 @Controller
 public class HomeController {
     private UserService userService;
-    private ClientService clientService;
+    private final ClientService clientService;
 
     @GetMapping("/")
     public String greeting(Model model) {
