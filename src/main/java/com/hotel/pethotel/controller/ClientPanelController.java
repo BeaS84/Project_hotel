@@ -28,7 +28,8 @@ public class ClientPanelController {
 
     @GetMapping("/clientAnimals")
     public String listAnimals(Model model) {
-        List<AnimalModel> animalList = animalService.getAnimalList();
+        String email = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        List<AnimalModel> animalList = clientService.getAnimalsByClientEmail(email);
         model.addAttribute("clientAnimals", animalList);
         return "clientAnimals";
     }
