@@ -1,8 +1,10 @@
 package com.hotel.pethotel.controller;
 
 import com.hotel.pethotel.model.AnimalModel;
+import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.service.AnimalService;
+import com.hotel.pethotel.service.ClientService;
 import com.hotel.pethotel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import java.util.List;
 public class ClientPanelController {
     private final AnimalService animalService;
     private final UserService userService;
+    private final ClientService clientService;
 
 
     @GetMapping("/clientReservations")
@@ -92,5 +95,4 @@ public class ClientPanelController {
         return "redirect:/login";
     }
 
-
-}
+   }

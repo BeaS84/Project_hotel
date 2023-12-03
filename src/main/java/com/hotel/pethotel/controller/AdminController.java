@@ -32,6 +32,7 @@ public class AdminController {
         return "clients";
     }
     @GetMapping("/allAnimals")//animals
+    // dodaj email właściciela owner=findById() później owner.email
     public String listAnimals(Model model){
         List<AnimalModel>animalList = animalService.getAnimalList();
         model.addAttribute("animals", animalList);

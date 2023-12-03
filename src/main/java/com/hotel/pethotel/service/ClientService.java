@@ -22,10 +22,17 @@ public class ClientService {
     public ClientModel getClientById(Long id) {
         return clientRepository.findById(id).orElse(null);
     }
-    public List<AnimalModel> getAnimals(Long id){
-        ClientModel clientModel=clientRepository.findById(id).orElse(null);
-        assert clientModel != null;
-        return clientModel.getAnimals();
+
+    public void addClient(ClientModel client){
+        //client.getPassword()
+        clientRepository.save(client);
     }
+
+    //to jest zrobione w controller
+//    public List<AnimalModel> getAnimals(Long id){
+//        ClientModel clientModel=clientRepository.findById(id).orElse(null);
+//        assert clientModel != null;
+//        return clientModel.getAnimals();
+//    }
 
 }

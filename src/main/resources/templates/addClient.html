@@ -2,98 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Lista Pokoi</title>
-    <style>
-        .alert-fade-out {
-            opacity: 1;
-            transition: opacity 1.5s ease-in-out;
-            position: fixed; /* Ustawienie pozycji na 'fixed' */
-            top: 0; /* Umieszczenie alertu na górze strony */
-            width: 100%; /* Szerokość na 100% */
-            z-index: 1000; /* Z-indeks dla pozycji na górze */
-        }
-
-        .alert-hidden {
-            opacity: 0;
-            display: none;
-        }
-
-        /* Dodane style dla alertu */
-        #alertMessage {
-            background-color: green;
-            color: black;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        /* Styl dla reszty treści strony */
-        body {
-            margin-top: 40px; /* Dostosuj margines na górze strony */
-        }
-    </style>
+    <title>Formularz Dodawania Użytkownika</title>
 </head>
 <body>
 
-<h2>Lista Pokoi</h2>
+<h2>Formularz Dodawania Użytkownika</h2>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Room standard</th>
-        <th>Animal Size</th>
-        <th>Is Active</th>
-        <th>Is reserved</th>
-        <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iteracja przez listę pokoi i generowanie wierszy tabeli -->
-    <tr th:each="room : ${rooms}">
-        <td th:text="${room.getId()}"></td>
-        <td th:text="${room.getName()}"></td>
-        <td th:text="${room.getDescription()}"></td>
-        <td th:text="${room.getStandard()}"></td>
-        <td th:text="${room.getAnimalSize()}"></td>
-        <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>
-        <!--        jesli dlugosc seta jest >0 wyswietla sie Yes, w przeciwnym wypadku wysietla sie No.-->
-        <td th:text="${#lists.size(room.reservations) > 0 ? 'Yes' : 'No'}"></td>
-        <td>
-            <a th:href="@{'/adminpanel/editRoom/' + ${room.getId()}}"
-               th:attr="data-id=${room.getId()}">
-                <button>Edytuj</button>
-            </a>
+<form th:action="@{/register}" method="post" th:object="${newClient}">
+<!--     ID nie jest edytowalne przez użytkownika, ale może być używane jako wartość ukryta-->
+<!--        <input type="hidden" th:field="*{id}"/>-->
+<!--        <label for="id">ID:</label>-->
+<!--        <input type="number" id="id" name="id" th:field="*{id}">-->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required/>
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" name="surname" th:field="*{surname}" required/>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" th:field="*{email}" required/>
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password" th:field="*{password}" required/>
+<!--    <label for="description">Description:</label>-->
+<!--    <input type="text" id="description" name="description" th:field="*{description}" required/>-->
 
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<button onclick="location.href='/adminpanel'">Wróc</button>
-<!-- Dodany przycisk "Dodaj Pokój" -->
-<button onclick="location.href='/adminpanel/addRoom'">Dodaj Pokój</button>
-
-<div id="alertMessage" th:if="${message}" class="alert alert-success alert-fade-out" role="alert">
-    <p th:text="${message}"></p>
-</div>
-<!-- Dodanie kodu JavaScript do obsługi znikania alertu po kilku sekundach -->
-<script>
-    // Pobranie elementu alertu
-    var alertMessage = document.getElementById('alertMessage');
-
-    // Ustawienie czasu (w milisekundach) po którym alert ma zniknąć (zmieniono na 3000 milisekund)
-    var fadeOutTime = 3000; // 3 sekundy
-
-    // Funkcja ukrywająca alert po określonym czasie
-    function hideAlert() {
-        alertMessage.classList.add('alert-hidden');
-    }
-    // Uruchomienie funkcji po określonym czasie
-    setTimeout(hideAlert, fadeOutTime);
-</script>
+<!--    <label for="standard">Standard:</label>-->
+<!--    &lt;!&ndash;    Wyrażenie T(com.hotel.pethotel.model.Standard) odnosi się do klasy enum Standard, a values() zwraca tablicę wszystkich stałych enuma.&ndash;&gt;-->
+<!--    <select id="standard" name="standard" required>-->
+<!--        <option th:each="option : ${T(com.hotel.pethotel.model.Standard).values()}"-->
+<!--                th:value="${option}" th:text="${option}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--    <label for="animalSize">Animal Size:</label>-->
+<!--    <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{animalSize}" required>-->
+<!--        <option value="SMALL">Small</option>-->
+<!--        <option value="MEDIUM">Medium</option>-->
+<!--        <option value="LARGE">Large</option>-->
+<!--        &lt;!&ndash; Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt &ndash;&gt;-->
+<!--    </select>-->
+<!--    <label for="active">Active:</label>-->
+<!--    <input type="checkbox" id="active" name="active" th:field="*{active}"/>-->
+    <button type="submit">Dodaj Użytkownika</button>
+</form>
 
 </body>
 </html>
-
