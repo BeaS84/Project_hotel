@@ -60,9 +60,8 @@
     <ul>
         <li><a href="/">Strona główna</a></li>
         <li><a href="/clientpanel/clientReservations">Moje rezerwacje</a></li>
-        <li><a href="/clientpanel/clientAnimals">Moje zwierzęta</a></li>
+        <li><a th:href="@{'/clientpanel/clientAnimals/client/'+${email}}">Moje zwierzęta</a></li>
         <li><a href="/clientpanel/personalData">Moje dane</a></li>
-        <li><a href="/clientpanel">Strona główna</a></li>
     </ul>
 </nav>
 </body>

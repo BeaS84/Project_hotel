@@ -26,12 +26,12 @@ public class RoomController {
     public String getRoomList(Model model){
         List<RoomModel> rooms = roomService.getRoomList();
         model.addAttribute("rooms", rooms);
-        return "allRooms";
+        return "Rooms/allRooms";
     }
     @GetMapping("/addRoom")
     public String getAddRoom(Model model) {
         model.addAttribute("newRoom", new RoomModel());
-        return "addRoom";}
+        return "Rooms/addRoom";}
     @PostMapping ("/addRoom")
     public RedirectView postAddRoom(RoomModel room){
         roomService.addRoom(room);
@@ -44,13 +44,14 @@ public class RoomController {
     public String getEditRoom(@PathVariable("id") Long id, Model model) {
         RoomModel roomModel = roomService.getRoomById(id);
         model.addAttribute("editRoom", roomModel);
-        return "editRoom";
+        return "Rooms/editRoom";
     }
 //    @PostMapping("/editRoom/{id}")
 //    public RedirectView postEditRoom(@PathVariable Long id, RoomModel editRoom){
 //        roomService.saveEditRoom(editRoom);
 //        return new RedirectView("/adminpanel/allRooms");
 //    }
+
 
 //    @PostMapping("/editRoom/{id}")
 //    public String postEditRoom(@PathVariable("id") Long id, @ModelAttribute RoomModel editRoom, RedirectAttributes redirectAttributes){

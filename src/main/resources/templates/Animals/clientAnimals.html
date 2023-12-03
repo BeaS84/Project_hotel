@@ -52,6 +52,7 @@
     </style>
 </head>
 
+<body>
 
 <h1>Twoje zwierzęta</h1>
 
@@ -67,30 +68,23 @@
         <th>size</th>
 
     </tr>
-    <tr th:each="animal: ${clientAnimals}">
+    <tr th:each="animal: ${animals}">
         <td th:text="${animal.id}" />
         <td th:text="${animal.name}" />
         <td th:text="${animal.type}" />
         <td th:text="${animal.sex}" />
         <td th:text="${animal.size}" />
-        <td><a th:href="@{/clientpanel/clientAnimals/editanimal/{id}(id=${animal.id})}">Edytuj</a></td>
+        <td><a th:href="@{'/clientpanel/clientAnimals/client/' + ${clientEmail} + '/editAnimal/' + ${animal.getId()}}">Edytuj</a></td>
     </tr>
 </table>
 
 <section id="DODAJ">
-    <form action="/clientpanel/clientAnimals/addAnimal" method="get">
-        <button type="submit">Dodaj zwierzaka</button>
-    </form>
+    <button onclick="location.href='/clientpanel'">Wróc</button>
+    <!-- Dodany przycisk "Dodaj Pokój" -->
+    <a th:href="@{'/clientpanel/clientAnimals/client/' + ${clientEmail} + '/addAnimal'}">
+        <button>Dodaj ZWIERZAKA</button>
+    </a>
 </section>
 
-
-
-
-
-<section id="wróć">
-    <form action="/clientpanel" method="get">
-        <button type="submit">Wróć</button>
-    </form>
-</section>
 </body>
 </html>

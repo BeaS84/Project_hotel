@@ -1,7 +1,10 @@
 package com.hotel.pethotel.controller;
 
 import com.hotel.pethotel.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +33,14 @@ public class HomeController {
 
 
     @GetMapping("/clientpanel")
-    public String userPanel() {
+    public String userPanel(Model model) {
+        //musimy to rzutowac na obiekt User z UserDetails aby dostac sie do Username
+        model.addAttribute("email", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
         return "clientpanel";
     }
+
+
+
 
     @GetMapping("/defaultpanel")
     public String defaultPanel() {

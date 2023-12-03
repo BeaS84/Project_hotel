@@ -27,5 +27,12 @@ public class ClientService {
         assert clientModel != null;
         return clientModel.getAnimals();
     }
-
+    public List<AnimalModel> getAnimalsByClientEmail(String email){
+        ClientModel clientModel = clientRepository.findByEmail(email);
+        return clientModel.getAnimals();
+    }
+//tutaj pobieram email klienta - nie wiem czy to dobrze zrobilam  do weryfikacji przez mentora
+    public ClientModel getClientByEmail(String email) {
+        return clientRepository.findByEmail(email);
+    }
 }

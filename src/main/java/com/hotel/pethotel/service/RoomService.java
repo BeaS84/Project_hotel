@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,10 +25,17 @@ public class RoomService {
         //pobieramy to z repozytorium i robimy find all
         return roomRepository.findAll();
     }
+//poprawic na optionala
 
+//    public RoomModel getRoomById(Long id) {
+//        return roomRepository.findById(id).orElse(null);
+//    }
     public RoomModel getRoomById(Long id) {
-        return roomRepository.findById(id).orElse(null);
+        Optional<RoomModel> optionalRoomModel = roomRepository.findById(id);
+        return optionalRoomModel.orElseThrow(()-> new NoSuchElementException("Room not found with id: "+id));
     }
+
+
     public void saveEditRoom(RoomModel editRoom) {
         roomRepository.save(editRoom);
     }
