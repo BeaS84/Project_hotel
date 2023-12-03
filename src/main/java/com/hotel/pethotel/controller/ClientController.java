@@ -19,13 +19,15 @@ public class ClientController {
     private final ClientService clientService;
 
     //dubel w adminController
-    @GetMapping ("/client/{id}")
-    public String getAnimals(@PathVariable("id") Long id, Model model) {
-        ClientModel clientModel = clientService.getClientById(id);
-        List<AnimalModel> animals=clientModel.getAnimals();
-        model.addAttribute("animal", animals);
-        return "animalsForClient";
-    }
+//    @GetMapping ("/client/{id}")
+//    public String getAnimals(@PathVariable("id") Long id, Model model) {
+//        ClientModel clientModel = clientService.getClientById(id);
+//        List<AnimalModel> animals=clientModel.getAnimals();
+//        model.addAttribute("animal", animals);
+//        return "animalsForClient";
+//    }
+
+
 
 
 }

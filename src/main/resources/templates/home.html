@@ -18,8 +18,7 @@
 <!--                <li class="nav-item">-->
                     <a sec:authorize="isAuthenticated()" class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                     <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
-                    <a sec:authorize="isAnonymous()" class="nav-link active"
-                       aria-current="page" th:href="@{/register}">Register</a>
+                    <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
 <!--                </li>-->
 <!--            </ul>-->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
