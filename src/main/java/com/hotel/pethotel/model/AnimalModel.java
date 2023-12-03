@@ -30,11 +30,12 @@ public class AnimalModel {
     private Sex sex;
 
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private ClientModel client;
 
-    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
-    private Set<TreatmentModel> treatments;
-
-    @ManyToMany(mappedBy = "animals")
-    private Set<ReservationModel> reservations;
+//    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
+//    private Set<TreatmentModel> treatments;
+//
+//    @ManyToMany(mappedBy = "animals")
+//    private Set<ReservationModel> reservations;
 }

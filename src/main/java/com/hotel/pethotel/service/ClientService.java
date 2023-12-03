@@ -2,11 +2,10 @@ package com.hotel.pethotel.service;
 
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
-import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+
 
 import java.util.List;
 
@@ -22,10 +21,13 @@ public class ClientService {
     public ClientModel getClientById(Long id) {
         return clientRepository.findById(id).orElse(null);
     }
-    public List<AnimalModel> getAnimals(Long id){
-        ClientModel clientModel=clientRepository.findById(id).orElse(null);
-        assert clientModel != null;
+
+    public List<AnimalModel> getAnimalsByClientEmail(String email){
+        ClientModel clientModel = clientRepository.findByEmail(email);
         return clientModel.getAnimals();
+    }
+    public ClientModel getClientByEmail(String email) {
+        return clientRepository.findByEmail(email);
     }
 
 }

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Formularz Dodawania Animala</title>
+    <title>Edytuj Zwierzaka</title>
+
 </head>
 <body>
 
-<h2>Dodaj nowego zwierzaka</h2>
+<h2>Edytuj zwierzaka</h2>
+<form th:action="@{'/clientpanel/clientAnimals/client/' + ${clientEmail} + '/editAnimal/' + ${editedAnimal.id}}" method="post" th:object="${editedAnimal}">
+    <input type="hidden" id="id" name="id" th:field="*{id}" />
 
-<form th:action="@{/clientpanel/clientAnimals/addAnimal}" method="post" th:object="${newAnimal}">
     <label for="name">Imię:</label>
     <input type="text" id="name" name="name" th:field="*{name}" required/>
 
@@ -33,15 +35,9 @@
         </option>
     </select>
 
-    <!-- Assuming ClientModel is a complex object -->
-    <!--
-    <label for="clientName">Opiekun:</label>
-    <input type="text" id="clientName" name="clientName" th:field="*{client.name}" required/>
-    -->
 
-    <!-- Add more fields for other properties if needed -->
 
-    <button type="submit">Dodaj Nowego Zwierzaka</button>
+    <button type="submit">Zapisz Edycję Zwierzaka</button>
 </form>
 
 </body>
