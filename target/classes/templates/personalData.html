@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
@@ -55,15 +56,11 @@
     </style>
 </head>
 <body>
+<h1>Moje dane osobowe</h1>
 
-<nav>
-    <ul>
-        <li><a href="/">Strona główna</a></li>
-        <li><a th:href="@{'/clientpanel/allpets/byUserId/'+${email}}">Moje zwierzeta</a></li>
-        <li><a href="/">Moje dane</a></li>
-        <li><a href="/">Moje rezerwacje</a></li>
-        <li><a href="/">Rezerwuj</a></li>
-    </ul>
-</nav>
+</section>
+
+
+
 </body>
 </html>

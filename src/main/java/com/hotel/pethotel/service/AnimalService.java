@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -40,22 +39,28 @@ public class AnimalService {
 //    }
 
 
-//    public void addAnimal(AnimalModel animal) {
-//        System.out.println("Adding animal: " + animal);
-//        animalRepository.save(animal);
-//    }
-
-    public AnimalModel getAnimalById(Long id) {
-        Optional<AnimalModel> optionalAnimal = animalRepository.findById(id);
-        return optionalAnimal.orElseThrow(() ->
-                new NoSuchElementException("Animal not found with id: " + id));
+    public void addAnimal(AnimalModel animal) {
+        System.out.println("Adding animal: " + animal);
+        animalRepository.save(animal);
     }
 
+    public AnimalModel getAnimalById(Long id) {
+        // Użyj metody findById z AnimalRepository, aby pobrać zwierzę po ID
+        Optional<AnimalModel> optionalAnimal = animalRepository.findById(id);
+
+        // Sprawdź, czy zwierzę istnieje
+        if (optionalAnimal.isPresent()) {
+            return optionalAnimal.get();
+        } else {
+            // Obsłuż sytuację, gdy zwierzę o danym ID nie istnieje
+           // throw new AnimalNotFoundException("Animal not found with id: " + id);
+        }
+        return null;
+    }
 
     public void saveEditAnimal(AnimalModel editAnimal) {
         animalRepository.save(editAnimal);
     }
 
-//dodaje metode dodawania nowego zwierzecia
-    public void saveAnimal(AnimalModel newAnimal) {animalRepository.save(newAnimal);}
+
 }
