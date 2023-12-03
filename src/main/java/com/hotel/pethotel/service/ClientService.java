@@ -22,9 +22,19 @@ public class ClientService {
     public ClientModel getClientById(Long id) {
         return clientRepository.findById(id).orElse(null);
     }
+
+    public ClientModel getClientByEmail(String email) {
+        return clientRepository.findByEmail(email);
+    }
+
     public List<AnimalModel> getAnimals(Long id){
         ClientModel clientModel=clientRepository.findById(id).orElse(null);
         assert clientModel != null;
+        return clientModel.getAnimals();
+    }
+
+    public List<AnimalModel> getAnimalsByClientEmail(String email){
+        ClientModel clientModel = clientRepository.findByEmail(email);
         return clientModel.getAnimals();
     }
 
