@@ -26,7 +26,7 @@ INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','SONIA',
 INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Denver','BOY','MEDIUM',4);
 INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('CAT','Kocurro','BOY','SMALL',4);
 
-INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Psinka','GIRL','LARGE',5);
+-- INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Psinka','GIRL','LARGE',5);
 
 
 INSERT INTO room_model(name, standard, cost_per_night) VALUES

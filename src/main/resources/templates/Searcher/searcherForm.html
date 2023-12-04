@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Wyszukiwanie</title>
+</head>
+<body>
+
+<!-- TODO: lista znalezionych pokoi (zmien nazwe pliku) -->
+// lista znalezionych pokoi (zmienic nazwe pliku) -->
+<div th:each="room: ${rooms}">
+  <p th:text="${room.getName()}"></p>
+</div>

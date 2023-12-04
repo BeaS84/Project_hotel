@@ -39,7 +39,10 @@ public class RoomModel {
     @Column(name = "is_active")
     private Boolean active;
 
-    @ManyToMany(mappedBy = "rooms")
+//    @ManyToMany(mappedBy = "rooms")
+//    private Set<ReservationModel> reservations;
+    //zamienilam na 1 do wielu bo jeden pokoj moze yc w wielu rezerwacjach
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private Set<ReservationModel> reservations;
 
 }

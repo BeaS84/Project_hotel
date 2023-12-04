@@ -12,3 +12,10 @@ public class AnimalDto {
     private String name;
     private Sex sex;
 }
+
+//public class AnimalDto {
+//    private Long id;
+//    private String type;
+//    private String name;
+//    private String sex;
+//}
