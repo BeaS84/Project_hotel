@@ -44,6 +44,7 @@
         <th>Description</th>
         <th>Room standard</th>
         <th>Animal Size</th>
+        <th>Cost per Night</th> <!-- Dodana kolumna -->
         <th>Is Active</th>
         <th>Is reserved</th>
         <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
@@ -57,6 +58,7 @@
         <td th:text="${room.getDescription()}"></td>
         <td th:text="${room.getStandard()}"></td>
         <td th:text="${room.getAnimalSize()}"></td>
+        <td th:text="${room.getCostPerNight()}"></td> <!-- Dodana kolumna -->
         <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>
         <!--        jesli dlugosc seta jest >0 wyswietla sie Yes, w przeciwnym wypadku wysietla sie No.-->
         <td th:text="${#lists.size(room.reservations) > 0 ? 'Yes' : 'No'}"></td>
@@ -65,7 +67,6 @@
                th:attr="data-id=${room.getId()}">
                 <button>Edytuj</button>
             </a>
-
         </td>
     </tr>
     </tbody>

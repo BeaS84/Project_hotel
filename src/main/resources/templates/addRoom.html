@@ -26,6 +26,7 @@
                 th:value="${option}" th:text="${option}">
         </option>
     </select>
+
     <label for="animalSize">Animal Size:</label>
     <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{animalSize}" required>
         <option value="SMALL">Small</option>
@@ -33,6 +34,10 @@
         <option value="LARGE">Large</option>
         <!-- Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt -->
     </select>
+
+    <label for="costPerNight">Cost per Night:</label>
+    <input type="text" id="costPerNight" name="costPerNight" th:field="*{costPerNight}" required/>
+
     <label for="active">Active:</label>
     <input type="checkbox" id="active" name="active" th:field="*{active}"/>
     <button type="submit">Dodaj Pokój</button>

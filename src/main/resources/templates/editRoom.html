@@ -10,6 +10,7 @@
 
 <form th:action="@{'/adminpanel/editRoom/'+${editRoom.id}}" method="post" th:object="${editRoom}">
   <input type="hidden" th:field="*{id}"/>
+
   <label for="name">Name:</label>
   <input type="text" id="name" name="name" th:field="*{name}" required/>
 
@@ -17,12 +18,12 @@
   <input type="text" id="description" name="description" th:field="*{description}" required/>
 
   <label for="standard">Standard:</label>
-  <!--    Wyrażenie T(com.hotel.pethotel.model.Standard) odnosi się do klasy enum Standard, a values() zwraca tablicę wszystkich stałych enuma.-->
   <select id="standard" name="standard" required>
     <option th:each="option : ${T(com.hotel.pethotel.model.Standard).values()}"
             th:value="${option}" th:text="${option}">
     </option>
   </select>
+
   <label for="animalSize">Animal Size:</label>
   <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{animalSize}" required>
     <option value="SMALL">Small</option>
@@ -30,8 +31,13 @@
     <option value="LARGE">Large</option>
     <!-- Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt -->
   </select>
+
+  <label for="costPerNight">Cost per Night:</label>
+  <input type="text" id="costPerNight" name="costPerNight" th:field="*{costPerNight}" required/>
+
   <label for="active">Active:</label>
   <input type="checkbox" id="active" name="active" th:field="*{active}"/>
+
   <button type="submit">Zapisz zmiany</button>
 
   <!-- Przycisk "Anuluj" przekierowujący do listy pokoi -->

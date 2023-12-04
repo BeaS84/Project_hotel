@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -31,6 +32,9 @@ public class RoomModel {
     @CollectionTable(name = "animal_size", joinColumns = @JoinColumn(name = "room_id"))
     @Enumerated(EnumType.STRING)
     private Set<AnimalSize> animalSize;
+
+    @Column(nullable = false)
+    private BigDecimal costPerNight;
 
     @Column(name = "is_active")
     private Boolean active;
