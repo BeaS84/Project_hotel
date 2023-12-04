@@ -37,14 +37,14 @@ public class ClientPanelController {
         String email = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         List<AnimalModel> animalList = clientService.getAnimalsByClientEmail(email);
         model.addAttribute("clientAnimals", animalList);
-        return "clientAnimals";
+        return "Animals/clientAnimals";
     }
 
     @GetMapping("/clientAnimals/addAnimal")
     public String getAddClientAnimal(Model model) {
         AnimalModel animal = new AnimalModel();
         model.addAttribute("newAnimal", animal);
-        return "addAnimal";
+        return "Animals/addAnimal";
     }
 
     @PostMapping("/clientAnimals/addAnimal")
@@ -68,7 +68,7 @@ public class ClientPanelController {
         Long animalId = Long.parseLong(id);
         AnimalModel animalModel = animalService.getAnimalById(animalId);
         model.addAttribute("editedAnimal", animalModel);
-        return "editAnimal";
+        return "Animals/editAnimal";
     }
 
 
