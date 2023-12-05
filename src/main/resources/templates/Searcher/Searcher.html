@@ -58,16 +58,16 @@
             <option th:each="animal : ${clientAnimals}" th:value="${animal.getId()}" th:text="${animal.getName()}">
             </option>
         </select>
-
-        <select th:field="*{standard}" required>
+        <label for="roomStandard">Standard pokoju:</label>
+        <select id="roomStandard" name="roomStandard" th:field="*{standard}" required>
             <option th:each="standard : ${availableStandards}" th:value="${standard}" th:text="${standard.name()}"></option>
         </select>
 
         <label for="reservationStartDate">Data przybycia:</label>
-        <input type="text" id="reservationStartDate" name="reservationStartDate" required readonly />
+        <input type="text" id="reservationStartDate" name="reservationStartDate" required />
 
         <label for="reservationEndDate">Data wyjazdu:</label>
-        <input type="text" id="reservationEndDate" name="reservationEndDate" required readonly />
+        <input type="text" id="reservationEndDate" name="reservationEndDate" required/>
 
         <!-- Przycisk "Szukaj" - aktywowany po wyborze zwierzaka -->
         <section>

@@ -1,11 +1,9 @@
 package com.hotel.pethotel.searcher;
 
 import com.hotel.pethotel.dto.AnimalDto;
-import com.hotel.pethotel.dto.RoomDto;
 import com.hotel.pethotel.mapper.AnimalMapper;
-import com.hotel.pethotel.mapper.RoomMapper;
 import com.hotel.pethotel.model.AnimalModel;
-import com.hotel.pethotel.model.RoomModel;
+import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.Standard;
 import com.hotel.pethotel.service.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -39,19 +37,19 @@ public class RoomSearchController {
 
         model.addAttribute("clientAnimals", animalDtoList);
         model.addAttribute("availableStandards", Standard.values());
-        model.addAttribute("searchQuery", new RoomSearchQueryDto());
+        model.addAttribute("searchQuery", new RoomSearchQuery());
         return "Searcher/Searcher";
 
     }
 
     @PostMapping("/search")
-    public String showSearcherForm(@ModelAttribute RoomSearchQueryDto searchQuery, Model model) {
+    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
         List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
 //COnvert RoomModel to RoomDto using RoomMapper
-        List<RoomDto> roomDtoList = rooms.stream()
-                        .map(RoomMapper::toRoomDto)
-                                .collect(Collectors.toList());
-        model.addAttribute("rooms", roomDtoList);
+//        List<RoomDto> roomDtoList = rooms.stream()
+//                        .map(RoomMapper::toRoomDto)
+//                                .collect(Collectors.toList());
+        model.addAttribute("rooms", rooms);
         return "Searcher/SearchResults";
     }
 

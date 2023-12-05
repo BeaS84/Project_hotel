@@ -1,7 +1,5 @@
-package com.hotel.pethotel.controller;
+package com.hotel.pethotel.Rooms;
 
-import com.hotel.pethotel.model.RoomModel;
-import com.hotel.pethotel.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -46,18 +44,6 @@ public class RoomController {
         model.addAttribute("editRoom", roomModel);
         return "Rooms/editRoom";
     }
-//    @PostMapping("/editRoom/{id}")
-//    public RedirectView postEditRoom(@PathVariable Long id, RoomModel editRoom){
-//        roomService.saveEditRoom(editRoom);
-//        return new RedirectView("/adminpanel/allRooms");
-//    }
-
-//    @PostMapping("/editRoom/{id}")
-//    public String postEditRoom(@PathVariable("id") Long id, @ModelAttribute RoomModel editRoom, RedirectAttributes redirectAttributes){
-//        roomService.saveEditRoom(editRoom);
-//        redirectAttributes.addFlashAttribute("message", "Edycja zakończona pomyślnie");
-//        return "redirect:/adminpanel/allRooms";
-//    }
 
     @PostMapping("/editRoom/{id}")
     public String postEditRoom(@ModelAttribute RoomModel editRoom, RedirectAttributes redirectAttributes) {

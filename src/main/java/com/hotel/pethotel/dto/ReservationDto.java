@@ -1,7 +1,7 @@
 package com.hotel.pethotel.dto;
 
+import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.*;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;

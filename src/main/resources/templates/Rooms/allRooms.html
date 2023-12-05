@@ -41,6 +41,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Animal type</th>
         <th>Description</th>
         <th>Room standard</th>
         <th>Animal Size</th>
@@ -55,9 +56,10 @@
     <tr th:each="room : ${rooms}">
         <td th:text="${room.getId()}"></td>
         <td th:text="${room.getName()}"></td>
+        <td th:text="${room.getAllowedAnimalTypes()}"></td>
         <td th:text="${room.getDescription()}"></td>
         <td th:text="${room.getStandard()}"></td>
-        <td th:text="${room.getAnimalSize()}"></td>
+        <td th:text="${room.getAllowedAnimalSizes()}"></td>
         <td th:text="${room.getCostPerNight()}"></td> <!-- Dodana kolumna -->
         <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>
         <!--        jesli dlugosc seta jest >0 wyswietla sie Yes, w przeciwnym wypadku wysietla sie No.-->

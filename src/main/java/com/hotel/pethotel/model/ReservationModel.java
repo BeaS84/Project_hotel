@@ -1,6 +1,7 @@
 package com.hotel.pethotel.model;
 
 
+import com.hotel.pethotel.Rooms.RoomModel;
 import jakarta.persistence.*;
 import lombok.Data;
 

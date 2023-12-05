@@ -1,5 +1,5 @@
-package com.hotel.pethotel.service;
-import com.hotel.pethotel.model.RoomModel;
+package com.hotel.pethotel.Rooms;
+import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

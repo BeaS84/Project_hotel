@@ -26,7 +26,7 @@
       <td th:text="${room.getName()}"></td>
       <td th:text="${room.getDescription()}"></td>
       <td th:text="${room.getStandard()}"></td>
-      <td th:text="${room.getAnimalSize()}"></td>
+      <td th:text="${room.getAllowedAnimalSizes()}"></td>
       <td th:text="${room.getCostPerNight()}"></td>
 
       <td>
@@ -45,7 +45,7 @@
   <p>Niestety brak wyników wyszukiwania.</p>
 </div>
 
-<button onclick="location.href='/clientpanel'">Wróc</button>
+<button onclick="location.href='/clientpanel/searcher'">Wróc</button>
 
 </body>
 </html>

@@ -1,7 +1,5 @@
 package com.hotel.pethotel.searcher;
 
-import com.hotel.pethotel.model.RoomModel;
-
 public class RoomSearchQueryDtoMapper {
 //    //chyba to jest zle
 //    public static RoomModel toRoomModel(RoomSearchQueryDto roomSearchQueryDto) {

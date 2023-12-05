@@ -1,6 +1,6 @@
 package com.hotel.pethotel.searcher;
 
-import com.hotel.pethotel.model.RoomModel;
+import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,14 +12,14 @@ import java.util.List;
 public class RoomSearchService {
     private final RoomRepository roomRepository;
 
-    public List<RoomModel> getAvailableRooms(RoomSearchQueryDto searchQuery) {
+    public List<RoomModel> getAvailableRooms(RoomSearchQuery searchQuery) {
         // TODO: zmapowac na DTO
         return roomRepository.findAvailableRooms(
                 searchQuery.getSelectedAnimalId(),
                 searchQuery.getStandard(),
                 searchQuery.getReservationStartDate(),
-                searchQuery.getReservationEndDate()
-//                searchQuery.getReservationStatus()
+                searchQuery.getReservationEndDate(),
+                searchQuery.getReservationStatus()
         );
 
 

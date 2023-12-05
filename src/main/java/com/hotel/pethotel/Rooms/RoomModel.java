@@ -1,18 +1,23 @@
-package com.hotel.pethotel.model;
+package com.hotel.pethotel.Rooms;
 
 
+import com.hotel.pethotel.model.AnimalSize;
+import com.hotel.pethotel.model.ReservationModel;
+import com.hotel.pethotel.model.Standard;
+import com.hotel.pethotel.model.Type;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name="room_model")
 public class RoomModel {
-    public RoomModel() {}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

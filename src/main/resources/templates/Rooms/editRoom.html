@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
-  <title>Edycja Pokoju</title>
+  <title>Edit Room</title>
 </head>
 <body>
 
-<h2>Edycja Pokoju</h2>
+<h2>Edit Room</h2>
 
-<form th:action="@{'/adminpanel/editRoom/'+${editRoom.id}}" method="post" th:object="${editRoom}">
+<form th:action="@{'/adminpanel/editRoom/' + ${editRoom.id}}" method="post" th:object="${editRoom}">
   <input type="hidden" th:field="*{id}"/>
 
   <label for="name">Name:</label>
@@ -18,18 +18,24 @@
   <input type="text" id="description" name="description" th:field="*{description}" required/>
 
   <label for="standard">Standard:</label>
-  <select id="standard" name="standard" required>
+  <select id="standard" name="standard" th:field="*{standard}" required>
     <option th:each="option : ${T(com.hotel.pethotel.model.Standard).values()}"
-            th:value="${option}" th:text="${option}">
+            th:value="${option}" th:text="${option}" th:selected="${option == editRoom.standard}">
     </option>
   </select>
 
-  <label for="animalSize">Animal Size:</label>
-  <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{animalSize}" required>
-    <option value="SMALL">Small</option>
-    <option value="MEDIUM">Medium</option>
-    <option value="LARGE">Large</option>
-    <!-- Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt -->
+  <label for="allowedAnimalSizes">Animal Size:</label>
+  <select id="allowedAnimalSizes" name="allowedAnimalSizes" multiple="multiple" th:field="*{allowedAnimalSizes}" required>
+    <option th:each="size : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
+            th:value="${size}" th:text="${size}" th:selected="${editRoom.allowedAnimalSizes.contains(size)}">
+    </option>
+  </select>
+
+  <label for="allowedAnimalTypes">Animal Type:</label>
+  <select id="allowedAnimalTypes" name="allowedAnimalTypes" th:field="*{allowedAnimalTypes}" required>
+    <option th:each="type : ${T(com.hotel.pethotel.model.Type).values()}"
+            th:value="${type}" th:text="${type}" th:selected="${editRoom.allowedAnimalTypes.contains(type)}">
+    </option>
   </select>
 
   <label for="costPerNight">Cost per Night:</label>
@@ -40,7 +46,6 @@
 
   <button type="submit">Zapisz zmiany</button>
 
-  <!-- Przycisk "Anuluj" przekierowujący do listy pokoi -->
   <a th:href="@{/adminpanel/allRooms}">
     <button type="button">Anuluj</button>
   </a>
