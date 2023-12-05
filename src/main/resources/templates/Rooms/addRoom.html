@@ -19,6 +19,13 @@
     <label for="description">Description:</label>
     <input type="text" id="description" name="description" th:field="*{description}" required/>
 
+    <label for="allowedAnimalType">Typ zwierzęcia:</label>
+    <select id="allowedAnimalType" name="allowedAnimalType" th:field="*{allowedAnimalTypes}" required>
+        <option th:each="type : ${T(com.hotel.pethotel.model.Type).values()}"
+                th:value="${type}" th:text="${type}" th:selected="${newRoom != null and newRoom.allowedAnimalTypes != null and newRoom.allowedAnimalTypes.contains(type)}">
+        </option>
+    </select>
+
     <label for="standard">Standard:</label>
     <!--    Wyrażenie T(com.hotel.pethotel.model.Standard) odnosi się do klasy enum Standard, a values() zwraca tablicę wszystkich stałych enuma.-->
     <select id="standard" name="standard" required>
@@ -26,16 +33,24 @@
                 th:value="${option}" th:text="${option}">
         </option>
     </select>
+
     <label for="animalSize">Animal Size:</label>
-    <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{animalSize}" required>
+    <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{allowedAnimalSizes}" required>
         <option value="SMALL">Small</option>
         <option value="MEDIUM">Medium</option>
         <option value="LARGE">Large</option>
         <!-- Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt -->
     </select>
+
+    <label for="costPerNight">Cost per Night:</label>
+    <input type="text" id="costPerNight" name="costPerNight" th:field="*{costPerNight}" required/>
+
     <label for="active">Active:</label>
     <input type="checkbox" id="active" name="active" th:field="*{active}"/>
     <button type="submit">Dodaj Pokój</button>
+    <a th:href="@{/adminpanel/allRooms}">
+        <button type="button">Anuluj</button>
+    </a>
 </form>
 
 </body>

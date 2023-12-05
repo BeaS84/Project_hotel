@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Rezerwacja Zwierzaka</title>
+    <!-- Dodane linki do stylów i skryptów flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var radioButtons = document.querySelectorAll('input[type="radio"]');
+            var searchButton = document.querySelector('button[type="submit"]');
+
+            radioButtons.forEach(function (radioButton) {
+                radioButton.addEventListener('change', function () {
+                    searchButton.disabled = !document.querySelector('input[name="selectedAnimal"]:checked');
+                });
+            });
+
+            // Inicjalizacja flatpickr dla pól dat
+            flatpickr("#reservationStartDate", {
+                dateFormat: "Y-m-d",
+                onClose: function (selectedDates) {
+                    // Ustawienie minimalnej daty dla reservationEndDate
+                    flatpickr("#reservationEndDate", {
+                        dateFormat: "Y-m-d",
+                        minDate: selectedDates[0] || "today"
+                    });
+                }
+            });
+
+            flatpickr("#reservationEndDate", { dateFormat: "Y-m-d" });
+        });
+
+        function validateDates() {
+            var startDate = document.getElementById('reservationStartDate').value;
+            var endDate = document.getElementById('reservationEndDate').value;
+
+            if (startDate && endDate && startDate >= endDate) {
+                alert('Data końcowa musi być późniejsza niż data początkowa.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<form th:action="@{/clientpanel/search}" method="post" th:object="${searchQuery}" onsubmit="return validateDates();">
+    <h2>Wybierz zwierzaka, dla którego chcesz dokonać rezerwacji:</h2>
+
+    <!-- Iteracja przez listę zwierzaków użytkownika z użyciem radiobuttons -->
+    <div th:if="${clientAnimals != null and not #lists.isEmpty(clientAnimals)}">
+
+        <select th:field="*{selectedAnimalId}" required>
+            <option th:each="animal : ${clientAnimals}" th:value="${animal.getId()}" th:text="${animal.getName()}">
+            </option>
+        </select>
+        <label for="roomStandard">Standard pokoju:</label>
+        <select id="roomStandard" name="roomStandard" th:field="*{standard}" required>
+            <option th:each="standard : ${availableStandards}" th:value="${standard}" th:text="${standard.name()}"></option>
+        </select>
+
+        <label for="reservationStartDate">Data przybycia:</label>
+        <input type="text" id="reservationStartDate" name="reservationStartDate" required />
+
+        <label for="reservationEndDate">Data wyjazdu:</label>
+        <input type="text" id="reservationEndDate" name="reservationEndDate" required/>
+
+        <!-- Przycisk "Szukaj" - aktywowany po wyborze zwierzaka -->
+        <section>
+            <button type="submit">Szukaj</button>
+        </section>
+    </div>
+
+    <div th:if="${clientAnimals == null or #lists.isEmpty(clientAnimals)}">
+        <p>Aby zarezerwować pokój, musisz najpierw dodać swojego zwierzaka do systemu.</p>
+    </div>
+
+</form>
+
+</body>
+</html>

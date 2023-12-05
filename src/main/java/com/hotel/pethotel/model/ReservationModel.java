@@ -1,6 +1,7 @@
 package com.hotel.pethotel.model;
 
 
+import com.hotel.pethotel.Rooms.RoomModel;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,19 +29,24 @@ public class ReservationModel {
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "reservation_status")
+    @Column(nullable = false,name = "reservation_status")
     private ReservationStatus reservationStatus;
 
     @ManyToOne
     @JoinColumn(name = "owner_id") // wiele leczen do jednego zwierzecia, JoinColumn, klucz obcy id zwierzecia
-    private UserModel owner;
+    private ClientModel owner;
 
-    @ManyToMany
-    @JoinTable(
-            name = "reservation_room",
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private Set<RoomModel> rooms;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "reservation_room",
+//            joinColumns = @JoinColumn(name = "reservation_id"),
+//            inverseJoinColumns = @JoinColumn(name = "room_id"))
+//    private Set<RoomModel> rooms;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id") // wiele lączen do jednego pokoju, JoinColumn, klucz obcy id pokoju
+    private RoomModel room;
+
 
     @ManyToMany
     @JoinTable(
