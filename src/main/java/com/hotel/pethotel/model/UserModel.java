@@ -1,6 +1,7 @@
 package com.hotel.pethotel.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import jakarta.persistence.*;
@@ -34,7 +35,7 @@ public abstract class UserModel {
     @ManyToMany
     @JoinTable (name = "user_x_roles")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<RoleModel> roles;//można wywalić i zmodyfować userDetailsServivice
+    private Set<RoleModel> roles=new HashSet<>();//można wywalić i zmodyfować userDetailsServivice
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //relacja 1 do wielu z AnimalModel, wlasciciel relacji
 //    private List<AnimalModel> animals;
