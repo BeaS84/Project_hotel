@@ -28,7 +28,7 @@ public class ReservationModel {
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "reservation_status")
+    @Column(nullable = false,name = "reservation_status")
     private ReservationStatus reservationStatus;
 
     @ManyToOne

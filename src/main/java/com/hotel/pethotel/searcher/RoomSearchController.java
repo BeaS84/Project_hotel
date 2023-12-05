@@ -1,13 +1,13 @@
-package com.hotel.pethotel.controller;
+package com.hotel.pethotel.searcher;
 
 import com.hotel.pethotel.dto.AnimalDto;
-import com.hotel.pethotel.dto.RoomSearchQuery;
+import com.hotel.pethotel.dto.RoomDto;
 import com.hotel.pethotel.mapper.AnimalMapper;
+import com.hotel.pethotel.mapper.RoomMapper;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.RoomModel;
 import com.hotel.pethotel.model.Standard;
 import com.hotel.pethotel.service.ClientService;
-import com.hotel.pethotel.service.RoomSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -39,16 +39,19 @@ public class RoomSearchController {
 
         model.addAttribute("clientAnimals", animalDtoList);
         model.addAttribute("availableStandards", Standard.values());
-        model.addAttribute("searchQuery", new RoomSearchQuery());
+        model.addAttribute("searchQuery", new RoomSearchQueryDto());
         return "Searcher/clientAnimalList";
 
     }
 
     @PostMapping("/search")
-    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
+    public String showSearcherForm(@ModelAttribute RoomSearchQueryDto searchQuery, Model model) {
         List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
-
-        model.addAttribute("rooms", rooms);
+//COnvert RoomModel to RoomDto using RoomMapper
+        List<RoomDto> roomDtoList = rooms.stream()
+                        .map(RoomMapper::toRoomDto)
+                                .collect(Collectors.toList());
+        model.addAttribute("rooms", roomDtoList);
         return "Searcher/searcherForm";
     }
 

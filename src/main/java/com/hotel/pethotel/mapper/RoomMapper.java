@@ -1,12 +1,7 @@
 package com.hotel.pethotel.mapper;
 
 import com.hotel.pethotel.dto.RoomDto;
-import com.hotel.pethotel.dto.RoomSearchResult;
 import com.hotel.pethotel.model.RoomModel;
-
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.LocalDate;
 
 public class RoomMapper {
     public static RoomDto toRoomDto(RoomModel roomModel){

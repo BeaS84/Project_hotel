@@ -1,6 +1,5 @@
-package com.hotel.pethotel.service;
+package com.hotel.pethotel.searcher;
 
-import com.hotel.pethotel.dto.RoomSearchQuery;
 import com.hotel.pethotel.model.RoomModel;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,22 +12,21 @@ import java.util.List;
 public class RoomSearchService {
     private final RoomRepository roomRepository;
 
-    public List<RoomModel> getAvailableRooms(RoomSearchQuery searchQuery) {
+    public List<RoomModel> getAvailableRooms(RoomSearchQueryDto searchQuery) {
         // TODO: zmapowac na DTO
-
-        //zmapowac na DTO
         return roomRepository.findAvailableRooms(
                 searchQuery.getSelectedAnimalId(),
                 searchQuery.getStandard(),
                 searchQuery.getReservationStartDate(),
                 searchQuery.getReservationEndDate()
+//                searchQuery.getReservationStatus()
         );
-    }
+
 
 //dopisac tu metode
 //    public static RoomSearchResult toSearchResult(RoomModel room, LocalDate reservationStartDate, LocalDate reservationEndDate) {
 //        RoomSearchResult searchResult = new RoomSearchResult();
 //        searchResult.setTotalPrice(room.getCostPerNight().multiply(BigDecimal.valueOf(Duration.between(reservationStartDate, reservationEndDate).toDays())));
 //        return searchResult;
-//    }
+    }
 }
