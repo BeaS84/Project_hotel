@@ -9,13 +9,13 @@ import java.util.Set;
 
 @Data
 public class RoomDto {
+    private Long id;
     private String name;
     private String description;
 
     private Standard standard; //en
 
     private Set<AnimalSize> animalSize;
-
     private BigDecimal costPerNight;
     private Boolean active;
 

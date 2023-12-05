@@ -40,7 +40,7 @@ public class RoomSearchController {
         model.addAttribute("clientAnimals", animalDtoList);
         model.addAttribute("availableStandards", Standard.values());
         model.addAttribute("searchQuery", new RoomSearchQueryDto());
-        return "Searcher/clientAnimalList";
+        return "Searcher/Searcher";
 
     }
 
@@ -52,7 +52,7 @@ public class RoomSearchController {
                         .map(RoomMapper::toRoomDto)
                                 .collect(Collectors.toList());
         model.addAttribute("rooms", roomDtoList);
-        return "Searcher/searcherForm";
+        return "Searcher/SearchResults";
     }
 
 }

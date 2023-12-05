@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Wyszukiwanie</title>
+</head>
+<body>
+
+<!-- Sprawdzenie, czy istnieją pokoje do wyświetlenia -->
+<div th:if="${not #lists.isEmpty(rooms)}">
+  <table border="1">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Room standard</th>
+      <th>Animal Size</th>
+      <th>Cost per Night</th> <!-- Dodana kolumna -->
+      <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+      <td th:text="${room.getId()}"></td>
+      <td th:text="${room.getName()}"></td>
+      <td th:text="${room.getDescription()}"></td>
+      <td th:text="${room.getStandard()}"></td>
+      <td th:text="${room.getAnimalSize()}"></td>
+      <td th:text="${room.getCostPerNight()}"></td>
+
+      <td>
+        <a th:href="@{'/clientpanel/searcher' + ${room.getId()}}"
+           th:attr="data-id=${room.getId()}">
+          <button>Rezerwuj</button>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Komunikat o braku wyników -->
+<div th:if="${#lists.isEmpty(rooms)}">
+  <p>Niestety brak wyników wyszukiwania.</p>
+</div>
+
+<button onclick="location.href='/clientpanel'">Wróc</button>
+
+</body>
+</html>
