@@ -1,8 +1,8 @@
 package com.hotel.pethotel.service;
 
-import com.hotel.pethotel.config.SecurityConfig;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
+import com.hotel.pethotel.model.RoleModel;
 import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.repository.ClientRepository;
 import com.hotel.pethotel.repository.RoleModelRepository;
@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import javax.management.relation.Role;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ public class ClientService {
     private final RoleModelRepository roleRepository;
 
 
+    private final RoleModelRepository roleRepository;
     public List<ClientModel> getAllClients() {
         return clientRepository.findAll();
     }
