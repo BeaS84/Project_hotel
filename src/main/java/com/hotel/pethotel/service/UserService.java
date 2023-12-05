@@ -61,5 +61,13 @@ public class UserService implements UserDetailsService {
         Optional<UserModel> userOptional = userRepo.findByEmail(userEmail);
         return userOptional.orElse(null);
     }
+    public void saveEditPersonalData(UserModel editedUser) {
+        userRepo.save(editedUser);
+    }
+
+    public UserModel getUserById(Long userId) {
+
+        return userRepo.findById(userId).orElse(null);}
+
 }
 

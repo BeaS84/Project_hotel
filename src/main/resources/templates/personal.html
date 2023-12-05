@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th.table-header {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .back-button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Twoje dane osobowe</h1>
+
+<table>
+    <tr>
+        <th class="table-header">Atrybut</th>
+        <th class="table-header">Wartość</th>
+    </tr>
+
+    <tr>
+        <td>Id</td>
+        <td th:text="${user.id}"></td>
+    </tr>
+    <tr>
+        <td>Imię</td>
+        <td th:text="${user.name}"></td>
+    </tr>
+    <tr>
+        <td>Nazwisko</td>
+        <td th:text="${user.surname}"></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td th:text="${user.email}"></td>
+    </tr>
+    <tr>
+        <td>Telefon</td>
+        <td th:text="${user.phone}"></td>
+    </tr>
+</table>
+
+<div class="button-container">
+    <a th:href="@{'/clientpanel'}" class="back-button">Wróć do panelu klienta</a>
+    <a th:href="@{'/clientpanel/personalData/editPersonal' }" class="edit-button">Edytuj</a>
+    <!--    <a th:href="@{'/clientpanel/personal/editPersonal/' + ${user.email}}" class="edit-button">Edytuj</a>-->
+</div>
+</body>
+</html>
