@@ -8,6 +8,7 @@ public class AnimalMapper {
 
     public static AnimalDto toAnimalDto(AnimalModel animalModel) {
         AnimalDto animalDto = new AnimalDto();
+        animalDto.setId(animalModel.getId());
         animalDto.setType(animalModel.getType());
         animalDto.setName(animalModel.getName());
         // animalDto.setWeight(animalModel.getWeight());
