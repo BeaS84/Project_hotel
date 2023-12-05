@@ -36,7 +36,12 @@ public class RoomModel {
     @ElementCollection
     @CollectionTable(name = "animal_size", joinColumns = @JoinColumn(name = "room_id"))
     @Enumerated(EnumType.STRING)
-    private Set<AnimalSize> animalSize;
+    private Set<AnimalSize> allowedAnimalSizes;
+
+    @ElementCollection
+    @CollectionTable(name = "animal_type", joinColumns = @JoinColumn(name = "room_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Type> allowedAnimalTypes;
 
     @Column(nullable = false)
     private BigDecimal costPerNight;
