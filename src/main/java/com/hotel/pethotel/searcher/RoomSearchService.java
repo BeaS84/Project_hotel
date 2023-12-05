@@ -1,6 +1,7 @@
 package com.hotel.pethotel.searcher;
 
 import com.hotel.pethotel.Rooms.RoomModel;
+import com.hotel.pethotel.model.ReservationStatus;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class RoomSearchService {
                 searchQuery.getStandard(),
                 searchQuery.getReservationStartDate(),
                 searchQuery.getReservationEndDate(),
-                searchQuery.getReservationStatus()
+                ReservationStatus.CANCELLED
         );
 
 
