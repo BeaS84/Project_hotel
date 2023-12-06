@@ -6,6 +6,7 @@ import com.hotel.pethotel.model.ReservationModel;
 import com.hotel.pethotel.model.Standard;
 import com.hotel.pethotel.model.Type;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Data
 @Table(name="room_model")
 public class RoomModel {
     @Id
