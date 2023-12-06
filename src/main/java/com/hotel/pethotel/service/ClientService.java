@@ -3,7 +3,6 @@ package com.hotel.pethotel.service;
 import com.hotel.pethotel.config.SecurityConfig;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
-import com.hotel.pethotel.model.RoleModel;
 import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.repository.ClientRepository;
 import com.hotel.pethotel.repository.RoleModelRepository;
@@ -58,12 +57,6 @@ public class ClientService {
         }
         clientRepository.save(client);
     }
-//to jest zrobione w controllerze
-//    public List<AnimalModel> getAnimals(Long id){
-//        ClientModel clientModel=clientRepository.findById(id).orElse(null);
-//        assert clientModel != null;
-//        return clientModel.getAnimals();
-//    }
 
     public List<AnimalModel> getAnimalsByClientEmail(String email){
         ClientModel clientModel = clientRepository.findByEmail(email);
