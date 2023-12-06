@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj Dane Osobowe</title>
+    <style>
+        form {
+            margin-top: 20px;
+            width: 50%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">Edytuj Dane Osobowe</h1>
+
+<form th:action="@{'/clientpanel/personalData/editPersonal'}" method="post">
+    <label for="surname">Nazwisko:</label>
+    <input type="text" id="surname" name="surname" th:value="${user.surname}" />
+
+    <label for="phone">Telefon:</label>
+    <input type="text" id="phone" name="phone" th:value="${user.phone}" />
+
+    <div class="button-container">
+        <button type="submit">Zapisz zmiany</button>
+    </div>
+</form>
+
+<a th:href="@{'/clientpanel'}" class="back-button">Wróć do panelu klienta</a>
+</body>
+</html>
