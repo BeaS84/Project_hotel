@@ -60,7 +60,7 @@ public class RoomSearchController {
     @PostMapping("/search")
     public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
         List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
-        long durationInDays = searchQuery.calculateDurationInDays();
+        long durationInDays = roomSearchService.getSearchQueryDuration(searchQuery);
         List<RoomPrices> roomPrices = new ArrayList<>();
         for (RoomModel room : rooms) {
             // Oblicz cenę pokoju za pomocą RoomPricingService

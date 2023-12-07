@@ -14,13 +14,4 @@ public class RoomSearchQuery {
     LocalDate reservationStartDate;
     LocalDate reservationEndDate;
     ReservationStatus reservationStatus;
-
-
-    public long calculateDurationInDays() {
-        if (reservationStartDate == null || reservationEndDate == null) {
-            return 0;
-        }
-        Duration duration = Duration.between(reservationStartDate.atStartOfDay(),reservationEndDate.atStartOfDay());
-        return duration.toDays();
-    }
 }

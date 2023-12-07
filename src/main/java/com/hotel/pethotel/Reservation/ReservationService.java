@@ -45,9 +45,9 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
  //przeliczanie ceny -
-    private BigDecimal calculateReservationPrice(LocalDate startDate, LocalDate endDate, BigDecimal costPerNight) {
+    public BigDecimal calculateReservationPrice(LocalDate startDate, LocalDate endDate, BigDecimal costPerNight) {
         // Implementacja logiki obliczania ceny rezerwacji -cena zależy od liczby dni pobytu
-        long numberOfNights = ChronoUnit.DAYS.between(startDate, endDate);
+        long numberOfNights = ChronoUnit.DAYS.between(startDate, endDate) + 1;
         return costPerNight.multiply(BigDecimal.valueOf(numberOfNights));
     }
 
