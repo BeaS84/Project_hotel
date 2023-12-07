@@ -72,8 +72,10 @@
         <!-- Przycisk "Szukaj" - aktywowany po wyborze zwierzaka -->
         <section>
             <button type="submit">Szukaj</button>
-<!--            <button onclick="location.href='/'">Wróc</button>-->
+            <button type = "button" onclick="location.href='/clientpanel'">Wróc</button>
         </section>
+        <a href="/clientpanel">Wróć</a>
+
     </div>
 
     <div th:if="${clientAnimals == null or #lists.isEmpty(clientAnimals)}">
