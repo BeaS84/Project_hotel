@@ -7,12 +7,14 @@ import com.hotel.pethotel.repository.AnimalRepository;
 import com.hotel.pethotel.repository.ClientRepository;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -51,6 +53,13 @@ public class ReservationService {
         return costPerNight.multiply(BigDecimal.valueOf(numberOfNights));
     }
 
+
+
+    public List<ReservationModel> getAllReservationList() {
+        return reservationRepository.findAll();
+    }
+}
+
 //
 //    private ClientModel getClientById(Long clientId) {
 //        // Implementacja pobierania klienta na podstawie ID
@@ -67,4 +76,3 @@ public class ReservationService {
 //        // Może to być zrealizowane na przykład za pomocą RoomRepository
 //        return roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Room not found"));
 //    }
-}
