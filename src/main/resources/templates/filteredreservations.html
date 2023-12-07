@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Wszystkie rezerwacje</title>
+    <title>Wyniki wyszukiwania rezerwacji</title>
 </head>
 <body>
 
@@ -51,28 +51,9 @@
         font-weight: bold;
         display: block;
     }
-    .search-panel {
-         margin-bottom: 20px;
-     }
-
-    .search-panel select {
-        margin-right: 10px;
-    }
 </style>
 
-<h2>Wszystkie rezerwacje</h2>
-<div class="search-panel">
-    <form th:action="@{/adminpanel/allReservations/filteredreservations}" method="get">
-        <label for="status">Status rezerwacji:</label>
-        <select id="status" name="status">
-            <option value="">Wszystkie</option>
-            <option value="CONFIRMED">CONFIRMED</option>
-            <option value="CANCELLED">CANCELLED</option>
-            <option value="PENDING">PENDING</option>
-        </select>
-        <button type="submit">Szukaj</button>
-    </form>
-</div>
+<h2>Wyniki wyszukiwania rezerwacji</h2>
 
 <table>
     <thead>
@@ -89,7 +70,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="reservation : ${reservations}">
+    <tr th:each="reservation : ${filteredReservations}">
         <td th:text="${reservation.id}"></td>
         <td th:text="${reservation.reservationNumber}"></td>
         <td th:text="${reservation.startDate}"></td>
@@ -98,8 +79,6 @@
         <td th:text="${reservation.reservationStatus}"></td>
         <td th:if="${reservation.room != null}" th:text="${reservation.room.name}"></td>
         <td th:if="${reservation.owner != null}" th:text="${reservation.owner.name}"></td>
-        <td th:if="${reservation.animals}"></td>
-
         <td>
             <ul th:if="${reservation.animals != null}">
                 <li th:each="animal : ${reservation.animals}" th:text="${animal.name}"></li>
@@ -109,6 +88,6 @@
     </tbody>
 
 </table>
-<a th:href="@{/adminpanel}" class="button">Wróć</a>
+<a th:href="@{/adminpanel/allReservations}" class="button">Wróć do wszystkich rezerwacji</a>
 </body>
 </html>
