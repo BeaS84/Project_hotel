@@ -13,9 +13,9 @@ INSERT INTO animal_model (type,name,sex,client_id) VALUES ('DOG','Pika','GIRL',2
 INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Borys','BOY','MEDIUM',2);
 INSERT INTO animal_model (type,name,client_id) VALUES ('DOG','Frania',2);
 
-
-INSERT INTO room_model(name, standard) VALUES
-                                             ('bialy','BASIC');
+--
+-- INSERT INTO room_model(name, standard) VALUES
+--                                              ('bialy','BASIC');
 
 -- INSERT INTO animal_size(room_id, animal_size)VALUES(1,'SMALL');
 -- INSERT INTO animal_size(room_id, animal_size)VALUES(1,'MEDIUM');

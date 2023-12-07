@@ -1,5 +1,6 @@
 package com.hotel.pethotel.service;
 
+import com.hotel.pethotel.config.SecurityConfig;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.model.RoleModel;
@@ -21,7 +22,6 @@ public class ClientService {
     private final RoleModelRepository roleRepository;
 
 
-    private final RoleModelRepository roleRepository;
     public List<ClientModel> getAllClients() {
         return clientRepository.findAll();
     }

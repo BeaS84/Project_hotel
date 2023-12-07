@@ -31,16 +31,16 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/h2-console/**"));
 
     }
-    public static void configure( AuthenticationManagerBuilder auth, ClientModel clientModel)
-            throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser(clientModel.getEmail())
-                .password(clientModel.getPassword())
-                .roles("USER");
-//                .withUser("Aayush")
-//                .password("Saini")
-//                .roles("student_role");
-    }
+//    public static void configure( AuthenticationManagerBuilder auth, ClientModel clientModel)
+//            throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser(clientModel.getEmail())
+//                .password(clientModel.getPassword())
+//                .roles("USER");
+////                .withUser("Aayush")
+////                .password("Saini")
+////                .roles("student_role");
+//    }
 
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http, MvcRequestMatcher.Builder mvcMatcher) throws Exception {
@@ -48,11 +48,10 @@ public class SecurityConfig {
                // .exceptionHandling().accessDeniedPage("/accessDenied")
                 .authorizeHttpRequests((authorize) ->
                         authorize
+                                .requestMatchers("/","/register").permitAll()
                                 .requestMatchers("/adminpanel/**").hasRole("ADMIN")
                                 .requestMatchers("/clientpanel/**").hasRole("USER")
-                                .requestMatchers("/","/register","/login").permitAll()
                                 .anyRequest().authenticated()
-
                 )
                // .exceptionHandling().accessDeniedPage("/accessDenied.html").and()
                 .formLogin(
