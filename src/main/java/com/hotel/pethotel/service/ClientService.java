@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import javax.management.relation.Role;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -58,12 +60,6 @@ public class ClientService {
         }
         clientRepository.save(client);
     }
-//to jest zrobione w controllerze
-//    public List<AnimalModel> getAnimals(Long id){
-//        ClientModel clientModel=clientRepository.findById(id).orElse(null);
-//        assert clientModel != null;
-//        return clientModel.getAnimals();
-//    }
 
     public List<AnimalModel> getAnimalsByClientEmail(String email){
         ClientModel clientModel = clientRepository.findByEmail(email);
