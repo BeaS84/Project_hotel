@@ -32,25 +32,24 @@
       <td th:text="${roomPrice.getRoom().getCostPerNight()}"></td>
       <td th:text="${roomPrice.getPrice()}"></td> <!-- Dodana kolumna z ceną pokoju -->
       <td>
-        <a th:href="@{'/clientpanel/searcher' + ${roomPrice.getRoom().getId()}}"
-           th:attr="data-id=${roomPrice.getRoom().getId()}">
-          <button>Rezerwuj</button>
+        <a th:href="@{/clientpanel/create(animalId=${searchQuery.getSelectedAnimalId()}, roomId=${roomPrice.getRoom().getId()}, reservationStartDate=${searchQuery.getReservationStartDate()}, reservationEndDate=${searchQuery.getReservationEndDate()})}">
+          <button>Wybierz</button>
         </a>
       </td>
-<!--    <tr th:each="room, index : ${rooms}">-->
-<!--      <td th:text="${room.getId()}"></td>-->
-<!--      <td th:text="${room.getName()}"></td>-->
-<!--      <td th:text="${room.getDescription()}"></td>-->
-<!--      <td th:text="${room.getStandard()}"></td>-->
-<!--      <td th:text="${room.getAllowedAnimalSizes()}"></td>-->
-<!--      <td th:text="${room.getCostPerNight()}"></td>-->
-<!--      <td th:text="${#strings.toString(roomPrices[__${index.index}__])}"></td> &lt;!&ndash; Dodana kolumna z ceną pokoju &ndash;&gt;-->
-<!--      <td>-->
-<!--        <a th:href="@{'/clientpanel/searcher' + ${room.getId()}}"-->
-<!--           th:attr="data-id=${room.getId()}">-->
-<!--          <button>Rezerwuj</button>-->
-<!--        </a>-->
-<!--      </td>-->
+      <!--    <tr th:each="room, index : ${rooms}">-->
+      <!--      <td th:text="${room.getId()}"></td>-->
+      <!--      <td th:text="${room.getName()}"></td>-->
+      <!--      <td th:text="${room.getDescription()}"></td>-->
+      <!--      <td th:text="${room.getStandard()}"></td>-->
+      <!--      <td th:text="${room.getAllowedAnimalSizes()}"></td>-->
+      <!--      <td th:text="${room.getCostPerNight()}"></td>-->
+      <!--      <td th:text="${#strings.toString(roomPrices[__${index.index}__])}"></td> &lt;!&ndash; Dodana kolumna z ceną pokoju &ndash;&gt;-->
+      <!--      <td>-->
+      <!--        <a th:href="@{'/clientpanel/searcher' + ${room.getId()}}"-->
+      <!--           th:attr="data-id=${room.getId()}">-->
+      <!--          <button>Rezerwuj</button>-->
+      <!--        </a>-->
+      <!--      </td>-->
     </tr>
     </tbody>
   </table>

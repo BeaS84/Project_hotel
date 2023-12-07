@@ -1,6 +1,7 @@
 package com.hotel.pethotel.model;
 
 
+import com.hotel.pethotel.Reservation.ReservationModel;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -35,6 +36,6 @@ public class AnimalModel {
     @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
     private Set<TreatmentModel> treatments;
 
-    @ManyToMany(mappedBy = "animals")
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
     private Set<ReservationModel> reservations;
 }

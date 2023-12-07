@@ -1,6 +1,6 @@
 package com.hotel.pethotel.searcher;
 
-import com.hotel.pethotel.model.ReservationStatus;
+import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.model.Standard;
 import lombok.Data;
 

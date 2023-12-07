@@ -1,5 +1,6 @@
 package com.hotel.pethotel.repository;
 
+import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;

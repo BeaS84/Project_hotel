@@ -1,5 +1,6 @@
 package com.hotel.pethotel.model;
 
+import com.hotel.pethotel.Reservation.ReservationModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,6 @@ public class ClientModel extends UserModel {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL) //relacja 1 do wielu z AnimalModel, wlasciciel relacji
     private List<AnimalModel> animals;
 
-//    @OneToMany(mappedBy = "reservation_model", cascade = CascadeType.ALL) //relacja 1 do wielu z ReservationModel, wlasciciel relacji
-//    private List<ReservationModel> reservations;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<ReservationModel> reservations;
 }

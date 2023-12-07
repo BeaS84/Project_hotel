@@ -46,7 +46,7 @@ public class RoomSearchController {
 
     }
 
-//    @PostMapping("/search")
+    //    @PostMapping("/search")
 //    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
 //        List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
 //        long durationInDays = searchQuery.calculateDurationInDays();
@@ -57,21 +57,22 @@ public class RoomSearchController {
 //            // Dodaj obliczoną cenę do listy
 //            roomPrices.add(roomPriceTotal);
 //        }
-        @PostMapping("/search")
-        public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
-            List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
-            long durationInDays = searchQuery.calculateDurationInDays();
-            List<RoomPrices> roomPrices = new ArrayList<>();
-            for (RoomModel room : rooms) {
-                // Oblicz cenę pokoju za pomocą RoomPricingService
-                BigDecimal roomPriceTotal = roomPricingService.calculateRoomPrice(room, durationInDays);
-                // Dodaj obliczoną cenę do listy
-                roomPrices.add(new RoomPrices(room, roomPriceTotal));
-            }
-            model.addAttribute("durationInDays", durationInDays);
-            model.addAttribute("roomPrices", roomPrices);
-            return "Searcher/SearchResults";
+    @PostMapping("/search")
+    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
+        List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
+        long durationInDays = searchQuery.calculateDurationInDays();
+        List<RoomPrices> roomPrices = new ArrayList<>();
+        for (RoomModel room : rooms) {
+            // Oblicz cenę pokoju za pomocą RoomPricingService
+            BigDecimal roomPriceTotal = roomPricingService.calculateRoomPrice(room, durationInDays);
+            // Dodaj obliczoną cenę do listy
+            roomPrices.add(new RoomPrices(room, roomPriceTotal));
         }
+        model.addAttribute("searchQuery" ,searchQuery);
+        model.addAttribute("durationInDays", durationInDays);
+        model.addAttribute("roomPrices", roomPrices);
+        return "Searcher/SearchResults";
+    }
 
 //COnvert RoomModel to RoomDto using RoomMapper
 //        List<RoomDto> roomDtoList = rooms.stream()

@@ -1,7 +1,9 @@
-package com.hotel.pethotel.model;
+package com.hotel.pethotel.Reservation;
 
 
 import com.hotel.pethotel.Rooms.RoomModel;
+import com.hotel.pethotel.model.AnimalModel;
+import com.hotel.pethotel.model.ClientModel;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -33,8 +35,10 @@ public class ReservationModel {
     private ReservationStatus reservationStatus;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id") // wiele leczen do jednego zwierzecia, JoinColumn, klucz obcy id zwierzecia
-    private ClientModel owner;
+    @JoinColumn(name = "client_id") //
+    private ClientModel client;
+
+
 
 //    @ManyToMany
 //    @JoinTable(
@@ -48,10 +52,7 @@ public class ReservationModel {
     private RoomModel room;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "reservation_animal",
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "animal_id"))
-    private Set<AnimalModel> animals;
+    @ManyToOne
+    @JoinColumn(name = "animal_id") // Pojedyncze połączenie do jednego zwierzęcia
+    private AnimalModel animal;
 }
