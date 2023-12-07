@@ -27,8 +27,8 @@ public interface RoomRepository extends JpaRepository<RoomModel, Long> {
                 WHERE reservation.room.id = room.id
                 AND reservation.startDate <= :reservationEndDate
                 AND reservation.endDate >= :reservationStartDate
-                AND NOT reservation.reservationStatus= :reservationStatus)                  
-                      
+                AND NOT reservation.reservationStatus= :reservationStatus
+            )         
         """)
     List<RoomModel> findAvailableRooms(
             String animalId,
@@ -37,5 +37,21 @@ public interface RoomRepository extends JpaRepository<RoomModel, Long> {
             LocalDate reservationEndDate,
             ReservationStatus reservationStatus
             );
+
+    @Query("""
+            SELECT
+                CASE WHEN COUNT(*) > 0 THEN false
+                ELSE true
+            END
+            FROM ReservationModel reservation
+            WHERE reservation.room.id = :roomId
+            AND reservation.startDate <= :reservationEndDate
+            AND reservation.endDate >= :reservationStartDate
+    """)
+    boolean isRoomAvailable(
+            Long roomId,
+            LocalDate reservationStartDate,
+            LocalDate reservationEndDate
+    );
 
 }
