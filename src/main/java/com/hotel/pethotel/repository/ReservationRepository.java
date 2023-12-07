@@ -5,8 +5,10 @@ import com.hotel.pethotel.model.ReservationModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
 import java.util.Optional;
+import java.util.Optional;
+@Repository
+
 
 public interface ReservationRepository extends JpaRepository<ReservationModel, Long> {
     Optional<ReservationModel> findById(Long id);
