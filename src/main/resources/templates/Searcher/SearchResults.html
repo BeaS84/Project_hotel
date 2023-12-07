@@ -5,9 +5,10 @@
   <title>Wyszukiwanie</title>
 </head>
 <body>
-
+<!-- Wyświetlenie wartości durationInDays -->
+<h2 th:text="${durationInDays}"></h2>
 <!-- Sprawdzenie, czy istnieją pokoje do wyświetlenia -->
-<div th:if="${not #lists.isEmpty(rooms)}">
+<div th:if="${not #lists.isEmpty(roomPrices)}">
   <table border="1">
     <thead>
     <tr>
@@ -16,36 +17,51 @@
       <th>Description</th>
       <th>Room standard</th>
       <th>Animal Size</th>
-      <th>Cost per Night</th> <!-- Dodana kolumna -->
-      <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
+      <th>Cost per Night</th>
+      <th>Room Price</th> <!-- Nowa kolumna z ceną pokoju -->
+      <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="room : ${rooms}">
-      <td th:text="${room.getId()}"></td>
-      <td th:text="${room.getName()}"></td>
-      <td th:text="${room.getDescription()}"></td>
-      <td th:text="${room.getStandard()}"></td>
-      <td th:text="${room.getAllowedAnimalSizes()}"></td>
-      <td th:text="${room.getCostPerNight()}"></td>
-
+    <tr th:each="roomPrice, index : ${roomPrices}">
+      <td th:text="${roomPrice.getRoom().getId()}"></td>
+      <td th:text="${roomPrice.getRoom().getName()}"></td>
+      <td th:text="${roomPrice.getRoom().getDescription()}"></td>
+      <td th:text="${roomPrice.getRoom().getStandard()}"></td>
+      <td th:text="${roomPrice.getRoom().getAllowedAnimalSizes()}"></td>
+      <td th:text="${roomPrice.getRoom().getCostPerNight()}"></td>
+      <td th:text="${roomPrice.getPrice()}"></td> <!-- Dodana kolumna z ceną pokoju -->
       <td>
-        <a th:href="@{'/clientpanel/searcher' + ${room.getId()}}"
-           th:attr="data-id=${room.getId()}">
+        <a th:href="@{'/clientpanel/searcher' + ${roomPrice.getRoom().getId()}}"
+           th:attr="data-id=${roomPrice.getRoom().getId()}">
           <button>Rezerwuj</button>
         </a>
       </td>
+<!--    <tr th:each="room, index : ${rooms}">-->
+<!--      <td th:text="${room.getId()}"></td>-->
+<!--      <td th:text="${room.getName()}"></td>-->
+<!--      <td th:text="${room.getDescription()}"></td>-->
+<!--      <td th:text="${room.getStandard()}"></td>-->
+<!--      <td th:text="${room.getAllowedAnimalSizes()}"></td>-->
+<!--      <td th:text="${room.getCostPerNight()}"></td>-->
+<!--      <td th:text="${#strings.toString(roomPrices[__${index.index}__])}"></td> &lt;!&ndash; Dodana kolumna z ceną pokoju &ndash;&gt;-->
+<!--      <td>-->
+<!--        <a th:href="@{'/clientpanel/searcher' + ${room.getId()}}"-->
+<!--           th:attr="data-id=${room.getId()}">-->
+<!--          <button>Rezerwuj</button>-->
+<!--        </a>-->
+<!--      </td>-->
     </tr>
     </tbody>
   </table>
 </div>
 
 <!-- Komunikat o braku wyników -->
-<div th:if="${#lists.isEmpty(rooms)}">
+<div th:if="${#lists.isEmpty(roomPrices)}">
   <p>Niestety brak wyników wyszukiwania.</p>
 </div>
 
-<button onclick="location.href='/clientpanel/searcher'">Wróc</button>
+<button onclick="location.href='/clientpanel'">Wróc</button>
 
 </body>
 </html>

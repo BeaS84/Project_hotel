@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,8 @@ import java.util.stream.Collectors;
 public class RoomSearchController {
     private final ClientService clientService;
     private final RoomSearchService roomSearchService;
+    private final RoomPricingService roomPricingService;
+
 
     @GetMapping ("/searcher")
     public String listAnimalsToChoose(Model model) {
@@ -42,15 +46,41 @@ public class RoomSearchController {
 
     }
 
-    @PostMapping("/search")
-    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
-        List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
+//    @PostMapping("/search")
+//    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
+//        List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
+//        long durationInDays = searchQuery.calculateDurationInDays();
+//        List<BigDecimal> roomPrices = new ArrayList<>();
+//        for (RoomModel room : rooms) {
+//            // Oblicz cenę pokoju za pomocą RoomPricingService
+//            BigDecimal roomPriceTotal = roomPricingService.calculateRoomPrice(room, durationInDays);
+//            // Dodaj obliczoną cenę do listy
+//            roomPrices.add(roomPriceTotal);
+//        }
+        @PostMapping("/search")
+        public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
+            List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
+            long durationInDays = searchQuery.calculateDurationInDays();
+            List<RoomPrices> roomPrices = new ArrayList<>();
+            for (RoomModel room : rooms) {
+                // Oblicz cenę pokoju za pomocą RoomPricingService
+                BigDecimal roomPriceTotal = roomPricingService.calculateRoomPrice(room, durationInDays);
+                // Dodaj obliczoną cenę do listy
+                roomPrices.add(new RoomPrices(room, roomPriceTotal));
+            }
+            model.addAttribute("durationInDays", durationInDays);
+            model.addAttribute("roomPrices", roomPrices);
+            return "Searcher/SearchResults";
+        }
+
 //COnvert RoomModel to RoomDto using RoomMapper
 //        List<RoomDto> roomDtoList = rooms.stream()
 //                        .map(RoomMapper::toRoomDto)
 //                                .collect(Collectors.toList());
-        model.addAttribute("rooms", rooms);
-        return "Searcher/SearchResults";
-    }
+//        model.addAttribute("rooms", rooms);
+//        model.addAttribute("durationInDays",durationInDays);
+//        model.addAttribute("roomPrices", roomPrices);
+//        return "Searcher/SearchResults";
+//    }
 
 }
