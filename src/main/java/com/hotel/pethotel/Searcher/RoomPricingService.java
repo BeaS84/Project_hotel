@@ -1,4 +1,4 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.repository.RoomRepository;

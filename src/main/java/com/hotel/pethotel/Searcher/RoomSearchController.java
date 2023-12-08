@@ -1,10 +1,11 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.dto.AnimalDto;
 import com.hotel.pethotel.mapper.AnimalMapper;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.Standard;
+import com.hotel.pethotel.repository.AnimalRepository;
 import com.hotel.pethotel.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,6 +29,7 @@ public class RoomSearchController {
     private final ClientService clientService;
     private final RoomSearchService roomSearchService;
     private final RoomPricingService roomPricingService;
+    private final AnimalRepository animalRepository;
 
 
     @GetMapping ("/searcher")
@@ -71,6 +73,10 @@ public class RoomSearchController {
         model.addAttribute("searchQuery" ,searchQuery);
         model.addAttribute("durationInDays", durationInDays);
         model.addAttribute("roomPrices", roomPrices);
+        String animalName = animalRepository.findById(Long.valueOf(searchQuery.getSelectedAnimalId()))
+                .map(animal -> animal.getName()).orElse(null);
+        model.addAttribute("animalName", animalName);
+        model.addAttribute("standardRoom", searchQuery.getStandard());
         return "Searcher/SearchResults";
     }
 

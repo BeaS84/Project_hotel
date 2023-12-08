@@ -1,10 +1,9 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.model.Standard;
 import lombok.Data;
 
-import java.time.Duration;
 import java.time.LocalDate;
 
 @Data

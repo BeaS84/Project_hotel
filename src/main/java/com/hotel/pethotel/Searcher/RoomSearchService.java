@@ -1,4 +1,4 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.Reservation.ReservationStatus;
@@ -6,10 +6,8 @@ import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
