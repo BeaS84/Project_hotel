@@ -20,6 +20,6 @@ public class RoomPricingService {
         // Pobierz cenę za noc z obiektu RoomModel
         BigDecimal costPerNight = room.getCostPerNight();
         // Oblicz całkowitą cenę pokoju na podstawie liczby dni
-        return costPerNight.multiply(BigDecimal.valueOf(durationInDays));
+        return (costPerNight.multiply(BigDecimal.valueOf(durationInDays)));
     }
 }

@@ -63,10 +63,6 @@ public class ReservationController {
             AnimalModel animal = animalService.getAnimalById(request.getAnimalId());
             RoomModel room = roomService.getRoomById(request.getRoomId());
 
-            System.out.println(client);
-            System.out.println(animal);
-            System.out.println(room);
-
             // Sprawdź czy obiekty są niepuste
             if (client == null || animal == null || room == null) {
                 attributes.addFlashAttribute("error", "Nieprawidłowe dane klienta, zwierzęcia lub pokoju.");
@@ -84,9 +80,10 @@ public class ReservationController {
 
         } catch (Exception e) {
             handleUnexpectedException(e, attributes);
+            System.out.println("jakis blad");
 
             // W przypadku błędu przekieruj na "/errorPage"
-            return new RedirectView("/errorPage");
+            return new RedirectView("/clientpanel/errorPage");
         }
     }
 

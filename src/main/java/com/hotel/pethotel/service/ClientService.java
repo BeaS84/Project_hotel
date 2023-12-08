@@ -1,5 +1,6 @@
 package com.hotel.pethotel.service;
 
+import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.config.SecurityConfig;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
@@ -36,6 +37,11 @@ public class ClientService {
     public List<AnimalModel> getAnimalsByClientEmail(String email){
         ClientModel clientModel = clientRepository.findByEmail(email);
         return clientModel.getAnimals();
+    }
+
+    public List<ReservationModel> getReservationsByClientEmail(String email){
+        ClientModel clientModel = clientRepository.findByEmail(email);
+        return clientModel.getReservations();
     }
 
 }

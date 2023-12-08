@@ -26,13 +26,27 @@ public class ReservationService {
 
 
     public ReservationModel createReservation(ClientModel client, AnimalModel animal, RoomModel room, LocalDate startDate, LocalDate endDate) {
-        boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
+       // boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
+      //  boolean isCanceledReservationExists = reservationRepository.isExistsByClientAndAnimalAndRoomAndReservationStatus(
+//                client, animal, room, ReservationStatus.CANCELLED);
 
-        if (!isRoomAvailable) {
-//            TODO: wyjatek - pokoj zajety
-            System.out.println("TU SIE DZIEJE ZLO");
-            throw new RuntimeException("zmien na cos innego");
+        boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
+        boolean isReservationCancelled = reservationRepository.isExistsByRoomAndReservationStatus(room.getId(), ReservationStatus.CANCELLED, startDate, endDate);
+
+        if (isReservationCancelled) {
+            // TODO: Tutaj możesz obsłużyć sytuację, gdy istnieje już anulowana rezerwacja
+//            System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju");
+//            throw new RuntimeException("Zmien na cos innego");
+            System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju. Tworzę nową rezerwację.");
         }
+
+
+//        if (!isRoomAvailable) {
+////            TODO: wyjatek - pokoj zajety
+//            System.out.println("tutaj pokoj jest juz zajęty");
+//            throw new RuntimeException("zmienic na cos innego");
+//        }
+        if(isRoomAvailable ||isReservationCancelled ){
 
         ReservationModel reservation = new ReservationModel();
         reservation.setClient(client);
@@ -45,6 +59,11 @@ public class ReservationService {
         // Ustawienie statusu rezerwacji- domyslnie ma byc PENDING
         reservation.setReservationStatus(ReservationStatus.PENDING);
         return reservationRepository.save(reservation);
+    } else {
+        // TODO: Obsługa sytuacji, gdy pokój jest zajęty
+        System.out.println("Pokój jest już zajęty.");
+        throw new RuntimeException("Pokój jest zajęty. Zmień na coś innego.");
+    }
     }
  //przeliczanie ceny -
     public BigDecimal calculateReservationPrice(LocalDate startDate, LocalDate endDate, BigDecimal costPerNight) {

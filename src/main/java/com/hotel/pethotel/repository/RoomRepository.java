@@ -47,11 +47,14 @@ public interface RoomRepository extends JpaRepository<RoomModel, Long> {
             WHERE reservation.room.id = :roomId
             AND reservation.startDate <= :reservationEndDate
             AND reservation.endDate >= :reservationStartDate
+            
     """)
     boolean isRoomAvailable(
             Long roomId,
             LocalDate reservationStartDate,
             LocalDate reservationEndDate
     );
+
+
 
 }
