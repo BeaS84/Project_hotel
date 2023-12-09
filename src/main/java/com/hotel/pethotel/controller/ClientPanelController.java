@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
 public class ClientPanelController {
     private final AnimalService animalService;
     private final ClientService clientService;
-    private final UserService userService;
 
 //reservations//
     @GetMapping("/clientReservations")
@@ -143,5 +142,4 @@ public class ClientPanelController {
 //        return "redirect:/login";
 //    }
 
-
-}
+   }

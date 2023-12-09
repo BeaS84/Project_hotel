@@ -1,6 +1,8 @@
 package com.hotel.pethotel.config;
+import com.hotel.pethotel.model.ClientModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -25,10 +27,20 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+        return (web) -> web.ignoring().requestMatchers(
+                new AntPathRequestMatcher("/h2-console/**"));
 
     }
-
+//    public static void configure( AuthenticationManagerBuilder auth, ClientModel clientModel)
+//            throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser(clientModel.getEmail())
+//                .password(clientModel.getPassword())
+//                .roles("USER");
+////                .withUser("Aayush")
+////                .password("Saini")
+////                .roles("student_role");
+//    }
 
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http, MvcRequestMatcher.Builder mvcMatcher) throws Exception {
@@ -36,11 +48,10 @@ public class SecurityConfig {
                // .exceptionHandling().accessDeniedPage("/accessDenied")
                 .authorizeHttpRequests((authorize) ->
                         authorize
+                                .requestMatchers("/","/register").permitAll()
                                 .requestMatchers("/adminpanel/**").hasRole("ADMIN")
-                                .requestMatchers("/userpanel/**").hasRole("USER")
-                                .requestMatchers("/","/register","/login").permitAll()
+                                .requestMatchers("/clientpanel/**").hasRole("USER")
                                 .anyRequest().authenticated()
-
                 )
                // .exceptionHandling().accessDeniedPage("/accessDenied.html").and()
                 .formLogin(
@@ -55,7 +66,7 @@ public class SecurityConfig {
                                 .permitAll()
                                 .logoutSuccessUrl("/")//po wylogowaniu wracamy na home,
                         // nie na stronę logowania
-                )
+                )//.exceptionHandling().accessDeniedPage("/403")
              ;
         return http.build();
     }

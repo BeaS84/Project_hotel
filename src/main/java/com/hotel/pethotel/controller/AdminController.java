@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -35,6 +32,7 @@ public class AdminController {
         return "clients";
     }
     @GetMapping("/allAnimals")//animals
+    // dodaj email właściciela owner=findById() później owner.email
     public String listAnimals(Model model){
         List<AnimalModel>animalList = animalService.getAnimalList();
         model.addAttribute("animals", animalList);
@@ -67,6 +65,17 @@ public class AdminController {
         model.addAttribute("client", clientModel);
         return "animalsForClient";
     }
+    @GetMapping("/allReservations/filteredreservations")
+    public String listFilteredReservations(@RequestParam(name = "status", required = false) String status, Model model) {
+        List<ReservationModel> reservationList;
 
+        if (status != null && !status.isEmpty()) {
+            reservationList = reservationService.getReservationsByStatus(status);
+        } else {
+            reservationList = reservationService.getAllReservationList();
+        }
 
+        model.addAttribute("filteredReservations", reservationList);
+        return "filteredreservations";
+    }
 }
