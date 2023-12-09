@@ -4,7 +4,7 @@ import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.*;
-import com.hotel.pethotel.Reservation.ReservationRepository;
+import com.hotel.pethotel.repository.ReservationRepository;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;

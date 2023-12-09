@@ -4,6 +4,7 @@ import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.repository.RoomRepository;
+import com.hotel.pethotel.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class ReservationService {
 //    private final ClientRepository clientRepository;
 //    private final AnimalRepository animalRepository;
 
-
+//flow rezerwacji usera///
     public ReservationModel createReservation(ClientModel client, AnimalModel animal, RoomModel room, LocalDate startDate, LocalDate endDate) {
        // boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
       //  boolean isCanceledReservationExists = reservationRepository.isExistsByClientAndAnimalAndRoomAndReservationStatus(
@@ -67,26 +68,13 @@ public class ReservationService {
         return costPerNight.multiply(BigDecimal.valueOf(numberOfNights));
     }
 
-
-
+//pobranie rezerwacji usera
     public List<ReservationModel> getAllReservationList() {
         return reservationRepository.findAll();
     }
+
+    public List<ReservationModel> getReservationsByStatus(String status) {
+        return reservationRepository.findByReservationStatus(ReservationStatus.valueOf(status));
+    }
 }
 
-//
-//    private ClientModel getClientById(Long clientId) {
-//        // Implementacja pobierania klienta na podstawie ID
-//        return clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Client not found"));
-//    }
-//
-//    private AnimalModel getAnimalById(Long animalId) {
-//        // Implementacja pobierania zwierzęcia na podstawie ID
-//        // Może to być zrealizowane na przykład za pomocą AnimalRepository
-//        return animalRepository.findById(animalId).orElseThrow(() -> new RuntimeException("Animal not found"));
-//    }
-//    private RoomModel getRoomById(Long roomId) {
-//        // Implementacja pobierania pokoju na podstawie ID
-//        // Może to być zrealizowane na przykład za pomocą RoomRepository
-//        return roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Room not found"));
-//    }

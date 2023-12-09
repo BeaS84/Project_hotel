@@ -85,6 +85,7 @@
 
     <div th:if="${clientAnimals == null or #lists.isEmpty(clientAnimals)}">
         <p>Aby zarezerwować pokój, musisz najpierw dodać swojego zwierzaka do systemu.</p>
+        <button type = "button" onclick="location.href='/clientpanel'">Wróć</button>
     </div>
 
 </form>
