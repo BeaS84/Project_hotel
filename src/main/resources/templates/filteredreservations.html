@@ -78,10 +78,10 @@
         <td th:text="${reservation.price}"></td>
         <td th:text="${reservation.reservationStatus}"></td>
         <td th:if="${reservation.room != null}" th:text="${reservation.room.name}"></td>
-        <td th:if="${reservation.owner != null}" th:text="${reservation.owner.name}"></td>
+        <td th:if="${reservation.client != null}" th:text="${reservation.client.name}"></td>
         <td>
-            <ul th:if="${reservation.animals != null}">
-                <li th:each="animal : ${reservation.animals}" th:text="${animal.name}"></li>
+            <ul th:if="${reservation.animal != null}">
+                <li th:each="animal : ${reservation.animal}" th:text="${animal.name}"></li>
             </ul>
         </td>
     </tr>
