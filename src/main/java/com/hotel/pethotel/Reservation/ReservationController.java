@@ -2,7 +2,6 @@ package com.hotel.pethotel.Reservation;
 
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.Rooms.RoomService;
-import com.hotel.pethotel.Searcher.RoomSearchService;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.service.AnimalService;
@@ -29,7 +28,6 @@ public class ReservationController {
     private final ClientService clientService;
     private final AnimalService animalService;
     private final RoomService roomService;
-    private final RoomSearchService roomSearchService;
 
 
     @GetMapping("/create")
@@ -40,7 +38,7 @@ public class ReservationController {
                                      Model model) {
         RoomModel room = roomService.getRoomById(roomId);
         BigDecimal totalPrice = reservationService.calculateReservationPrice(reservationStartDate,reservationEndDate,room.getCostPerNight());
-        long durationInDays = ChronoUnit.DAYS.between(reservationStartDate,reservationEndDate) + 1;
+        long durationInDays = ChronoUnit.DAYS.between(reservationStartDate,reservationEndDate);
 
         AnimalModel animal = animalService.getAnimalById(animalId);
 
@@ -87,10 +85,10 @@ public class ReservationController {
         }
     }
 
-    private void handleReservationCreationException(Exception e, RedirectAttributes attributes) {
-        attributes.addFlashAttribute("error", "Błąd podczas tworzenia rezerwacji: " + e.getMessage());
-        // Logowanie błędu
-    }
+//    private void handleReservationCreationException(Exception e, RedirectAttributes attributes) {
+//        attributes.addFlashAttribute("error", "Błąd podczas tworzenia rezerwacji: " + e.getMessage());
+//        // Logowanie błędu
+//    }
 
     private void handleUnexpectedException(Exception e, RedirectAttributes attributes) {
         attributes.addFlashAttribute("error", "Nieoczekiwany błąd: " + e.getMessage());

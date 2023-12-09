@@ -3,13 +3,10 @@ package com.hotel.pethotel.Reservation;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
-import com.hotel.pethotel.repository.AnimalRepository;
-import com.hotel.pethotel.repository.ClientRepository;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -35,8 +32,6 @@ public class ReservationService {
 
         if (isReservationCancelled) {
             // TODO: Tutaj możesz obsłużyć sytuację, gdy istnieje już anulowana rezerwacja
-//            System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju");
-//            throw new RuntimeException("Zmien na cos innego");
             System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju. Tworzę nową rezerwację.");
         }
 
@@ -68,7 +63,7 @@ public class ReservationService {
  //przeliczanie ceny -
     public BigDecimal calculateReservationPrice(LocalDate startDate, LocalDate endDate, BigDecimal costPerNight) {
         // Implementacja logiki obliczania ceny rezerwacji -cena zależy od liczby dni pobytu
-        long numberOfNights = ChronoUnit.DAYS.between(startDate, endDate) + 1;
+        long numberOfNights = ChronoUnit.DAYS.between(startDate, endDate);
         return costPerNight.multiply(BigDecimal.valueOf(numberOfNights));
     }
 
