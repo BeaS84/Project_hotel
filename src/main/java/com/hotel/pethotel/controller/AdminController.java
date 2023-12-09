@@ -79,6 +79,8 @@ public class AdminController {
 
     @GetMapping("/allReservations/filteredreservations")
     public String listFilteredReservations(@RequestParam(name = "status", required = false) String status, Model model) {
+        System.out.println("Status: " + status);  // Dodaj tę linię do debugowania
+
         List<ReservationModel> reservationList;
 
         if (status != null && !status.isEmpty()) {
@@ -90,4 +92,5 @@ public class AdminController {
         model.addAttribute("filteredReservations", reservationList);
         return "filteredreservations";
     }
+
 }
