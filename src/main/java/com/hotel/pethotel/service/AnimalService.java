@@ -65,6 +65,7 @@ public class AnimalService {
     public void saveEditAnimal(AnimalModel editAnimal) {
         animalRepository.save(editAnimal);
     }
-
+    public void deleteAnimal(Long animalId) { animalRepository.deleteById(animalId);
+    }
 
 }

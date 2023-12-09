@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Potwierdź Usunięcie Zwierzaka</title>
+</head>
+<body>
+<h1>Czy na pewno chcesz usunąć zwierzaka?</h1>
+<form th:action="@{'/clientpanel/clientAnimals/deleteAnimal/' + ${animalToDelete.id}}" method="post">
+    <button type="submit">Tak, usuń</button>
+    <a th:href="@{'/clientpanel/clientAnimals'}">Anuluj</a>
+</form>
+</body>
+</html>

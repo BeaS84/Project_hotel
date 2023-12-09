@@ -88,6 +88,23 @@ public class ClientPanelController {
         animalService.saveEditAnimal(editedAnimal);
         return new RedirectView("/clientpanel/clientAnimals");
     }
+    @GetMapping("/clientAnimals/deleteAnimal/{id}")
+    public String getDeleteAnimal(@PathVariable("id") Long animalId, Model model) {
+        AnimalModel animalModel = animalService.getAnimalById(animalId);
+        model.addAttribute("animalToDelete", animalModel);
+        return "confirmDeleteAnimal";
+    }
+    @GetMapping("/clientAnimals/deleteAnimalConfirm/{id}")
+    public String getDeleteAnimalConfirm(@PathVariable("id") Long animalId, Model model) {
+        AnimalModel animalModel = animalService.getAnimalById(animalId);
+        model.addAttribute("animalToDelete", animalModel);
+        return "confirmDeleteAnimal";
+    }
+    @PostMapping("/clientAnimals/deleteAnimal/{id}")
+    public RedirectView postDeleteAnimal(@PathVariable("id") Long animalId) {
+        animalService.deleteAnimal(animalId);
+        return new RedirectView("/clientpanel/clientAnimals");
+    }
 
     @GetMapping("/errorPage")
     public String getError(){
