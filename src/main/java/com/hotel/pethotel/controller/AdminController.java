@@ -9,6 +9,7 @@ import com.hotel.pethotel.service.AnimalService;
 import com.hotel.pethotel.service.ClientService;
 import com.hotel.pethotel.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,7 @@ public class AdminController {
     private final AnimalService animalService;
     private final ClientService clientService;
     private final ReservationService reservationService;
-//    private final ReservationService reservationService;
+
     @GetMapping("/allClients")
     public String listClients(Model model) {
         List<ClientModel> clientList = clientService.getAllClients();
@@ -65,6 +66,17 @@ public class AdminController {
         model.addAttribute("client", clientModel);
         return "animalsForClient";
     }
+
+    @GetMapping ("/client/{id}/reservations")
+    public String getReservations(@PathVariable("id") Long id, Model model) {
+        ClientModel clientModel = clientService.getClientById(id);
+        List<ReservationModel> reservations = clientModel.getReservations();
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("client", clientModel);
+        return "Reservations/adminReservationForClient";
+    }
+
+
     @GetMapping("/allReservations/filteredreservations")
     public String listFilteredReservations(@RequestParam(name = "status", required = false) String status, Model model) {
         List<ReservationModel> reservationList;
