@@ -1,12 +1,12 @@
 package com.hotel.pethotel.controller;
 
+import com.hotel.pethotel.Reservation.ReservationModel;
+import com.hotel.pethotel.Reservation.ReservationService;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
-import com.hotel.pethotel.model.ReservationModel;
 import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.service.AnimalService;
 import com.hotel.pethotel.service.ClientService;
-import com.hotel.pethotel.service.ReservationService;
 import com.hotel.pethotel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -24,6 +24,7 @@ public class AdminController {
     private final AnimalService animalService;
     private final ClientService clientService;
     private final ReservationService reservationService;
+//    private final ReservationService reservationService;
     @GetMapping("/allClients")
     public String listClients(Model model) {
         List<ClientModel> clientList = clientService.getAllClients();
@@ -41,9 +42,6 @@ public class AdminController {
     public String listReservations(Model model) {
         List<ReservationModel> reservationList = reservationService.getAllReservationList();
         model.addAttribute("reservations", reservationList);
-
-
-
         return "reservations";
     }
 

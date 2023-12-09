@@ -1,4 +1,4 @@
-package com.hotel.pethotel.model;
+package com.hotel.pethotel.Reservation;
 
 
 

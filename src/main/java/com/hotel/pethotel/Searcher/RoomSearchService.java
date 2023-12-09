@@ -1,15 +1,13 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.Rooms.RoomModel;
-import com.hotel.pethotel.model.ReservationModel;
-import com.hotel.pethotel.model.ReservationStatus;
-import com.hotel.pethotel.repository.ReservationRepository;
+import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.time.Duration;
 
-import java.time.temporal.ChronoUnit;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,9 +15,7 @@ import java.util.List;
 public class RoomSearchService {
     private final RoomRepository roomRepository;
 
-
     public List<RoomModel> getAvailableRooms(RoomSearchQuery searchQuery) {
-        // TODO: zmapowac na DTO
         return roomRepository.findAvailableRooms(
                 searchQuery.getSelectedAnimalId(),
                 searchQuery.getStandard(),
@@ -27,8 +23,16 @@ public class RoomSearchService {
                 searchQuery.getReservationEndDate(),
                 ReservationStatus.CANCELLED
         );
-
-        }
-
     }
 
+    public long getSearchQueryDuration(RoomSearchQuery searchQuery) {
+        LocalDate reservationStartDate = searchQuery.getReservationStartDate();
+        LocalDate reservationEndDate = searchQuery.getReservationEndDate();
+        if (reservationStartDate == null || reservationEndDate == null) {
+            return 0;
+        }
+        Duration duration = Duration.between(reservationStartDate.atStartOfDay(),reservationEndDate.atStartOfDay());
+        return duration.toDays();
+    }
+
+}

@@ -1,5 +1,7 @@
 package com.hotel.pethotel;
 
+import com.hotel.pethotel.Reservation.ReservationModel;
+import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.*;
 import com.hotel.pethotel.repository.ReservationRepository;
@@ -69,23 +71,23 @@ public class PethotelApplication implements ApplicationRunner {
 
 		ReservationModel reservation1 = new ReservationModel();
 		reservation1.setRoom(room2);
-		reservation1.setStartDate(LocalDate.of(2023,12,01));
-		reservation1.setEndDate(LocalDate.of(2023,12,10));
+		reservation1.setStartDate(LocalDate.of(2023,12,9));
+		reservation1.setEndDate(LocalDate.of(2023,12,15));
 		reservation1.setReservationStatus(ReservationStatus.CANCELLED);
 		reservationRepository.save(reservation1);
 
 		ReservationModel reservation2 = new ReservationModel();
 		reservation2.setRoom(room3);
-		reservation2.setStartDate(LocalDate.of(2023,12,01));
-		reservation2.setEndDate(LocalDate.of(2023,12,10));
+		reservation2.setStartDate(LocalDate.of(2023,12,9));
+		reservation2.setEndDate(LocalDate.of(2023,12,15));
 		reservation2.setReservationStatus(ReservationStatus.CONFIRMED);
 		reservationRepository.save(reservation2);
 
 
 		ReservationModel reservation3 = new ReservationModel();
 		reservation3.setRoom(room4);
-		reservation3.setStartDate(LocalDate.of(2023,12,01));
-		reservation3.setEndDate(LocalDate.of(2023,12,10));
+		reservation3.setStartDate(LocalDate.of(2023,12,9));
+		reservation3.setEndDate(LocalDate.of(2023,12,15));
 		reservation3.setReservationStatus(ReservationStatus.PENDING);
 		reservationRepository.save(reservation3);
 

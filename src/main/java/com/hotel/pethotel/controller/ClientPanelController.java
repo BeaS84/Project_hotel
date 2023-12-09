@@ -1,5 +1,6 @@
 package com.hotel.pethotel.controller;
 
+import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.dto.AnimalDto;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
@@ -30,8 +31,11 @@ public class ClientPanelController {
 
 //reservations//
     @GetMapping("/clientReservations")
-    public String showClientReservation() {
-        return "clientReservations";
+        public String listReservations(Model model) {
+            String email = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+            List<ReservationModel> reservationList = clientService.getReservationsByClientEmail(email);
+        model.addAttribute("clientReservations", reservationList);
+        return "Reservations/clientReservations";
     }
 
     //animals//
@@ -83,6 +87,11 @@ public class ClientPanelController {
         editedAnimal.setClient(client);
         animalService.saveEditAnimal(editedAnimal);
         return new RedirectView("/clientpanel/clientAnimals");
+    }
+
+    @GetMapping("/errorPage")
+    public String getError(){
+        return "Errors/errorPage";
     }
 
     ///SEARCHER//

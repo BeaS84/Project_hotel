@@ -1,10 +1,11 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.dto.AnimalDto;
 import com.hotel.pethotel.mapper.AnimalMapper;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.Standard;
+import com.hotel.pethotel.repository.AnimalRepository;
 import com.hotel.pethotel.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,6 +29,7 @@ public class RoomSearchController {
     private final ClientService clientService;
     private final RoomSearchService roomSearchService;
     private final RoomPricingService roomPricingService;
+    private final AnimalRepository animalRepository;
 
 
     @GetMapping ("/searcher")
@@ -46,7 +48,7 @@ public class RoomSearchController {
 
     }
 
-//    @PostMapping("/search")
+    //    @PostMapping("/search")
 //    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
 //        List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
 //        long durationInDays = searchQuery.calculateDurationInDays();
@@ -57,21 +59,26 @@ public class RoomSearchController {
 //            // Dodaj obliczoną cenę do listy
 //            roomPrices.add(roomPriceTotal);
 //        }
-        @PostMapping("/search")
-        public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
-            List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
-            long durationInDays = searchQuery.calculateDurationInDays();
-            List<RoomPrices> roomPrices = new ArrayList<>();
-            for (RoomModel room : rooms) {
-                // Oblicz cenę pokoju za pomocą RoomPricingService
-                BigDecimal roomPriceTotal = roomPricingService.calculateRoomPrice(room, durationInDays);
-                // Dodaj obliczoną cenę do listy
-                roomPrices.add(new RoomPrices(room, roomPriceTotal));
-            }
-            model.addAttribute("durationInDays", durationInDays);
-            model.addAttribute("roomPrices", roomPrices);
-            return "Searcher/SearchResults";
+    @PostMapping("/search")
+    public String showSearcherForm(@ModelAttribute RoomSearchQuery searchQuery, Model model) {
+        List<RoomModel> rooms = roomSearchService.getAvailableRooms(searchQuery);
+        long durationInDays = roomSearchService.getSearchQueryDuration(searchQuery);
+        List<RoomPrices> roomPrices = new ArrayList<>();
+        for (RoomModel room : rooms) {
+            // Oblicz cenę pokoju za pomocą RoomPricingService
+            BigDecimal roomPriceTotal = roomPricingService.calculateRoomPrice(room, durationInDays);
+            // Dodaj obliczoną cenę do listy
+            roomPrices.add(new RoomPrices(room, roomPriceTotal));
         }
+        model.addAttribute("searchQuery" ,searchQuery);
+        model.addAttribute("durationInDays", durationInDays);
+        model.addAttribute("roomPrices", roomPrices);
+        String animalName = animalRepository.findById(Long.valueOf(searchQuery.getSelectedAnimalId()))
+                .map(animal -> animal.getName()).orElse(null);
+        model.addAttribute("animalName", animalName);
+        model.addAttribute("standardRoom", searchQuery.getStandard());
+        return "Searcher/SearchResults";
+    }
 
 //COnvert RoomModel to RoomDto using RoomMapper
 //        List<RoomDto> roomDtoList = rooms.stream()

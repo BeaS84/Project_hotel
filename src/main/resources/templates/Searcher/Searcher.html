@@ -18,14 +18,19 @@
                 });
             });
 
+            // Początkowa data dzisiejsza
+            var today = new Date();
+            var todayString = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+
             // Inicjalizacja flatpickr dla pól dat
             flatpickr("#reservationStartDate", {
                 dateFormat: "Y-m-d",
+                minDate: todayString, // Ustawienie minimalnej daty
                 onClose: function (selectedDates) {
                     // Ustawienie minimalnej daty dla reservationEndDate
                     flatpickr("#reservationEndDate", {
                         dateFormat: "Y-m-d",
-                        minDate: selectedDates[0] || "today"
+                        minDate: selectedDates[0] || todayString
                     });
                 }
             });
@@ -72,12 +77,15 @@
         <!-- Przycisk "Szukaj" - aktywowany po wyborze zwierzaka -->
         <section>
             <button type="submit">Szukaj</button>
-<!--            <button onclick="location.href='/'">Wróc</button>-->
+            <button type = "button" onclick="location.href='/clientpanel'">Wróć</button>
         </section>
+<!--        <a href="/clientpanel">Wróć</a>-->
+
     </div>
 
     <div th:if="${clientAnimals == null or #lists.isEmpty(clientAnimals)}">
         <p>Aby zarezerwować pokój, musisz najpierw dodać swojego zwierzaka do systemu.</p>
+        <button type = "button" onclick="location.href='/clientpanel'">Wróć</button>
     </div>
 
 </form>

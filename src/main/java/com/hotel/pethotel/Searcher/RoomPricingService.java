@@ -1,4 +1,4 @@
-package com.hotel.pethotel.searcher;
+package com.hotel.pethotel.Searcher;
 
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.repository.RoomRepository;
@@ -20,6 +20,6 @@ public class RoomPricingService {
         // Pobierz cenę za noc z obiektu RoomModel
         BigDecimal costPerNight = room.getCostPerNight();
         // Oblicz całkowitą cenę pokoju na podstawie liczby dni
-        return costPerNight.multiply(BigDecimal.valueOf(durationInDays));
+        return (costPerNight.multiply(BigDecimal.valueOf(durationInDays)));
     }
 }

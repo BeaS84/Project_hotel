@@ -2,7 +2,7 @@ package com.hotel.pethotel.Rooms;
 
 
 import com.hotel.pethotel.model.AnimalSize;
-import com.hotel.pethotel.model.ReservationModel;
+import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.model.Standard;
 import com.hotel.pethotel.model.Type;
 import jakarta.persistence.*;
