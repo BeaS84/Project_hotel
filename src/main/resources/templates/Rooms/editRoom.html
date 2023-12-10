@@ -8,7 +8,8 @@
 
 <h2>Edit Room</h2>
 
-<form th:action="@{'/adminpanel/editRoom/' + ${editRoom.id}}" method="post" th:object="${editRoom}">
+<form th:action="@{'/adminpanel/editRoom/' + ${editRoom.id}}" method="post"
+      th:object="${editRoom}">
   <input type="hidden" th:field="*{id}"/>
 
   <label for="name">Name:</label>

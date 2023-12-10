@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Potwierdź Usunięcie Rezerwacji</title>
+</head>
+<body>
+<h1>Czy na pewno chcesz usunąć rezerwację?</h1>
+<form th:action=<form th:action="@{'/deleteReservation/deleteReservationConfirm/'+${reservation.id}}" method="post"> method="post">
+    <button type="submit">Tak, usuń</button>
+    <a th:href="@{'/adminpanel/clientAnimals'}">Anuluj</a>
+</form>
+</body>
+</html>

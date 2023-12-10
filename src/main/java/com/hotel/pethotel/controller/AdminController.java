@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/adminpanel")
@@ -29,22 +30,26 @@ public class AdminController {
     @GetMapping("/allClients")
     public String listClients(Model model) {
         List<ClientModel> clientList = clientService.getAllClients();
-        model.addAttribute("clients",clientList);
+        model.addAttribute("clients", clientList);
         return "clients";
     }
+
     @GetMapping("/allAnimals")//animals
     // dodaj email właściciela owner=findById() później owner.email
-    public String listAnimals(Model model){
-        List<AnimalModel>animalList = animalService.getAnimalList();
+    public String listAnimals(Model model) {
+        List<AnimalModel> animalList = animalService.getAnimalList();
         model.addAttribute("animals", animalList);
         return "animals";
     }
+
     @GetMapping("/allReservations")
     public String listReservations(Model model) {
-        List<ReservationModel> reservationList = reservationService.getAllReservationList();
-        model.addAttribute("reservations", reservationList);
+        List<ReservationModel> reservations = reservationService
+                .getAllReservationList();
+        model.addAttribute("reservations", reservations);
         return "reservations";
     }
+
 
 //    @GetMapping("/allReservationsPage")
 //    public String getAllReservation() {
@@ -58,7 +63,7 @@ public class AdminController {
 //    }
 
 
-    @GetMapping ("/client/{id}")//clients/2/animals
+    @GetMapping("/client/{id}")//clients/2/animals
     public String getAnimals(@PathVariable("id") Long id, Model model) {
         ClientModel clientModel = clientService.getClientById(id);
         List<AnimalModel> animals = clientModel.getAnimals();
@@ -67,7 +72,7 @@ public class AdminController {
         return "animalsForClient";
     }
 
-    @GetMapping ("/client/{id}/reservations")
+    @GetMapping("/client/{id}/reservations")
     public String getReservations(@PathVariable("id") Long id, Model model) {
         ClientModel clientModel = clientService.getClientById(id);
         List<ReservationModel> reservations = clientModel.getReservations();
@@ -91,6 +96,19 @@ public class AdminController {
 
         model.addAttribute("filteredReservations", reservationList);
         return "filteredreservations";
+    }
+
+
+    // deleteReservationConfirm/
+    @PostMapping("/deleteReservation/{id}")
+    //@PutMapping służy do update, update całego zasobu, update całego obiektu,
+    // przekazuje id
+    //@PatchMapping, partial update, rzadkie, trudniejsze, update wybranych pól,
+    // przekazuje id + RequestBody
+    //Różnica międze @PostMapping i @DeleteMapping, tutaj/w RestController
+    public RedirectView deleteReservation(@PathVariable("id") Long id) {
+        reservationService.deleteReservation(id);
+        return new RedirectView("/adminpanel/allReservations");
     }
 
 }

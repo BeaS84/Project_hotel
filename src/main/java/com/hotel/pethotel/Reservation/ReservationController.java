@@ -93,5 +93,7 @@ public class ReservationController {
     private void handleUnexpectedException(Exception e, RedirectAttributes attributes) {
         attributes.addFlashAttribute("error", "Nieoczekiwany błąd: " + e.getMessage());
     }
+
+
 }
 

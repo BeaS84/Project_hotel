@@ -5,8 +5,14 @@ import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
 import com.hotel.pethotel.repository.RoomRepository;
 import com.hotel.pethotel.repository.ReservationRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 
 import java.math.BigDecimal;
@@ -22,10 +28,10 @@ public class ReservationService {
 //    private final ClientRepository clientRepository;
 //    private final AnimalRepository animalRepository;
 
-//flow rezerwacji usera///
+    //flow rezerwacji usera///
     public ReservationModel createReservation(ClientModel client, AnimalModel animal, RoomModel room, LocalDate startDate, LocalDate endDate) {
-       // boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
-      //  boolean isCanceledReservationExists = reservationRepository.isExistsByClientAndAnimalAndRoomAndReservationStatus(
+        // boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
+        //  boolean isCanceledReservationExists = reservationRepository.isExistsByClientAndAnimalAndRoomAndReservationStatus(
 //                client, animal, room, ReservationStatus.CANCELLED);
 
         boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
@@ -42,39 +48,57 @@ public class ReservationService {
 //            System.out.println("tutaj pokoj jest juz zajęty");
 //            throw new RuntimeException("zmienic na cos innego");
 //        }
-        if(isRoomAvailable ||isReservationCancelled ){
+        if (isRoomAvailable || isReservationCancelled) {
 
-        ReservationModel reservation = new ReservationModel();
-        reservation.setClient(client);
-        reservation.setAnimal(animal);
-        reservation.setRoom(room);
-        reservation.setStartDate(startDate);
-        reservation.setEndDate(endDate);
-        // Ustawienie ceny koncowej:
-        reservation.setPrice(calculateReservationPrice(startDate, endDate, room.getCostPerNight()));
-        // Ustawienie statusu rezerwacji- domyslnie ma byc PENDING
-        reservation.setReservationStatus(ReservationStatus.PENDING);
-        return reservationRepository.save(reservation);
-    } else {
-        // TODO: Obsługa sytuacji, gdy pokój jest zajęty
-        System.out.println("Pokój jest już zajęty.");
-        throw new RuntimeException("Pokój jest zajęty. Zmień na coś innego.");
+            ReservationModel reservation = new ReservationModel();
+            reservation.setClient(client);
+            reservation.setAnimal(animal);
+            reservation.setRoom(room);
+            reservation.setStartDate(startDate);
+            reservation.setEndDate(endDate);
+            // Ustawienie ceny koncowej:
+            reservation.setPrice(calculateReservationPrice(startDate, endDate, room.getCostPerNight()));
+            // Ustawienie statusu rezerwacji- domyslnie ma byc PENDING
+            reservation.setReservationStatus(ReservationStatus.PENDING);
+            return reservationRepository.save(reservation);
+        } else {
+            // TODO: Obsługa sytuacji, gdy pokój jest zajęty
+            System.out.println("Pokój jest już zajęty.");
+            throw new RuntimeException("Pokój jest zajęty. Zmień na coś innego.");
+        }
     }
-    }
- //przeliczanie ceny -
+
+    //przeliczanie ceny -
     public BigDecimal calculateReservationPrice(LocalDate startDate, LocalDate endDate, BigDecimal costPerNight) {
         // Implementacja logiki obliczania ceny rezerwacji -cena zależy od liczby dni pobytu
         long numberOfNights = ChronoUnit.DAYS.between(startDate, endDate);
         return costPerNight.multiply(BigDecimal.valueOf(numberOfNights));
     }
 
-//pobranie rezerwacji usera
+    //pobranie rezerwacji usera
     public List<ReservationModel> getAllReservationList() {
         return reservationRepository.findAll();
     }
 
     public List<ReservationModel> getReservationsByStatus(String status) {
         return reservationRepository.findByReservationStatus(ReservationStatus.valueOf(status));
+    }
+
+
+    public void deleteReservation(Long id) {
+        // ReservationModel reservationModel=reservationRepository.findById(id).orElse(null);
+        // reservationModel.getReservationStatus()
+
+        if (reservationRepository.findById(id).orElse(null)
+                .getReservationStatus().equals(ReservationStatus.CANCELLED)) {
+            reservationRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Możesz anulować tylko rezerwacje ze statusem CANCELLED.");
+       }
+    }
+
+    public ReservationModel getReservationById(Long id) {
+        return reservationRepository.getById(id);
     }
 }
 
