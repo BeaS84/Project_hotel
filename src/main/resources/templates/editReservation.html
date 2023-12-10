@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja rezerwacji</title>
+</head>
+<body>
+
+<style>
+</style>
+
+<h2>Edycja rezerwacji</h2>
+
+<form th:action="@{'/adminpanel/editReservation/' + ${reservation.id}}" method="post">
+    <label for="status">Status rezerwacji:</label>
+    <select id="status" name="status">
+        <option value="CONFIRMED" th:selected="${reservation.reservationStatus == 'CONFIRMED'}">CONFIRMED</option>
+        <option value="CANCELLED" th:selected="${reservation.reservationStatus == 'CANCELLED'}">CANCELLED</option>
+        <option value="PENDING" th:selected="${reservation.reservationStatus == 'PENDING'}">PENDING</option>
+    </select>
+    <button type="submit">Zapisz zmiany</button>
+</form>
+
+<a th:href="@{/adminpanel/allReservations}" class="button">Wróć</a>
+
+</body>
+</html>

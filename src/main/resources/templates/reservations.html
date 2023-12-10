@@ -110,7 +110,9 @@
         <td></td>
 
         <td>
-                <button>Edytuj</button>
+            <th:block th:if="${reservation.reservationStatus.name() == 'CONFIRMED' or reservation.reservationStatus.name() == 'CANCELLED'}">
+                <a th:href="@{'/adminpanel/editReservation/' + ${reservation.id}}">Edytuj</a>
+            </th:block>
             <form th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" method="post"
                   th:if="${reservation.reservationStatus.name()=='CANCELLED'}">
 <!--                <button>Usuń</button>-->

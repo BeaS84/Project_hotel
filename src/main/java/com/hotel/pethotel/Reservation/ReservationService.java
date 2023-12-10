@@ -100,5 +100,11 @@ public class ReservationService {
     public ReservationModel getReservationById(Long id) {
         return reservationRepository.getById(id);
     }
+
+    public void saveReservation(ReservationModel reservation) {
+        reservationRepository.save(reservation);
+    }
+
+
 }
 
