@@ -1,5 +1,6 @@
 package com.hotel.pethotel.Rooms;
 
+import com.hotel.pethotel.Reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -23,6 +25,13 @@ public class RoomController {
     @GetMapping("/allRooms")
     public String getRoomList(Model model){
         List<RoomModel> rooms = roomService.getRoomList();
+        rooms.forEach(room -> {
+
+            if (room.getId()!= null) {
+            room.setAvailableNow(roomService.isRoomAvailable(room.getId()));
+            room.setHasFutureReservation(roomService.isRoomIsReservedNowOrInFuture(room.getId()));
+        }});
+
         model.addAttribute("rooms", rooms);
         return "Rooms/allRooms";
     }

@@ -17,16 +17,39 @@ public interface ReservationRepository extends JpaRepository<ReservationModel, L
     @Query("SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END " +
             "FROM ReservationModel r " +
             "WHERE r.room.id = :roomId " +
-            "AND r.reservationStatus = :reservationStatus " +
+            "AND r.reservationStatus IN (:reservationStatuses) " +
             "AND ((r.startDate <= :startDate AND r.endDate >= :startDate) OR " +
             "(r.startDate <= :endDate AND r.endDate >= :endDate) OR " +
             "(r.startDate >= :startDate AND r.endDate <= :endDate))")
 
     boolean isExistsByRoomAndReservationStatus(
             Long roomId,
-            ReservationStatus reservationStatus,
+            List<ReservationStatus> reservationStatuses,
             LocalDate startDate,
             LocalDate endDate
+    );
+    @Query("SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END " +
+            "FROM ReservationModel r " +
+            "WHERE r.room.id = :roomId " +
+            "AND r.reservationStatus IN (:reservationStatuses) " +
+            "AND ((r.startDate <= :startDate AND r.endDate< :startDate))")
+
+    boolean isRoomHasAnyReservation(
+            Long roomId,
+            List<ReservationStatus> reservationStatuses,
+            LocalDate startDate
+    );
+
+    @Query("SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END " +
+            "FROM ReservationModel r " +
+            "WHERE r.room.id = :roomId " +
+            "AND r.reservationStatus IN (:reservationStatuses) " +
+            "AND ((r.endDate >= :startDate))")
+
+    boolean isRoomHasPresentOrFutureReservation(
+            Long roomId,
+            List<ReservationStatus> reservationStatuses,
+            LocalDate startDate
     );
 
 }

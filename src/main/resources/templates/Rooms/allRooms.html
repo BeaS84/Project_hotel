@@ -47,7 +47,8 @@
         <th>Animal Size</th>
         <th>Cost per Night</th> <!-- Dodana kolumna -->
         <th>Is Active</th>
-        <th>Is reserved</th>
+<!--        <th>Is available now</th>-->
+        <th>Has present or future reservation</th>
         <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
     </tr>
     </thead>
@@ -62,8 +63,9 @@
         <td th:text="${room.getAllowedAnimalSizes()}"></td>
         <td th:text="${room.getCostPerNight()}"></td> <!-- Dodana kolumna -->
         <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>
-        <!--        jesli dlugosc seta jest >0 wyswietla sie Yes, w przeciwnym wypadku wysietla sie No.-->
-        <td th:text="${#lists.size(room.reservations) > 0 ? 'Yes' : 'No'}"></td>
+<!--        <td th:text="${room.getAvailableNow()? 'Yes' : 'No'}"></td>-->
+        <td th:text="${room.getHasFutureReservation() ? 'Yes' : 'No'}"></td>
+
         <td>
             <a th:href="@{'/adminpanel/editRoom/' + ${room.getId()}}"
                th:attr="data-id=${room.getId()}">

@@ -35,7 +35,7 @@ public class ReservationService {
 //                client, animal, room, ReservationStatus.CANCELLED);
 
         boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
-        boolean isReservationCancelled = reservationRepository.isExistsByRoomAndReservationStatus(room.getId(), ReservationStatus.CANCELLED, startDate, endDate);
+        boolean isReservationCancelled = reservationRepository.isExistsByRoomAndReservationStatus(room.getId(), List.of(ReservationStatus.CANCELLED), startDate, endDate);
 
         if (isReservationCancelled) {
             // TODO: Tutaj możesz obsłużyć sytuację, gdy istnieje już anulowana rezerwacja
