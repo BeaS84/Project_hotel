@@ -111,30 +111,4 @@ public class AdminController {
         return new RedirectView("/adminpanel/allReservations");
     }
 
-//    @GetMapping("/deleteReservation/{id}")
-//    public String getDeleteReservation(@PathVariable("id") Long id, Model model) {
-//        ReservationModel reservation = reservationService.getReservationById(id);
-//        model.addAttribute("reservationToDelete", reservation);
-//        return "confirmDeleteReservations";
-//    }
-//    @GetMapping("/deleteReservation/deleteReservationConfirm/{id}")
-//    public String getDeleteReservationConfirm(@PathVariable("id") Long id, Model model) {
-//       ReservationModel reservation = reservationService.getReservationById(id);
-//        model.addAttribute("reservationToDelete", reservation);
-//        return "confirmDeleteReservations";
-//    }
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
-//        try {
-//            carService.deleteCar(id);
-//            return ResponseEntity.noContent().build();
-//        } catch (EntityNotFoundException e) {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-//    @PostMapping("/del/{id}")
-//    public RedirectView delStudent(@PathVariable("id") Long id) {
-//        studentService.delStudent(id);
-//        return new RedirectView("/students");
-//    }
 }
