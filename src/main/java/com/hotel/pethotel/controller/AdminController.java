@@ -2,15 +2,12 @@ package com.hotel.pethotel.controller;
 
 import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.Reservation.ReservationService;
+import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
-import com.hotel.pethotel.model.UserModel;
 import com.hotel.pethotel.service.AnimalService;
 import com.hotel.pethotel.service.ClientService;
-import com.hotel.pethotel.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -110,5 +107,26 @@ public class AdminController {
         reservationService.deleteReservation(id);
         return new RedirectView("/adminpanel/allReservations");
     }
+    @GetMapping("/editReservation/{id}")
+    public String showEditReservationForm(@PathVariable("id") Long id, Model model) {
+        ReservationModel reservation = reservationService.getReservationById(id);
+        model.addAttribute("reservation", reservation);
+        return "editReservation";
+    }
+    @PostMapping("/editReservation/{id}")
+    public String saveEditedReservation(@PathVariable("id") Long id, @RequestParam("status") String status, Model model) {
+        try {
+            ReservationModel editedReservation = reservationService.getReservationById(id);
+            ReservationStatus newStatus = ReservationStatus.valueOf(status);
+            editedReservation.setReservationStatus(newStatus);
+            reservationService.saveReservation(editedReservation);
+            return "redirect:/adminpanel/allReservations";
+        } catch (IllegalArgumentException e) {
+         //obsluga bledow
+            model.addAttribute("error", "Błąd podczas zapisywania zmian");
+            return "editReservation";
+        }
 
+
+    }
 }
