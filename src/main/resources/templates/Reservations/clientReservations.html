@@ -59,12 +59,13 @@
 <section>
         <table>
             <tr>
-                <th colspan="6" class="table-header">MOJE REZERWACJE</th>
+                <th colspan="7" class="table-header">MOJE REZERWACJE</th>
             </tr>
 
             <tr>
                 <th>ID</th>
                 <th>Numer Rezerwacji</th>
+                <th>Imię Zwierzaka</th>
                 <th>Data Rozpoczęcia</th>
                 <th>Data Zakończenia</th>
                 <th>Cena</th>
@@ -73,6 +74,7 @@
             <tr th:each="reservation : ${clientReservations}">
                 <td th:text="${reservation.id}"></td>
                 <td th:text="${reservation.reservationNumber}"></td>
+                <td th:text="${reservation.animal != null ? reservation.animal.name : ''}"></td>
                 <td th:text="${reservation.startDate}"></td>
                 <td th:text="${reservation.endDate}"></td>
                 <td th:text="${reservation.price}"></td>
@@ -87,5 +89,6 @@
         </form>
     </section>
 
+</body>
 </body>
 </html>
