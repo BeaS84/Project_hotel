@@ -1,62 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8">
     <title>Wyniki wyszukiwania rezerwacji</title>
 </head>
 <body>
+<div id="form-container">
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        border: 1px solid #ddd;
-    }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+    <table id="animals-table">
+        <tr>
+            <th colspan="9" class="table-header">Wyniki wyszukiwania rezerwacji</th>
+        </tr>
 
-    th.table-header {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    nav {
-        width: 200px;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #f1f1f1;
-        padding-top: 20px;
-    }
-
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    nav ul li {
-        padding: 8px;
-        text-align: center;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-        display: block;
-    }
-</style>
-
-<h2>Wyniki wyszukiwania rezerwacji</h2>
-
-<table>
-    <thead>
     <tr>
         <th>ID</th>
         <th>Numer rezerwacji</th>
@@ -80,14 +37,20 @@
         <td th:if="${reservation.room != null}" th:text="${reservation.room.name}"></td>
         <td th:if="${reservation.client != null}" th:text="${reservation.client.name}"></td>
         <td>
-            <ul th:if="${reservation.animal != null}">
-                <li th:each="animal : ${reservation.animal}" th:text="${animal.name}"></li>
-            </ul>
+            <span th:if="${reservation.animal != null}">
+                <span th:each="animal : ${reservation.animal}" th:text="${animal.name + ' '}"></span>
+            </span>
         </td>
+
     </tr>
     </tbody>
 
 </table>
-<a th:href="@{/adminpanel/allReservations}" class="button">Wróć do wszystkich rezerwacji</a>
+    <section id="WRÓĆ" class="section-button">
+        <form action="/adminpanel/allReservations" method="get">
+            <button type="submit">Wróć</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

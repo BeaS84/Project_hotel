@@ -1,0 +1,99 @@
+
+body {
+    background-color: #DDCBCA; /* Różowy kolor tła */
+    height: 100%; /* Ustaw wysokość na 100% */
+    margin: 0; /* Zresetuj marginesy */
+    overflow-y: scroll; /* Dodaj pionowe przewijanie dla całej strony */
+}
+#animals-table .table-header {
+    font-size: 30px; /* Dostosuj rozmiar czcionki */
+}
+
+#animals-table td {
+    font-size: 18px; /* Dostosuj rozmiar czcionki dla komórek danych */
+}
+#animals-table {
+    margin: auto; /* Wyśrodkuj tabelę */
+    background-color: white; /* Jasne tło tabeli */
+    border-collapse: collapse;
+    width: 80%; /* Szerokość tabeli */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Dodaj cień */
+}
+
+#animals-table th {
+    background-color: #4D301D; /* Ciemne tło dla nagłówka tabeli */
+    color: white; /* Biały kolor tekstu w nagłówku tabeli */
+    font-weight: bold; /* Pogrubienie tekstu w nagłówku tabeli */
+    padding: 20px;
+    text-align: center;
+}
+
+#animals-table td, #animals-table th {
+    border: 1px solid #000; /* Dodaj obramowanie dla komórek tabeli */
+    padding: 8px;
+    text-align: center;
+}
+
+/* Nowy styl CSS dla przycisków Dodaj i Wróć */
+.section-button {
+    text-align: center;
+    margin-top: 20px;
+    width: 20%;
+    padding: 15px 30px; /* Zwiększ wartości padding */
+    background-color: #86645F;
+    margin: 20px auto; /* Zwiększ wartość marginesu */
+    color: black;
+    border-radius: 10px;
+}
+
+.section-button button {
+    background-color: #86645F; /* Ciemny kolor dla przycisków */
+    color: black; /* Biały kolor tekstu w przyciskach */
+    font-weight: bold; /* Pogrubienie tekstu w przyciskach */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: auto;
+}
+.btn-primary:hover {
+    background-color: #2b1a11; /* Kolor przycisku po najechaniu myszką */
+    border: #2b1a11;
+}
+#result-label {
+    font-size: 2em;
+    color: #4D301D;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#results-label {
+    font-size: 2em;
+    color: #4D301D;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.search-panel {
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#result-label {
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#status-table {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+#search button {
+    font-size: 18px;
+}

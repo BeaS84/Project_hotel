@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
   <meta charset="UTF-8"/>
   <title>Wyniki Twojego wyszukiwania</title>
 </head>
+<div id="result-label">
 <label th:text="'Szukasz pokoju dla '+ ${animalName} +' na '+ ${durationInDays} + ' dni'"></label>
-
+</div>
 <body>
+<table id="animals-table">
 <!-- Sprawdzenie, czy istnieją pokoje do wyświetlenia -->
 <div th:if="${not #lists.isEmpty(roomPrices)}">
-  <table border="1">
+
     <thead>
     <tr>
       <th>ID</th>
@@ -33,21 +36,26 @@
       <td th:text="${roomPrice.getPrice()}"></td> <!-- Dodana kolumna z ceną pokoju -->
       <td>
         <a th:href="@{/clientpanel/create(animalId=${searchQuery.getSelectedAnimalId()}, roomId=${roomPrice.getRoom().getId()}, reservationStartDate=${searchQuery.getReservationStartDate()}, reservationEndDate=${searchQuery.getReservationEndDate()},durationInDays=${durationInDays}, totalPrice=${roomPrice.getPrice()})}">
+
           <button>Wybierz</button>
         </a>
       </td>
 
     </tr>
-    </tbody>
+    </tbody></div>
   </table>
 </div>
 
 <!-- Komunikat o braku wyników -->
+<div id="results-label">
 <div th:if="${#lists.isEmpty(roomPrices)}">
   <p>Niestety brak wyników wyszukiwania.</p>
 </div>
+</div>
 
-<button onclick="location.href='/clientpanel'">Wróć</button>
+  <section id="wroc" class="section-button">
+    <button onclick="location.href='/clientpanel'">Wróć</button>
+  </section>
 
 </body>
 </html>

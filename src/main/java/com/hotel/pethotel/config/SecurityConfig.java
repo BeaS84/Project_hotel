@@ -51,6 +51,7 @@ public class SecurityConfig {
                                 .requestMatchers("/","/register").permitAll()
                                 .requestMatchers("/adminpanel/**").hasRole("ADMIN")
                                 .requestMatchers("/clientpanel/**").hasRole("USER")
+                                .requestMatchers(("/styles.css"), "/pethotel.jpg","/smalldog.jpg", "/mediumdog.jpg", "/largedog.jpg", "/standard.jpg", "/premium.jpg", "/basic.jpg").permitAll()  // Dodaj zezwolenie dla plików statycznych
                                 .anyRequest().authenticated()
                 )
                // .exceptionHandling().accessDeniedPage("/accessDenied.html").and()

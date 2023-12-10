@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,12 +17,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 <!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
 <!--                <li class="nav-item">-->
-                    <a sec:authorize="isAuthenticated()" class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
-                    <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
-                    <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
-<!--                </li>-->
+<!--                    <a sec:authorize="isAuthenticated()" class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>-->
+<!--                    <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>-->
+<!--                    <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
 <!--            </ul>-->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a sec:authorize="isAuthenticated()" class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                <a sec:authorize="isAnonymous()" class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item">
                 <!-- Warunek sprawdzający rolę użytkownika -->
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                     <a class="nav-link active" aria-current="page" th:href="@{/adminpanel}">Admin Panel</a>
@@ -29,16 +40,120 @@
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
                     <a class="nav-link active" aria-current="page" th:href="@{/clientpanel}">Twój Panel</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#priceList">Cennik</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#ourRooms">Nasze pokoje</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#aboutUs">O nas</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 <br /><br />
 
-<div class="container">
+<div class="welcome-header">
+    <h1>Witam w naszym hotelu!</h1><span th:text="${#authentication.name}"></span>
+    <!--        <p th:text="${userRoles}"></p>-->
+
+    <div class="centered-image">
+        <img src="pethotel.jpg" alt="Pet Hotel Image">
+    </div>
+
+</div>
+<!-- moja sekcja cennik" -->
+<div id="priceList" class="container scroll-section">
+
     <div class="row">
-        <h1>Witam w naszym hotelu!</h1>
-        <p th:text="${userRoles}"></p>
+        <h1>Cennik</h1>
+        <p>Mały | Średni | Duży</p>
+    </div>
+    <!-- Wyświetl sekcję z obrazem zawsze -->
+    <div class="row dog-image">
+        <img src="/smalldog.jpg" alt="Small Dog Image">
+        <div class="text-container">
+            <div class="hotel-text">HOTEL DLA MAŁEGO PSA</div>
+            <p class="small-text">Mały piesek będzie miał tu swój mały pokoik - zapraszamy</p>
+            <div class="price-text">50 zł/doba</div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row dog-image">
+        <img src="/mediumdog.jpg" alt="Medium Dog Image">
+        <div class="text-container">
+            <div class="hotel-text">HOTEL DLA ŚREDNIEGO PSA</div>
+            <p class="small-text">Średni piesek będzie miał tu pokoik - zapraszamy</p>
+            <div class="price-text">80 zł/doba</div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row dog-image">
+        <img src="/largedog.jpg" alt="Large Dog Image">
+        <div class="text-container">
+            <div class="hotel-text">HOTEL DLA DUŻEGO PSA</div>
+            <p class="small-text">Duży piesek będzie miał tu pokoik - zapraszamy</p>
+            <div class="price-text">100 zł/doba</div>
+        </div>
+    </div>
+    <hr>
+
+</div>
+<!-- Dodana sekcja naszych pokoi -->
+<div id="ourRooms" class="container scroll-section">
+    <div class="row">
+        <h1>Nasze pokoje</h1>
+    </div>
+
+    <div class="row rooms-container">
+        <div class="room">
+            <img src="/basic.jpg" alt="Basic Room Image">
+            <div class="text-container">
+                <div class="hotel-text">POKOJ BASIC</div>
+                <p class="small-text">Pokój basic zapewnia zwierzętom wszystko to, co potrzebne podczas rozłąki z właścicielem. Miękkie materace, jasne, ciepłe światło i wyjątkowe posiłki sprawią, że poczuje się jak w domu.</p>
+            </div>
+        </div>
+
+        <div class="room">
+            <img src="/standard.jpg" alt="Standard Room Image">
+            <div class="text-container">
+                <div class="hotel-text">POKOJ STANDARD</div>
+                <p class="small-text">Pokój standardowy zawiera dodatkowo zabawkę, którą Twój zwierzak może się bawić, a także miski, gryzaki, miękkie posłanie i kolorowe ściany.</p>
+            </div>
+        </div>
+
+        <div class="room">
+            <img src="/premium.jpg" alt="Premium Room Image">
+            <div class="text-container">
+                <div class="hotel-text">POKOJ PREMIUM</div>
+                <p class="small-text">Pokój premium dostarcza zwierzakom wiele zabawek, gryzaków, ogrom miękkich poduszek, miękką wykładzinę, kolorowe ściany. Tutaj Twój zwierzak poczuje się jak w niebie.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+<!-- Dodana sekcja o nas-->
+<div id="aboutUs" class="container scroll-section">
+    <div class="row">
+        <h1>O nas</h1>
+    </div>
+    <div class="aboutUs">
+        <div class="hotel-text">Jak wygląda u nas opieka zwierząt?</div>
+        <p class="small-text">Jeśli zostawisz u nas swojego pupila możesz być spokojny. Regularne pory karmienia, pięć dużych wybiegów, na których zwierzaki mogą szaleć, a także opieka weterynaryjna są gwarancją bezpiecznej ostoi dla pupilów. </p>
+        <div class="hotel-text">Transport</div>
+        <p class="small-text">Swojego zwierzaka należy dowieźć do naszego hotelu. Za dodatkową opłatą (50 zł), możemy odebrać bezpośrednio od Ciebie Twojego zwierzaka.</p>
+        <div class="hotel-text">Twórcy</div>
+        <p class="small-text">Jesteśmy młodym, prężnie rozwijającym się zespołem, który stara się, aby zwierzaki, które przebywają w naszym hotelu miały możliwie bardzo dobre wyniki.</p>
+
+    </div>
+</div>
+<div class="footer">
+    <div class="container-fluid">
+        <p class="navbar-brand">www.chillowyborsuk.com</p>
     </div>
 </div>
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
@@ -8,7 +9,7 @@
 
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 130%;
             border: 1px solid #ddd;
         }
 
@@ -31,7 +32,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #f1f1f1;
+            background-color:  #4D301D;
             padding-top: 20px;
         }
 
@@ -48,14 +49,14 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #333;
+            color: #FFFFFF;
             font-weight: bold;
             display: block;
         }
     </style>
 </head>
 <body>
-
+<div id="clientpanel" class="row">
 <nav>
     <ul>
         <li><a href="/">Strona główna</a></li>
@@ -65,5 +66,9 @@
         <li><a href="/clientpanel/searcher">Rezerwuj</a></li>
     </ul>
 </nav>
+    <div class="image-container">
+        <img src="pethotel.jpg" alt="Pet Hotel Image">
+    </div>
+</div>
 </body>
 </html>

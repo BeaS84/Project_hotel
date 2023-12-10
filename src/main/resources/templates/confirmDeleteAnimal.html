@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8"/>
     <title>Potwierdzenie Usunięcia Zwierzaka</title>
 </head>
 <body>
-
+<div id="form-container">
 <div th:if="${hasActiveReservations}">
     <p>Na tego zwierzaka jest zarezerwowany pokój w najbliższych dniach lub trwa rezerwacja. Anuluj rezerwację, aby usunąć zwierzaka.</p>
     <button onclick="location.href='/clientpanel/clientAnimals'">Wróć</button>
@@ -15,12 +16,14 @@
     <h2>Potwierdzenie Usunięcia Zwierzaka</h2>
     <p>Czy na pewno chcesz usunąć zwierzaka?</p>
 
-
+    <div class="form-group section-button">
     <form th:action="@{/clientpanel/clientAnimals/deleteAnimal/{id}(id=${animalToDelete.id})}" method="post">
         <button type="submit">Usuń</button>
     </form>
-
+    </div>
+    <div class="form-group section-button">
     <button onclick="location.href='/clientpanel/clientAnimals'">Anuluj</button>
+    </div>
 </div>
 
 </body>
