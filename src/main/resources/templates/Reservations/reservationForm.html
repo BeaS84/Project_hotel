@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8"/>
     <title>Podsumowanie Rezerwacji</title>
 </head>
 <body>
-
+<div id="form-container">
 <h2>Podsumowanie Rezerwacji</h2>
 
 <!-- Wyświetlenie informacji o rezerwacji -->
-<p>Rezerwujesz pokój: <span th:text="${room.getName()}"></span></p>
-<p>Dla: <span th:text="${animal.getName()}"></span></p>
+    <div class="form-group">
+        <p>Rezerwujesz pokój: <span th:text="${room.getName()}"></span></p></div>
+    <div class="form-group">
+        <p>Dla: <span th:text="${animal.getName()}"></span></p></div>
+    <div class="form-group">
 <ul>
     <li>Data przyjazdu: <span th:text="${reservationStartDate}"></span></li>
     <li>Data wyjazdu: <span th:text="${reservationEndDate}"></span></li>
@@ -18,18 +22,22 @@
     <li>Cena za dzień: <span th:text="${room.getCostPerNight()}"></span></li>
     <li>Cena całkowita: <span th:text="${totalPrice}"></span></li>
 </ul>
-
+    </div>
 <!-- Przycisk Rezerwuj -->
 <form th:action="@{/clientpanel/create}" method="post" th:object="${request}">
     <input type="hidden" name="animalId" th:value="${animal.getId()}" />
     <input type="hidden" name="roomId" th:value="${room.getId()}" />
     <input type="hidden" name="startDate" th:value="${reservationStartDate}" />
     <input type="hidden" name="endDate" th:value="${reservationEndDate}" />
+    <div class="form-group section-button">
     <button type="submit">Rezerwuj</button>
+    </div>
 </form>
 
 <!-- Przycisk Powrót do panelu klienta -->
+    <div class="form-group section-button">
 <button onclick="location.href='/clientpanel'">Powrót do panelu klienta</button>
-
+    </div>
+</div>
 </body>
 </html>

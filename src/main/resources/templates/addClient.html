@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8"/>
     <title>Formularz Dodawania Użytkownika</title>
 </head>
 <body>
-
+<div id="form-container">
 <h2>Formularz Dodawania Użytkownika</h2>
 
 <form th:action="@{/register}" method="post" th:object="${newClient}">
@@ -13,14 +14,22 @@
 <!--        <input type="hidden" th:field="*{id}"/>-->
 <!--        <label for="id">ID:</label>-->
 <!--        <input type="number" id="id" name="id" th:field="*{id}">-->
+    <div class="form-group">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" th:field="*{name}" required/>
+    </div>
+    <div class="form-group">
     <label for="surname">Surname:</label>
     <input type="text" id="surname" name="surname" th:field="*{surname}" required/>
+    </div>
+    <div class="form-group">
     <label for="email">Email:</label>
     <input type="text" id="email" name="email" th:field="*{email}" required/>
+    </div>
+    <div class="form-group">
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" th:field="*{password}" required/>
+    </div>
 <!--    <label for="description">Description:</label>-->
 <!--    <input type="text" id="description" name="description" th:field="*{description}" required/>-->
 
@@ -40,8 +49,17 @@
 <!--    </select>-->
 <!--    <label for="active">Active:</label>-->
 <!--    <input type="checkbox" id="active" name="active" th:field="*{active}"/>-->
+    <div class="form-group section-button">
     <button type="submit">Dodaj Użytkownika</button>
+    </div>
 </form>
+    <div class="form-group section-button">
+        <form action="/ " method="get">
+            <button type="submit">Wróć</button>
+        </form>
+    </div>
 
+
+</div>
 </body>
 </html>

@@ -1,62 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
 
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th.table-header {
-            font-size: 18px;
-            text-align: center;
-        }
-
-        nav {
-            width: 200px;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #f1f1f1;
-            padding-top: 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            padding: 8px;
-            text-align: center;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            display: block;
-        }
-    </style>
 </head>
 
 
 <body>
-<h1>Twoje zwierzęta</h1>
-
-<table>
+<h1></h1>
+<table id="animals-table">
     <tr>
         <th colspan="6" class="table-header">TWOJE ZWIERZĘTA</th>
     </tr>
@@ -80,32 +35,34 @@
 <!--            <button th:onclick="confirmDelete([[${animal.id}]])">Usuń</button>-->
 <!--        </td>-->
         <td>
-            <a th:href="@{/clientpanel/clientAnimals/editanimal/{id}(id=${animal.id})}">Edytuj</a>
-            <button th:onclick="'confirmDelete(' + ${animal.id} + ')'">Usuń</button>
+            <a th:href="@{/clientpanel/clientAnimals/editanimal/{id}(id=${animal.id})}" style="text-decoration: none; font-weight: bold; color: black;">Edytuj</a>
+            <a th:href="@{'/clientpanel/clientAnimals/deleteAnimal/' + ${animal.id}}" style="text-decoration: none; font-weight: bold; color: black;">Usuń</a>
+
         </td>
     </tr>
 </table>
-<script>
-    function confirmDelete(animalId) {
-        var result = confirm("Czy na pewno chcesz usunąć zwierzaka?");
-        if (result) {
-            // Tutaj możesz umieścić kod do wysłania żądania usunięcia
-            console.log(animalId)
-            window.location.href = "/clientpanel/clientAnimals/deleteAnimal/" + parseInt(animalId);
-        }
-    }
-</script>
+<!--<script>-->
+<!--    function confirmDelete(animalId) {-->
+<!--        var result = confirm("Czy na pewno chcesz usunąć zwierzaka?");-->
+<!--        if (result) {-->
+<!--            // Tutaj możesz umieścić kod do wysłania żądania usunięcia-->
+<!--            console.log(animalId)-->
+<!--            window.location.href = "/clientpanel/clientAnimals/deleteAnimal/" + parseInt(animalId);-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 
-<section id="DODAJ">
+<section id="DODAJ" class="section-button">
     <form action="/clientpanel/clientAnimals/addAnimal" method="get">
         <button type="submit">Dodaj zwierzaka</button>
     </form>
 </section>
 
-<section id="wróć">
+<section id="WRÓĆ" class="section-button">
     <form action="/clientpanel" method="get">
         <button type="submit">Wróć</button>
     </form>
 </section>
+
 </body>
 </html>

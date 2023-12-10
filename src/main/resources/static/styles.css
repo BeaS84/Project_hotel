@@ -1,0 +1,272 @@
+/* styles.css */
+
+body {
+    background-color: #DDCBCA; /* Różowy kolor tła */
+    height: 100%; /* Ustaw wysokość na 100% */
+    margin: 0; /* Zresetuj marginesy */
+    overflow-y: scroll; /* Dodaj pionowe przewijanie dla całej strony */
+}
+
+.navbar-dark {
+    background-color: #4D301D !important; /* Ciemnobrązowy kolor tła dla paska nawigacyjnego */
+}
+
+.navbar-dark .navbar-brand {
+    color: #FFFFFF; /* Biały kolor dla napisu w belce nawigacyjnej */
+    font-weight: bold; /* Pogrubienie dla napisu w belce nawigacyjnej */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #FFFFFF; /* Biały kolor dla pozycji nawigacyjnych w belce */
+    font-weight: bold; /* Pogrubienie dla pozycji nawigacyjnych w belce */
+}
+.footer {
+    background-color: #4D301D; /* Kolor tła belki */
+    color: white; /* Kolor tekstu */
+    text-align: center; /* Wyśrodkuj tekst */
+    padding: 5px 0; /* Dodaj wewnętrzne marginesy góra/dół */
+    position: fixed; /* Ustaw belkę na stałej pozycji na dole strony */
+    width: 100%; /* Rozciągnij belkę na pełną szerokość strony */
+    bottom: 0; /* Ustaw belkę na dole strony */
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+/* STRONA GŁÓWNA */
+.image-container {
+    margin-right: 20px; /* Dostosuj odstęp między obrazem a tekstem */
+}
+
+.hotel-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.small-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+/* Dodaj nowe style dla wyśrodkowanego obrazka */
+.centered-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Dodaj odstęp od tekstu do obrazka */
+    margin-bottom: 100px;
+
+}
+.row p {
+    margin-top: 10px; /* Dodaj odstęp między h1 a p */
+}
+/* Dodaj nowy styl dla witającego nagłówka */
+.welcome-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:40px;
+    margin-top: 50px; /* Dostosuj margines w razie potrzeby */
+}
+
+.welcome-header h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.centered-image img {
+    max-width: 100%; /* Dostosuj szerokość obrazu do szerokości rodzica */
+    height: auto;
+}
+/* Dodaj nowe style dla trzech rodzajów psów */
+.dog-image img {
+    max-width: 400px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 40px; /* Zaokrąglij rogi obrazka */
+}
+
+/* Styl dla każdego rodzaju psa */
+.dog-image .text-container {
+    flex: 1;
+}
+
+/* Dodaj nowe style dla trzech rodzajów psów */
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.image-container {
+    margin-right: 20px;
+}
+
+.hotel-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.small-text, .price-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+/* Dodaj nowy styl dla pokoi */
+.rooms-container {
+    display: flex;
+    justify-content: space-between; /* Rozłoż obiekty na szerokość kontenera */
+    flex-wrap: wrap; /* Zawijaj na nową linię, jeśli brakuje miejsca */
+}
+
+.room {
+    flex: 0 0 calc(33.33% - 5px); /* Ustaw szerokość na 1/3 szerokości, odejmij odstępy */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px; /* Dodaj odstęp między pokojami */
+}
+
+.room img {
+    width: 100%; /* Obrazy zajmują 100% szerokości swojego kontenera */
+    max-width: 400px; /* Maksymalna szerokość obrazu */
+    height: auto;
+    border-radius: 10px; /* Zaokrąglij rogi obrazka */
+}
+
+.room .text-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Dodaj nowe style dla sekcji "O NAS" */
+#aboutUs {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#aboutUs h1 {
+    margin-bottom: 30px;
+}
+
+#aboutUs p {
+    text-align: justify;
+    max-width: 1800px; /* Ustaw maksymalną szerokość tekstu */
+
+}
+/*LOGIN STRONA*/
+body {
+    background-color: #DDCBCA;
+    height: 100%;
+    margin: 0;
+    overflow-y: scroll;
+}
+
+.custom-card {
+    background-color: white; /* Zmiana tła karty na białe */
+    border: 1px solid #4D301D; /* Dodanie subtelnej ramki wokół karty */
+    border-radius: 10px; /* Zaokrąglenie rogów karty */
+}
+
+.card-header {
+    background-color: #4D301D; /* Kolor belki nagłówka karty */
+    color: white; /* Kolor tekstu w nagłówku */
+    border-bottom: 1px solid #4D301D; /* Dodanie linii oddzielającej nagłówek od treści karty */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Wyśrodkuj elementy w karcie */
+}
+
+.form-group {
+    width: 100%; /* Szerokość elementów formularza */
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border: none; /* Usuń obramowanie dla pól formularza */
+}
+
+.btn-primary {
+    display: block;
+    margin: auto;
+    width: 100%; /* Rozciągnij przycisk na pełną szerokość kontenera */
+    max-width: 200px; /* Ogranicz maksymalną szerokość przycisku */
+    background-color: #4D301D; /* Kolor przycisku */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2b1a11; /* Kolor przycisku po najechaniu myszką */
+    border: #2b1a11;
+}
+/* CLIENTPANEL */
+#clientpanel {
+    display: flex;
+    color: white; /* Kolor tekstu dla panelu z lewej strony */
+    font-size: 20px; /* Rozmiar czcionki */
+    font-weight: bold; /* Pogrubienie tekstu */
+    padding: 20px;
+}
+
+#clientpanel .content {
+    flex: 1;
+    background-color: #DDCBCA; /* Ustawienie jasnego koloru tła dla panelu po prawej stronie */
+    padding: 20px;
+}
+
+#clientpanel img {
+    max-width: 300%; /* Dostosuj szerokość obrazu do szerokości rodzica */
+    height: auto;
+    opacity: 0.5; /* Przezroczystość obrazu */
+}
+.image-container {
+    display: flex;
+    justify-content: center; /* Wycentruj elementy wzdłuż osi poziomej */
+    align-items: center; /* Wycentruj elementy wzdłuż osi pionowej */
+    height: 100vh; /* Ustaw wysokość kontenera na 100% wysokości widoku */
+}
+
+.image-container img {
+    height: auto;
+    margin-left: 700px; /* Dodaj margines 100px po lewej stronie */
+}
+/* ADD ANIMAL PANEL*/
+
+#form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    border: #4D301D;
+}
+
+.form-group {
+    margin-bottom: 20px;
+
+}
+#form-container h2 {
+    text-align: center;
+}
+.section-button button {
+    background-color: #86645F; /* Ciemny kolor dla przycisków */
+    color: black; /* Biały kolor tekstu w przyciskach */
+    font-weight: bold; /* Pogrubienie tekstu w przyciskach */
+    padding: 15px 30px; /* Zwiększ wartości padding */
+    border: none;
+    cursor: pointer;
+    margin: auto;
+    border-radius: 10px; /* Zaokrąglij rogi przycisku */
+}
+
+.section-button button:hover {
+    background-color: #2b1a11; /* Kolor przycisku po najechaniu myszką */
+    border: #2b1a11;
+}

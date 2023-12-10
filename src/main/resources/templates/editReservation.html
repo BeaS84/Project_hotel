@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8">
     <title>Edycja rezerwacji</title>
 </head>
 <body>
-
+<div id="form-container">
 <style>
 </style>
 
 <h2>Edycja rezerwacji</h2>
 
 <form th:action="@{'/adminpanel/editReservation/' + ${reservation.id}}" method="post">
+    <div class="form-group">
     <label for="status">Status rezerwacji:</label>
     <select id="status" name="status">
         <option value="CONFIRMED" th:selected="${reservation.reservationStatus == 'CONFIRMED'}">CONFIRMED</option>
         <option value="CANCELLED" th:selected="${reservation.reservationStatus == 'CANCELLED'}">CANCELLED</option>
         <option value="PENDING" th:selected="${reservation.reservationStatus == 'PENDING'}">PENDING</option>
     </select>
+    </div>
+    <div class="form-group section-button">
     <button type="submit">Zapisz zmiany</button>
+    </div>
 </form>
-
-<a th:href="@{/adminpanel/allReservations}" class="button">Wróć</a>
-
+    <section id="wroc" class="section-button">
+        <form action="/adminpanel/allReservations" method="get">
+            <button type="submit">Wróć</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

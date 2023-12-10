@@ -1,64 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8">
     <title>AnimalsForClient</title>
 </head>
-<style>
 
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        border: 1px solid #ddd;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-
-    th.table-header {
-        font-size: 18px;
-        text-align: center;
-    }
-
-
-    nav {
-        width: 200px;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #f1f1f1;
-        padding-top: 20px;
-    }
-
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    nav ul li {
-        padding: 8px;
-        text-align: center;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-        display: block;
-    }
-</style>
 <body>
-<h1>Lista zwierząt</h1>
-
-<h2>Zarejestrowane zwierzaki</h2>
-<p>Tutaj możesz zarządzać informacjami o zwierzakach.</p>
-<table>
+<table id="animals-table">
     <tr>
         <th colspan="4" class="table-header">WSZYSTKIE ZWIERZĘTA</th>
     </tr>
@@ -75,10 +24,11 @@
         <td th:text="${animal.sex}" />
     </tr>
 </table>
-<section id="Wyszukaj">
-    <form action="/adminpanel" method="get">
+<section id="WRÓĆ" class="section-button">
+    <form action="/adminpanel/allClients" method="get">
         <button type="submit">Wróć</button>
     </form>
+</section>
 
 </section>
 </body>

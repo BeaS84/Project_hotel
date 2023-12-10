@@ -1,138 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8">
     <title>Wszystkie rezerwacje</title>
 </head>
 <body>
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        border: 1px solid #ddd;
-    }
+    <div id="form-container">
+        <div class="search-panel">
+            <form th:action="@{/adminpanel/allReservations/filteredreservations}" method="get">
+                <div class="form-group">
+                    <div id="result-label">
+                        Status rezerwacji:
+                    </div>
+                </div>
+                    <select id="status-table" name="status">
+                        <option value="">Wszystkie</option>
+                        <option value="CONFIRMED">CONFIRMED</option>
+                        <option value="CANCELLED">CANCELLED</option>
+                        <option value="PENDING">PENDING</option>
+                    </select>
+                </div>
+                <section id="se" class="section-button">
+                    <button type="submit">Szukaj</button>
+                </section>
+            </form>
+        </div>
+        <table id="animals-table">
+            <tr>
+                <th colspan="10" class="table-header">Wszystkie rezerwacje</th>
+            </tr>
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th.table-header {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    nav {
-        width: 200px;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #f1f1f1;
-        padding-top: 20px;
-    }
-
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    nav ul li {
-        padding: 8px;
-        text-align: center;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-        display: block;
-    }
-    .search-panel {
-         margin-bottom: 20px;
-     }
-
-    .search-panel select {
-        margin-right: 10px;
-    }
-</style>
-
-<h2>Wszystkie rezerwacje</h2>
-<div class="search-panel">
-    <form th:action="@{/adminpanel/allReservations/filteredreservations}" method="get">
-        <label for="status">Status rezerwacji:</label>
-        <select id="status" name="status">
-            <option value="">Wszystkie</option>
-            <option value="CONFIRMED">CONFIRMED</option>
-            <option value="CANCELLED">CANCELLED</option>
-            <option value="PENDING">PENDING</option>
-        </select>
-        <button type="submit">Szukaj</button>
-    </form>
-</div>
-
-<table>
-    <thead>
     <tr>
         <th>ID</th>
         <th>Numer rezerwacji</th>
         <th>Data rozpoczęcia</th>
         <th>Data zakończenia</th>
+        <th>Zwierzęta</th>
         <th>Cena</th>
         <th>Status rezerwacji</th>
         <th>Pokój</th>
         <th>Właściciel</th>
-        <th>Zwierzęta</th>
-
         <th>Akcje</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="reservation : ${reservations}">
         <td th:text="${reservation.id}"></td>
         <td th:text="${reservation.reservationNumber}"></td>
         <td th:text="${reservation.startDate}"></td>
         <td th:text="${reservation.endDate}"></td>
+        <td>
+            <span th:if="${reservation.animal != null}" th:text="${reservation.animal.name}"></span>
+        </td>
         <td th:text="${reservation.price}"></td>
         <td th:text="${reservation.reservationStatus}"></td>
-        <td th:if="${reservation.room != null}" th:text="${reservation.room.name}"></td>
-        <td th:if="${reservation.client != null}" th:text="${reservation.client.email + ' ' + reservation.client.name}"></td>
-        <td th:if="${reservation.animal}"></td>
-
         <td>
-            <ul th:if="${reservation.animal != null}">
-                <li th:each="animal : ${reservation.animal}" th:text="${animal.name}"></li>
-            </ul>
+            <span th:if="${reservation.room != null}" th:text="${reservation.room.name}"></span>
         </td>
-        <td></td>
-
         <td>
-                <button>Edytuj</button>
-
-            <form th:if="${reservation.reservationStatus.name()=='CANCELLED'}"
-                  th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}"
-                  th:method="delete">
-                <button>Usuń</button>
-<!--                <button th:class="" th:onclick="confirmDelete( ${reservation.id} )">Usuń</button>-->
-<!--                <button  th:onclick="'confirmDelete(' + ${reservation.id} + ')'">Usuń</button>-->
+            <span th:if="${reservation.client != null}" th:text="${reservation.client.email + ' ' + reservation.client.name}"></span>
+        </td>
+        <td>
+            <div class="form-group section-button">
+                <a th:href="@{'/adminpanel/editReservation/' + ${reservation.id}}">Edytuj</a></div>
+            <form th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" method="post"
+                  th:if="${reservation.reservationStatus.name()=='CANCELLED'}">
+                <button th:onclick="'confirmDelete(' + ${reservation.id} + ')'">Usuń</button>
             </form>
         </td>
     </tr>
 </table>
-
-<a th:href="@{/adminpanel}" class="button">Wróć</a>
-
+        <section id="WRÓĆ" class="section-button">
+            <form action="/adminpanel" method="get">
+                <button type="submit">Wróć</button>
+            </form>
+        </section>
 <script>
     function confirmDelete(id) {
-        if (confirm("Czy na pewno chcesz usunąć rezerwację?")) {
-            // Tutaj możesz umieścić kod do wysłania żądania usunięcia
-           console.log(id)
-            fetch('/adminpanel/deleteReservation/' + id,  {
-                method: 'DELETE'
-            }).catch(error=>console.log(error))
+        var result = confirm("Czy na pewno chcesz usunąć rezerwację?");
+        if (result) {
+            window.location.href = "/adminpanel/allReservations";
         }
     }
 </script>

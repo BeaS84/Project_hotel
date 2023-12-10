@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8"/>
     <title>Rezerwacja Zwierzaka</title>
@@ -52,30 +53,36 @@
     </script>
 </head>
 <body>
-
+<div id="form-container">
 <form th:action="@{/clientpanel/search}" method="post" th:object="${searchQuery}" onsubmit="return validateDates();">
     <h2>Wybierz zwierzaka, dla którego chcesz dokonać rezerwacji:</h2>
 
     <!-- Iteracja przez listę zwierzaków użytkownika z użyciem radiobuttons -->
     <div th:if="${clientAnimals != null and not #lists.isEmpty(clientAnimals)}">
+        <div class="form-group">
 
         <select th:field="*{selectedAnimalId}" required>
             <option th:each="animal : ${clientAnimals}" th:value="${animal.getId()}" th:text="${animal.getName()}">
             </option>
         </select>
+        </div>
+        <div class="form-group">
         <label for="roomStandard">Standard pokoju:</label>
         <select id="roomStandard" name="roomStandard" th:field="*{standard}" required>
             <option th:each="standard : ${availableStandards}" th:value="${standard}" th:text="${standard.name()}"></option>
         </select>
+        </div>
 
+        <div class="form-group">
         <label for="reservationStartDate">Data przybycia:</label>
         <input type="text" id="reservationStartDate" name="reservationStartDate" required />
-
+        </div>
+        <div class="form-group">
         <label for="reservationEndDate">Data wyjazdu:</label>
         <input type="text" id="reservationEndDate" name="reservationEndDate" required/>
-
+        </div>
         <!-- Przycisk "Szukaj" - aktywowany po wyborze zwierzaka -->
-        <section>
+        <section id="wroc" class="section-button">
             <button type="submit">Szukaj</button>
             <button type = "button" onclick="location.href='/clientpanel'">Wróć</button>
         </section>
@@ -89,6 +96,6 @@
     </div>
 
 </form>
-
+</div>
 </body>
 </html>
