@@ -86,6 +86,8 @@
         <th>Pokój</th>
         <th>Właściciel</th>
         <th>Zwierzęta</th>
+
+        <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
@@ -105,10 +107,37 @@
                 <li th:each="animal : ${reservation.animal}" th:text="${animal.name}"></li>
             </ul>
         </td>
-    </tr>
-    </tbody>
+        <td></td>
 
+        <td>
+<!--<a>-->
+<!--th:href="@{'/adminpanel/editRoom/' + ${room.getId()}}"&ndash;&gt;-->
+<!--               th:attr="data-id=${room.getId()}">-->
+                <button>Edytuj</button>
+<!--            </a>-->
+            <form th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" method="post"
+                  th:if="${reservation.reservationStatus.name()=='CANCELLED'}">
+<!--                  th:object="${reservation}">-->
+                <button>Usuń</button>
+            </form>
+<!--                <td>-->
+
+<!--                    <button th:onclick="'confirmDelete(' + ${animal.id} + ')'">Usuń</button>-->
+                </td>
+    </tr>
 </table>
+
 <a th:href="@{/adminpanel}" class="button">Wróć</a>
+
+<!--<script>-->
+<!--    function confirmDelete(animalId) {-->
+<!--        var result = confirm("Czy na pewno chcesz usunąć rezerwację?");-->
+<!--        if (result) {-->
+<!--            // Tutaj możesz umieścić kod do wysłania żądania usunięcia-->
+<!--           // console.log(animalId)-->
+<!--            window.location.href = "/adminpanel/clientAnimals/deleteAnimal/" + parseInt(animalId);-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>
