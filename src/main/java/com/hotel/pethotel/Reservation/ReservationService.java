@@ -3,6 +3,7 @@ package com.hotel.pethotel.Reservation;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
+import com.hotel.pethotel.repository.AnimalRepository;
 import com.hotel.pethotel.repository.RoomRepository;
 import com.hotel.pethotel.repository.ReservationRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,12 +20,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
+    private final AnimalRepository animalRepository;
 //    private final ClientRepository clientRepository;
 //    private final AnimalRepository animalRepository;
 
@@ -105,6 +108,38 @@ public class ReservationService {
         reservationRepository.save(reservation);
     }
 
+    public List<ReservationModel> getActiveReservationsForAnimal(AnimalModel animal) {
+        LocalDate currentDate = LocalDate.now();
+        Set<ReservationStatus> activeStatuses = Set.of(ReservationStatus.PENDING, ReservationStatus.CONFIRMED);
+        return reservationRepository.findActiveReservationsForAnimal(
+                animal.getId(),
+                currentDate,
+                activeStatuses
+        );
+    }
+    public void deleteAnimalWithReservations(Long animalId) {
+        AnimalModel animalModel = animalRepository.findById(animalId).orElse(null);
+        if (animalModel != null) {
+            List<ReservationModel> reservations = reservationRepository.findByAnimalId(animalId);
+            reservationRepository.deleteAll(reservations);
+            animalRepository.deleteById(animalId);
+        } else {
+            throw new RuntimeException("Zwierzak o podanym ID nie istnieje.");
+        }
+    }
 
+
+
+    public List<ReservationModel> findReservationsForAnimalByStatus(Long animalId, ReservationStatus status) {
+        return reservationRepository.findReservationsForAnimalByStatus(animalId, status);
+    }
+    public void confirmDeleteAnimal(Long animalId) {
+        List<ReservationModel> pendingReservations = reservationRepository.findPendingReservationsForAnimal(animalId);
+        if (!pendingReservations.isEmpty()) {
+            throw new RuntimeException("Nie możesz usunąć zwierzaka, ponieważ istnieją aktywne rezerwacje w stanie PENDING.");
+        }
+    }
 }
+
+
 
