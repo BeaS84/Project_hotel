@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Potwierdź Usunięcie Zwierzaka</title>
+    <meta charset="UTF-8"/>
+    <title>Potwierdzenie Usunięcia Zwierzaka</title>
 </head>
 <body>
-<h1>Czy na pewno chcesz usunąć zwierzaka?</h1>
-<form th:action="@{'/clientpanel/clientAnimals/deleteAnimal/' + ${animalToDelete.id}}" method="post">
-    <button type="submit">Tak, usuń</button>
-    <a th:href="@{'/clientpanel/clientAnimals'}">Anuluj</a>
-</form>
+
+<div th:if="${hasActiveReservations}">
+    <p>Na tego zwierzaka jest zarezerwowany pokój w najbliższych dniach lub trwa rezerwacja. Anuluj rezerwację, aby usunąć zwierzaka.</p>
+    <button onclick="location.href='/clientpanel/clientAnimals'">Wróć</button>
+</div>
+
+<div th:unless="${hasActiveReservations}">
+    <h2>Potwierdzenie Usunięcia Zwierzaka</h2>
+    <p>Czy na pewno chcesz usunąć zwierzaka?</p>
+
+
+    <form th:action="@{/clientpanel/clientAnimals/deleteAnimal/{id}(id=${animalToDelete.id})}" method="post">
+        <button type="submit">Usuń</button>
+    </form>
+
+    <button onclick="location.href='/clientpanel/clientAnimals'">Anuluj</button>
+</div>
+
 </body>
 </html>

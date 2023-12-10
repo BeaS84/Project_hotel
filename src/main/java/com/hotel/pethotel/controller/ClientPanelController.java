@@ -1,6 +1,7 @@
 package com.hotel.pethotel.controller;
 
 import com.hotel.pethotel.Reservation.ReservationModel;
+import com.hotel.pethotel.Reservation.ReservationService;
 import com.hotel.pethotel.dto.AnimalDto;
 import com.hotel.pethotel.model.AnimalModel;
 import com.hotel.pethotel.model.ClientModel;
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
 public class ClientPanelController {
     private final AnimalService animalService;
     private final ClientService clientService;
-
+    private final ReservationService reservationService;
 //reservations//
     @GetMapping("/clientReservations")
         public String listReservations(Model model) {
@@ -91,6 +92,13 @@ public class ClientPanelController {
     @GetMapping("/clientAnimals/deleteAnimal/{id}")
     public String getDeleteAnimal(@PathVariable("id") Long animalId, Model model) {
         AnimalModel animalModel = animalService.getAnimalById(animalId);
+
+        List<ReservationModel> activeReservations = reservationService.getActiveReservationsForAnimal(animalModel);
+        if (!activeReservations.isEmpty()) {
+            model.addAttribute("hasActiveReservations", true);
+            return "confirmDeleteAnimal"; // Wyświetl widok z komunikatem o aktywnych rezerwacjach
+        }
+
         model.addAttribute("animalToDelete", animalModel);
         return "confirmDeleteAnimal";
     }
@@ -102,9 +110,16 @@ public class ClientPanelController {
     }
     @PostMapping("/clientAnimals/deleteAnimal/{id}")
     public RedirectView postDeleteAnimal(@PathVariable("id") Long animalId) {
-        animalService.deleteAnimal(animalId);
+        try {
+            reservationService.deleteAnimalWithReservations(animalId);
+        } catch (RuntimeException e) {
+            System.err.println("Błąd usuwania zwierzaka: " + e.getMessage());
+        }
+
         return new RedirectView("/clientpanel/clientAnimals");
     }
+
+
 
     @GetMapping("/errorPage")
     public String getError(){
