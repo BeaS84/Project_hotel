@@ -113,8 +113,11 @@ public class AdminController {
         model.addAttribute("reservation", reservation);
         return "editReservation";
     }
+
     @PostMapping("/editReservation/{id}")
-    public String saveEditedReservation(@PathVariable("id") Long id, @RequestParam("status") String status, Model model) {
+    public String saveEditedReservation(@PathVariable("id") Long id,
+                                        @RequestParam("status") String status,
+                                        Model model) {
         try {
             ReservationModel editedReservation = reservationService.getReservationById(id);
             ReservationStatus newStatus = ReservationStatus.valueOf(status);
@@ -122,11 +125,10 @@ public class AdminController {
             reservationService.saveReservation(editedReservation);
             return "redirect:/adminpanel/allReservations";
         } catch (IllegalArgumentException e) {
-         //obsluga bledow
+            // Obsługa błędów
             model.addAttribute("error", "Błąd podczas zapisywania zmian");
             return "editReservation";
         }
-
-
     }
+
 }
