@@ -9,7 +9,9 @@
 <div id="form-container">
 <div th:if="${hasActiveReservations}">
     <p>Na tego zwierzaka jest zarezerwowany pokój w najbliższych dniach lub trwa rezerwacja. Anuluj rezerwację, aby usunąć zwierzaka.</p>
+    <div class="form-group section-button">
     <button onclick="location.href='/clientpanel/clientAnimals'">Wróć</button>
+    </div>
 </div>
 
 <div th:unless="${hasActiveReservations}">
