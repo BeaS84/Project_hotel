@@ -4,6 +4,7 @@ import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.Reservation.ReservationStatus;
 import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.model.*;
+import com.hotel.pethotel.repository.AnimalRepository;
 import com.hotel.pethotel.repository.ReservationRepository;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class PethotelApplication implements ApplicationRunner {
 		roomRepository.save(room2);
 
 		RoomModel room3 = new RoomModel();
-		room3.setName("test-pokoj-3");
+		room3.setName("test-pokoj-3 przyszla rezerwacja");
 		room3.setActive(true);
 		room3.setCostPerNight(BigDecimal.ONE);
 		room3.setStandard(Standard.PREMIUM);
@@ -59,7 +60,7 @@ public class PethotelApplication implements ApplicationRunner {
 		roomRepository.save(room3);
 
 		RoomModel room4 = new RoomModel();
-		room4.setName("test-pokoj-4");
+		room4.setName("test-pokoj-4 trwajaca rezerwacja");
 		room4.setActive(true);
 		room4.setCostPerNight(BigDecimal.ONE);
 		room4.setStandard(Standard.PREMIUM);
@@ -75,25 +76,39 @@ public class PethotelApplication implements ApplicationRunner {
 		reservation1.setEndDate(LocalDate.of(2023,12,15));
 		reservation1.setReservationStatus(ReservationStatus.CANCELLED);
 		reservationRepository.save(reservation1);
-
+//przyszla rezerwacja
 		ReservationModel reservation2 = new ReservationModel();
 		reservation2.setRoom(room3);
-		reservation2.setStartDate(LocalDate.of(2023,12,9));
+		reservation2.setStartDate(LocalDate.of(2023,12,11));
 		reservation2.setEndDate(LocalDate.of(2023,12,15));
 		reservation2.setReservationStatus(ReservationStatus.CONFIRMED);
 		reservationRepository.save(reservation2);
 
-
+//trwajaca rezerwacja
 		ReservationModel reservation3 = new ReservationModel();
 		reservation3.setRoom(room4);
 		reservation3.setStartDate(LocalDate.of(2023,12,9));
-		reservation3.setEndDate(LocalDate.of(2023,12,15));
+		reservation3.setEndDate(LocalDate.of(2023,12,19));
 		reservation3.setReservationStatus(ReservationStatus.PENDING);
 		reservationRepository.save(reservation3);
 
-
-
-
+		RoomModel room5 = new RoomModel();
+		room5.setName("test-pokoj-5 przeszla rezerwacja");
+		room5.setActive(true);
+		room5.setCostPerNight(BigDecimal.ONE);
+		room5.setStandard(Standard.PREMIUM);
+		room5.setAllowedAnimalSizes(Set.of(AnimalSize.SMALL, AnimalSize.MEDIUM, AnimalSize.LARGE));
+		room5.setAllowedAnimalTypes(Set.of(Type.DOG));
+		room5.setCostPerNight(BigDecimal.valueOf(250.50));
+		room5.setDescription("miły pokoik");
+		roomRepository.save(room5);
+//przeszla rezerwacja
+		ReservationModel reservation4 = new ReservationModel();
+		reservation4.setRoom(room5);
+		reservation4.setStartDate(LocalDate.of(2023,12,1));
+		reservation4.setEndDate(LocalDate.of(2023,12,5));
+		reservation4.setReservationStatus(ReservationStatus.CONFIRMED);
+		reservationRepository.save(reservation4);
 
 //		var room1 = new RoomModel();
 //		room1.setName("test-pokoj-1");
