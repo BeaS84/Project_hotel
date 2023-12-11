@@ -26,6 +26,9 @@ INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','SONIA',
 INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Denver','BOY','MEDIUM',4);
 INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('CAT','Kocurro','BOY','SMALL',4);
 
+INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Dżek','BOY','LARGE',5);
+INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('CAT','Zara','GIRL','SMALL',5);
+
 -- INSERT INTO animal_model (type,name,sex,weight,client_id) VALUES ('DOG','Psinka','GIRL','LARGE',5);
 
 
