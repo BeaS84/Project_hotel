@@ -24,10 +24,11 @@ body {
     background-color: #4D301D; /* Kolor tła belki */
     color: white; /* Kolor tekstu */
     text-align: center; /* Wyśrodkuj tekst */
-    padding: 5px 0; /* Dodaj wewnętrzne marginesy góra/dół */
+    padding: 0px 0; /* Dodaj wewnętrzne marginesy góra/dół */
     position: fixed; /* Ustaw belkę na stałej pozycji na dole strony */
     width: 100%; /* Rozciągnij belkę na pełną szerokość strony */
     bottom: 0; /* Ustaw belkę na dole strony */
+    margin-top: 100px;
 }
 
 .row {
@@ -55,20 +56,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px; /* Dodaj odstęp od tekstu do obrazka */
-    margin-bottom: 100px;
+    margin-top: 10px; /
+    margin-bottom: 150px;
 
 }
 .row p {
-    margin-top: 10px; /* Dodaj odstęp między h1 a p */
+    margin-top: 10px;
 }
-/* Dodaj nowy styl dla witającego nagłówka */
+
 .welcome-header {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size:40px;
-    margin-top: 50px; /* Dostosuj margines w razie potrzeby */
+
 }
 
 .welcome-header h1 {
@@ -146,9 +147,14 @@ body {
     flex-direction: column;
 
 }
+#aboutUs {
+    /* Dodaj margines na dole */
+    margin-bottom: 30px;
+}
 
 #aboutUs h1 {
     margin-bottom: 30px;
+    margin-top: 40px;
 }
 
 #aboutUs p {

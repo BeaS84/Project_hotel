@@ -64,13 +64,13 @@
             <span th:if="${reservation.client != null}" th:text="${reservation.client.email + ' ' + reservation.client.name}"></span>
         </td>
         <td>
-            <div class="form-group section-button">
-                <a th:href="@{'/adminpanel/editReservation/' + ${reservation.id}}">Edytuj</a></div>
-            <form th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" method="post"
-                  th:if="${reservation.reservationStatus.name()=='CANCELLED'}">
-                <button th:onclick="'confirmDelete(' + ${reservation.id} + ')'">Usuń</button>
+            <a th:text="Edytuj" th:href="@{'/adminpanel/editReservation/' + ${reservation.id}}" style="text-decoration: none; font-weight: bold; color: black;"></a>
+
+            <form th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" method="post" th:if="${reservation.reservationStatus.name()=='CANCELLED'}">
+                <button type="submit" th:text="Usuń" style="text-decoration: none; font-weight: bold; color: black; border: none; background: none; padding: 0; cursor: pointer;">Usuń</button>
             </form>
         </td>
+
     </tr>
 </table>
         <section id="WRÓĆ" class="section-button">

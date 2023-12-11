@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
 <head>
     <meta charset="UTF-8"/>
     <title>Formularz Dodawania Pokoju</title>
 </head>
 <body>
-
+<div id="form-container">
 <h2>Formularz Dodawania Pokoju</h2>
 
 <form th:action="@{/adminpanel/addRoom}" method="post" th:object="${newRoom}">
@@ -13,19 +14,23 @@
     <!--    <input type="hidden" th:field="*{id}"/>-->
     <!--    <label for="id">ID:</label>-->
     <!--    <input type="number" id="id" name="id" th:field="*{id}">-->
+    <div class="form-group">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" th:field="*{name}" required/>
-
+    </div>
+    <div class="form-group">
     <label for="description">Description:</label>
     <input type="text" id="description" name="description" th:field="*{description}" required/>
-
+    </div>
+    <div class="form-group">
     <label for="allowedAnimalType">Typ zwierzęcia:</label>
     <select id="allowedAnimalType" name="allowedAnimalType" th:field="*{allowedAnimalTypes}" required>
         <option th:each="type : ${T(com.hotel.pethotel.model.Type).values()}"
                 th:value="${type}" th:text="${type}" th:selected="${newRoom != null and newRoom.allowedAnimalTypes != null and newRoom.allowedAnimalTypes.contains(type)}">
         </option>
     </select>
-
+    </div>
+    <div class="form-group">
     <label for="standard">Standard:</label>
     <!--    Wyrażenie T(com.hotel.pethotel.model.Standard) odnosi się do klasy enum Standard, a values() zwraca tablicę wszystkich stałych enuma.-->
     <select id="standard" name="standard" required>
@@ -33,25 +38,31 @@
                 th:value="${option}" th:text="${option}">
         </option>
     </select>
-
+    </div>
+    <div class="form-group">
     <label for="animalSize">Animal Size:</label>
-    <select id="animalSize" name="animalSize" multiple="multiple" th:field="*{allowedAnimalSizes}" required>
+    <select id="animalSize" name="animalSize" th:field="*{allowedAnimalSizes}" required>
         <option value="SMALL">Small</option>
         <option value="MEDIUM">Medium</option>
         <option value="LARGE">Large</option>
         <!-- Dodaj inne opcje w zależności od dostępnych rozmiarów zwierząt -->
     </select>
-
+    </div>
+    <div class="form-group">
     <label for="costPerNight">Cost per Night:</label>
     <input type="text" id="costPerNight" name="costPerNight" th:field="*{costPerNight}" required/>
-
+    </div>
+    <div class="form-group">
     <label for="active">Active:</label>
     <input type="checkbox" id="active" name="active" th:field="*{active}"/>
+    </div>
+    <div class="form-group section-button">
     <button type="submit">Dodaj Pokój</button>
     <a th:href="@{/adminpanel/allRooms}">
-        <button type="button">Anuluj</button>
+        <button type="button">Wróć</button>
     </a>
+    </div>
 </form>
-
+</div>
 </body>
 </html>
