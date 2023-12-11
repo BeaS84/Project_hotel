@@ -38,30 +38,35 @@ public class RoomService {
         roomRepository.save(editRoom);
     }
 
-    public boolean isRoomAvailable(Long roomId) {
-        // Pobieramy pokój po ID
-        RoomModel room = roomRepository.findById(roomId).orElse(null);
-
-        // Jeżeli pokój nie istnieje, to oznaczamy go jako niedostępny
-        if (room == null) {
-            return false;
-        }
-        //Zwraca true, jeśli nie ma potwierdzonych (CONFIRMED) ani oczekujących (PENDING) rezerwacji w danym zakresie dat/false, jeśli pokój nie istnieje lub ma rezerwację w danym zakresie dat.
-        return !reservationRepository.isRoomHasAnyReservation(
-                roomId,
-                List.of(ReservationStatus.CONFIRMED,ReservationStatus.PENDING),LocalDate.now()
-        );
+//    public boolean isRoomAvailable(Long roomId) {
+//        // Pobieramy pokój po ID
+//        RoomModel room = roomRepository.findById(roomId).orElse(null);
+//
+//        // Jeżeli pokój nie istnieje, to oznaczamy go jako niedostępny
+//        if (room == null) {
+//            return false;
+//        }
+//        //Zwraca true, jeśli nie ma potwierdzonych (CONFIRMED) ani oczekujących (PENDING) rezerwacji w danym zakresie dat/false, jeśli pokój nie istnieje lub ma rezerwację w danym zakresie dat.
+//        return !reservationRepository.isRoomHasAnyReservation(
+//                roomId,
+//                List.of(ReservationStatus.CONFIRMED,ReservationStatus.PENDING),LocalDate.now()
+//        );
+//    }
+public boolean isRoomIsReservedNowOrInFuture(Long roomId) {
+    RoomModel room = roomRepository.findById(roomId).orElse(null);
+    if (room == null) {
+        return false;
     }
-    public boolean isRoomIsReservedNowOrInFuture(Long roomId) {
-        RoomModel room = roomRepository.findById(roomId).orElse(null);
-        if (room == null) {
-            return false;
-        }
-        return reservationRepository.isRoomHasPresentOrFutureReservation(
-                roomId,
-                List.of(ReservationStatus.CONFIRMED, ReservationStatus.PENDING),
-                LocalDate.now());
 
-    }
+    boolean isReserved = reservationRepository.isRoomHasPresentOrFutureReservation(
+            roomId,
+            List.of(ReservationStatus.CONFIRMED, ReservationStatus.PENDING),
+            LocalDate.now());
+
+    room.setHasFutureReservation(isReserved);
+    roomRepository.save(room);
+
+    return isReserved;
+}
 
 }

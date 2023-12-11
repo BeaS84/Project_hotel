@@ -28,7 +28,6 @@ public class RoomController {
         rooms.forEach(room -> {
 
             if (room.getId()!= null) {
-            room.setAvailableNow(roomService.isRoomAvailable(room.getId()));
             room.setHasFutureReservation(roomService.isRoomIsReservedNowOrInFuture(room.getId()));
         }});
 
@@ -44,11 +43,18 @@ public class RoomController {
         roomService.addRoom(room);
         return new RedirectView("/adminpanel/allRooms");
     }
+    @GetMapping("/editRoomNotAllowed")
+    public String showEditRoomNotAllowedPage() {
+        return "Rooms/editRoomNotAllowed";
+    }
 
     // @PathVariable("id") jest używane do określenia, którą zmienną ścieżkową przypisać do parametru "id". W tym przypadku jest używane konkretne nazwanie "id", które wskazuje, że wartość zmiennej ścieżkowej o nazwie "id" ma zostać przypisana do parametru "id" metody.
     //mozna tez tak (@PathVariable Long id, Model model_ --> @PathVariable jest używane bezpośrednio, bez określania nazwy zmiennej. W tym przypadku Spring automatycznie przypisuje wartość zmiennej ścieżkowej do parametru metody na podstawie ich typów i pozycji. Wartość zmiennej ścieżkowej jest przypisywana do parametru "id" ze względu na identyfikator "id" w ścieżce.
     @GetMapping("/editRoom/{id}")
     public String getEditRoom(@PathVariable("id") Long id, Model model) {
+        if (roomService.isRoomIsReservedNowOrInFuture(id)) {
+            return "Rooms/editRoomNotAllowed";
+        }
         RoomModel roomModel = roomService.getRoomById(id);
         model.addAttribute("editRoom", roomModel);
         return "Rooms/editRoom";

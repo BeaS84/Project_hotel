@@ -51,7 +51,6 @@ public class RoomModel {
     @Column(name = "is_active")
     private Boolean active;
 
-    private Boolean availableNow;
     private Boolean hasFutureReservation;
 
 //    @ManyToMany(mappedBy = "rooms")

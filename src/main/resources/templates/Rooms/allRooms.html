@@ -67,10 +67,16 @@
         <td th:text="${room.getHasFutureReservation() ? 'Yes' : 'No'}"></td>
 
         <td>
-            <a th:href="@{'/adminpanel/editRoom/' + ${room.getId()}}"
-               th:attr="data-id=${room.getId()}">
-                <button>Edytuj</button>
-            </a>
+            <th:block th:if="${not room.hasFutureReservation}">
+                <a th:href="@{/adminpanel/editRoom/{id}(id=${room.id})}" th:attr="data-id=${room.id}">
+                    <button>Edytuj</button>
+                </a>
+            </th:block>
+            <th:block th:if="${room.hasFutureReservation}">
+                <a th:href="@{/adminpanel/editRoomNotAllowed}">
+                    <button>Edytuj</button>
+                </a>
+            </th:block>
         </td>
     </tr>
     </tbody>
