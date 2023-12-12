@@ -30,7 +30,7 @@
   </div>
   <div class="form-group">
   <label for="allowedAnimalSizes">Animal Size:</label>
-  <select id="allowedAnimalSizes" name="allowedAnimalSizes" th:field="*{allowedAnimalSizes}" required>
+  <select id="allowedAnimalSizes" name="allowedAnimalSizes" multiple="multiple" th:field="*{allowedAnimalSizes}" required>
     <option th:each="size : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
             th:value="${size}" th:text="${size}" th:selected="${editRoom.allowedAnimalSizes.contains(size)}">
     </option>
