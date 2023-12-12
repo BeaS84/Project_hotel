@@ -45,12 +45,6 @@ public class ReservationService {
             System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju. Tworzę nową rezerwację.");
         }
 
-
-//        if (!isRoomAvailable) {
-////            TODO: wyjatek - pokoj zajety
-//            System.out.println("tutaj pokoj jest juz zajęty");
-//            throw new RuntimeException("zmienic na cos innego");
-//        }
         if (isRoomAvailable || isReservationCancelled) {
 
             ReservationModel reservation = new ReservationModel();

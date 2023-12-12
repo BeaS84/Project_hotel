@@ -1,5 +1,6 @@
 package com.hotel.pethotel.Rooms;
 
+import com.hotel.pethotel.Exceptions.RoomValidationException;
 import com.hotel.pethotel.Reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,32 +39,64 @@ public class RoomController {
     public String getAddRoom(Model model) {
         model.addAttribute("newRoom", new RoomModel());
         return "Rooms/addRoom";}
+
     @PostMapping ("/addRoom")
-    public RedirectView postAddRoom(RoomModel room){
-        roomService.addRoom(room);
-        return new RedirectView("/adminpanel/allRooms");
+        public RedirectView postAddRoom(@ModelAttribute RoomModel room, RedirectAttributes redirectAttributes) {
+            try {
+                roomService.addRoom(room);
+                redirectAttributes.addFlashAttribute("message", "Room added successfully");
+                return new RedirectView("/adminpanel/allRooms");
+            } catch (RoomValidationException e) {
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return new RedirectView("/adminpanel/allRooms/error");
+            } catch (RuntimeException e) {
+                log.error("Error during room creation", e);
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+                return new RedirectView("/adminpanel/allRooms/error");
+            }
     }
+
     @GetMapping("/editRoomNotAllowed")
     public String showEditRoomNotAllowedPage() {
         return "Rooms/editRoomNotAllowed";
     }
 
-    // @PathVariable("id") jest używane do określenia, którą zmienną ścieżkową przypisać do parametru "id". W tym przypadku jest używane konkretne nazwanie "id", które wskazuje, że wartość zmiennej ścieżkowej o nazwie "id" ma zostać przypisana do parametru "id" metody.
-    //mozna tez tak (@PathVariable Long id, Model model_ --> @PathVariable jest używane bezpośrednio, bez określania nazwy zmiennej. W tym przypadku Spring automatycznie przypisuje wartość zmiennej ścieżkowej do parametru metody na podstawie ich typów i pozycji. Wartość zmiennej ścieżkowej jest przypisywana do parametru "id" ze względu na identyfikator "id" w ścieżce.
+    @GetMapping("/allRooms/error")
+        public String showErrorPage(@ModelAttribute("error") String error, Model model) {
+            if (error != null && !error.isEmpty()) {
+                model.addAttribute("errorMessage", error);
+            } else {
+                model.addAttribute("errorMessage", "Unknown error occurred");
+            }
+            return "Rooms/errorCreateEditRoom";
+        }
+
+
     @GetMapping("/editRoom/{id}")
     public String getEditRoom(@PathVariable("id") Long id, Model model) {
-        if (roomService.isRoomIsReservedNowOrInFuture(id)) {
-            return "Rooms/editRoomNotAllowed";
+        try {
+            if (roomService.isRoomIsReservedNowOrInFuture(id)) {
+                return "Rooms/editRoomNotAllowed";
+            }
+            RoomModel roomModel = roomService.getRoomById(id);
+            model.addAttribute("editRoom", roomModel);
+            return "Rooms/editRoom";
+        } catch (RuntimeException e) {
+            log.error("Error getting room for editing", e);
+            return "redirect:/adminpanel/allRooms";
         }
-        RoomModel roomModel = roomService.getRoomById(id);
-        model.addAttribute("editRoom", roomModel);
-        return "Rooms/editRoom";
     }
 
     @PostMapping("/editRoom/{id}")
     public String postEditRoom(@ModelAttribute RoomModel editRoom, RedirectAttributes redirectAttributes) {
-        roomService.saveEditRoom(editRoom);
-        redirectAttributes.addFlashAttribute("message", "Edycja zakończona pomyślnie");
-        return "redirect:/adminpanel/allRooms";
+        try {
+            roomService.saveEditRoom(editRoom);
+            redirectAttributes.addFlashAttribute("message", "Edycja zakończona pomyślnie");
+            return "redirect:/adminpanel/allRooms";
+        } catch (RuntimeException e) {
+            log.error("Error editing room", e);
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/adminpanel/allRooms/error";
+        }
     }
 }
