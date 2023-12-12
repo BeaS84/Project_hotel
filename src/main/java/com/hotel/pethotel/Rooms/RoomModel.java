@@ -23,15 +23,13 @@ public class RoomModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String description;
 
-
-    @Column(name = "standard")
+    @Column(name = "standard", nullable = false)
     @Enumerated(EnumType.STRING)
     private Standard standard; //enum
 
@@ -45,13 +43,14 @@ public class RoomModel {
     @Enumerated(EnumType.STRING)
     private Set<Type> allowedAnimalTypes;
 
-    @Column(nullable = false)
+    @Column(name = "cost_per_night", nullable = false)
     private BigDecimal costPerNight;
 
-    @Column(name = "is_active")
+    @Column(name = "is_active", nullable = false)
     private Boolean active;
 
-    private Boolean hasFutureReservation;
+    @Column(name = "has_future_reservation", nullable = false)
+    private Boolean hasFutureReservation = false;
 
 //    @ManyToMany(mappedBy = "rooms")
 //    private Set<ReservationModel> reservations;

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error During Creation or Edition</title>
+</head>
+<body>
+<div>
+  <h2>Error During Room Creation or Edition</h2>
+  <p th:text="${error}"></p>
+  <!-- Dodaj inne elementy HTML lub stylizacje według potrzeb -->
+</div>
+<div class="form-group section-button">
+  <button onclick="location.href='/adminpanel/allRooms'">Wróć do listy pokoi</button>
+</div>
+</body>
+</html>
