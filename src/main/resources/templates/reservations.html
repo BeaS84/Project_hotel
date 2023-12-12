@@ -7,30 +7,30 @@
 </head>
 <body>
 
-    <div id="form-container">
-        <div class="search-panel">
-            <form th:action="@{/adminpanel/allReservations/filteredreservations}" method="get">
-                <div class="form-group">
-                    <div id="result-label">
-                        Status rezerwacji:
-                    </div>
+<div id="form-container">
+    <div class="search-panel">
+        <form th:action="@{/adminpanel/allReservations/filteredreservations}" method="get">
+            <div class="form-group">
+                <div id="result-label">
+                    Status rezerwacji:
                 </div>
-                    <select id="status-table" name="status">
-                        <option value="">Wszystkie</option>
-                        <option value="CONFIRMED">CONFIRMED</option>
-                        <option value="CANCELLED">CANCELLED</option>
-                        <option value="PENDING">PENDING</option>
-                    </select>
-                </div>
-                <section id="se" class="section-button">
-                    <button type="submit">Szukaj</button>
-                </section>
-            </form>
-        </div>
-        <table id="animals-table">
-            <tr>
-                <th colspan="10" class="table-header">Wszystkie rezerwacje</th>
-            </tr>
+            </div>
+            <select id="status-table" name="status">
+                <option value="">Wszystkie</option>
+                <option value="CONFIRMED">CONFIRMED</option>
+                <option value="CANCELLED">CANCELLED</option>
+                <option value="PENDING">PENDING</option>
+            </select>
+    </div>
+    <section id="se" class="section-button">
+        <button type="submit">Szukaj</button>
+    </section>
+    </form>
+</div>
+<table id="animals-table">
+    <tr>
+        <th colspan="10" class="table-header">Wszystkie rezerwacje</th>
+    </tr>
 
     <tr>
         <th>ID</th>
@@ -66,18 +66,17 @@
         <td>
             <a th:text="Edytuj" th:href="@{'/adminpanel/editReservation/' + ${reservation.id}}" style="text-decoration: none; font-weight: bold; color: black;"></a>
 
-            <form th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" method="post" th:if="${reservation.reservationStatus.name()=='CANCELLED'}">
-                <button type="submit" th:text="Usuń" style="text-decoration: none; font-weight: bold; color: black; border: none; background: none; padding: 0; cursor: pointer;">Usuń</button>
-            </form>
+            <form th:if="${reservation.reservationStatus.name()=='CANCELLED'}" th:action="@{'/adminpanel/deleteReservation/'+ ${reservation.id}}" th:method="delete">
+                <button>Usuń</button> </form>
         </td>
 
     </tr>
 </table>
-        <section id="WRÓĆ" class="section-button">
-            <form action="/adminpanel" method="get">
-                <button type="submit">Wróć</button>
-            </form>
-        </section>
+<section id="WRÓĆ" class="section-button">
+    <form action="/adminpanel" method="get">
+        <button type="submit">Wróć</button>
+    </form>
+</section>
 <script>
     function confirmDelete(id) {
         var result = confirm("Czy na pewno chcesz usunąć rezerwację?");
