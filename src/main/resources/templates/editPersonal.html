@@ -16,7 +16,7 @@
 
     <div class="form-group">
     <label for="phone">Telefon:</label>
-    <input type="text" id="phone" name="phone" th:value="${user.phone}" />
+        <input type="text" id="phone" name="phone" th:value="${user.phone}" pattern="[0-9]*" />
     </div>
 
     <div class="form-group section-button">
