@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +58,11 @@ public class ReservationService {
             reservation.setPrice(calculateReservationPrice(startDate, endDate, room.getCostPerNight()));
             // Ustawienie statusu rezerwacji- domyslnie ma byc PENDING
             reservation.setReservationStatus(ReservationStatus.PENDING);
+
+            UUID uuid = UUID.randomUUID();
+            String uuidAsString = uuid.toString();
+            reservation.setReservationNumber(uuidAsString);
+            
             return reservationRepository.save(reservation);
         } else {
             // TODO: Obsługa sytuacji, gdy pokój jest zajęty

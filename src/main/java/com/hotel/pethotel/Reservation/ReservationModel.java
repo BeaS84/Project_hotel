@@ -19,7 +19,7 @@ public class ReservationModel {
     private Long id;
 
     @Column(name = "reservation_number")
-    private Long reservationNumber;
+    private String reservationNumber;
 
     @Column(name = "start_Date")
     private LocalDate startDate;
