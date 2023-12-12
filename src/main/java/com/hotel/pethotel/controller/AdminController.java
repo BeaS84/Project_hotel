@@ -97,7 +97,7 @@ public class AdminController {
 
 
     // deleteReservationConfirm/
-    @PostMapping("/deleteReservation/{id}")
+    @DeleteMapping("/deleteReservation/{id}")
     //@PutMapping służy do update, update całego zasobu, update całego obiektu,
     // przekazuje id
     //@PatchMapping, partial update, rzadkie, trudniejsze, update wybranych pól,

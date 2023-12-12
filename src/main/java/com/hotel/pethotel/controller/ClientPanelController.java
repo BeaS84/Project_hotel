@@ -120,7 +120,6 @@ public class ClientPanelController {
     }
 
 
-
     @GetMapping("/errorPage")
     public String getError(){
         return "Errors/errorPage";
