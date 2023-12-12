@@ -41,10 +41,10 @@ public class ReservationService {
         boolean isRoomAvailable = roomRepository.isRoomAvailable(room.getId(), startDate, endDate);
         boolean isReservationCancelled = reservationRepository.isExistsByRoomAndReservationStatus(room.getId(), List.of(ReservationStatus.CANCELLED), startDate, endDate);
 
-        if (isReservationCancelled) {
-            // TODO: Tutaj możesz obsłużyć sytuację, gdy istnieje już anulowana rezerwacja
-            System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju. Tworzę nową rezerwację.");
-        }
+//        if (isReservationCancelled) {
+//            // TODO: Tutaj możesz obsłużyć sytuację, gdy istnieje już anulowana rezerwacja
+//            System.out.println("Istnieje anulowana rezerwacja dla tego klienta, zwierzaka i pokoju. Tworzę nową rezerwację.");
+//        }
 
         if (isRoomAvailable || isReservationCancelled) {
 
@@ -62,7 +62,7 @@ public class ReservationService {
             UUID uuid = UUID.randomUUID();
             String uuidAsString = uuid.toString();
             reservation.setReservationNumber(uuidAsString);
-            
+
             return reservationRepository.save(reservation);
         } else {
             // TODO: Obsługa sytuacji, gdy pokój jest zajęty

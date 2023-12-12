@@ -2,11 +2,12 @@ package com.hotel.pethotel.model;
 
 import com.hotel.pethotel.Reservation.ReservationModel;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Getter
 @Setter

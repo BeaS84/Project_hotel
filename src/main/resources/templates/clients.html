@@ -14,6 +14,7 @@
             </tr>
 
             <tr>
+                <th>L.p.</th>
                 <th>id</th>
                 <th>name</th>
                 <th>surname</th>
@@ -21,7 +22,8 @@
                 <th>your animals</th>
                 <th>your reservations</th>
             </tr>
-            <tr th:each="client: ${clients}">
+            <tr th:each="client,iter: ${clients}">
+                <td th:text="${iter.index+1}" />
                 <td th:text="${client.id}" />
                 <td th:text="${client.name}" />
                 <td th:text="${client.surname}" />

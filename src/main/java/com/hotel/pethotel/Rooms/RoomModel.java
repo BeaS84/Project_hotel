@@ -6,14 +6,14 @@ import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.model.Standard;
 import com.hotel.pethotel.model.Type;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 import java.math.BigDecimal;
 import java.util.Set;
-
+@NoArgsConstructor //to dodałam
+@AllArgsConstructor //to dodałam
+@Builder //to dodałam
 @Entity
 @Getter
 @Setter
