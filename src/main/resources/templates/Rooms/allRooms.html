@@ -48,9 +48,9 @@
         <th>Standard pokoju</th>
         <th>Wielkość zwierzęcia</th>
         <th>Cena za noc</th> <!-- Dodana kolumna -->
-        <th>Czy aktywny</th>
+        <th>Czy pokój jest aktywny</th>
 <!--        <th>Is available now</th>-->
-        <th>Has present or future reservation</th>
+        <th>Czy pokój ma obecną lub przyszłą rezerwację </th>
         <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
     </tr>
     </thead>
@@ -59,10 +59,18 @@
     <tr th:each="room : ${rooms}">
         <td th:text="${room.getId()}"></td>
         <td th:text="${room.getName()}"></td>
-        <td th:text="${room.getAllowedAnimalTypes()}"></td>
+<!--        <td th:text="${room.getAllowedAnimalTypes()}"></td>-->
+        <td>
+             <span th:each="size : ${room.getAllowedAnimalTypes()}">
+            <span th:text="${size.label}"></span>
+        </td>
         <td th:text="${room.getDescription()}"></td>
         <td th:text="${room.getStandard()}"></td>
-        <td th:text="${room.getAllowedAnimalSizes()}"></td>
+<!--        <td th:text="${room.getAllowedAnimalSizes()}"></td>-->
+        <td>
+             <span th:each="size : ${room.getAllowedAnimalSizes()}">
+            <span th:text="${size.label}"></span>
+        </td>
         <td th:text="${room.getCostPerNight()}"></td> <!-- Dodana kolumna -->
         <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>
 <!--        <td th:text="${room.getAvailableNow()? 'Yes' : 'No'}"></td>-->

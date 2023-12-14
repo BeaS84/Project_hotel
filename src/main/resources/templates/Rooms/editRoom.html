@@ -9,57 +9,57 @@
 <div id="form-container">
   <h2>Edycja pokoju</h2>
 
-<form th:action="@{'/adminpanel/editRoom/' + ${editRoom.id}}" method="post"
-      th:object="${editRoom}">
-  <input type="hidden" th:field="*{id}"/>
-  <div class="form-group">
-  <label for="name">Nazwa:</label>
-  <input type="text" id="name" name="name" th:field="*{name}" />
-  </div>
-  <div class="form-group">
-  <label for="description">Opis pokoju:</label>
-  <input type="text" id="description" name="description" th:field="*{description}" required/>
-  </div>
-  <div class="form-group">
-  <label for="standard">Standard pokoju:</label>
-  <select id="standard" name="standard" th:field="*{standard}" required>
-    <option th:each="option : ${T(com.hotel.pethotel.model.Standard).values()}"
-            th:value="${option}" th:text="${option}" th:selected="${option == editRoom.standard}">
-    </option>
-  </select>
-  </div>
-  <div class="form-group">
-  <label for="allowedAnimalSizes">Wielkość zwierzęcia:</label>
-  <select id="allowedAnimalSizes" name="allowedAnimalSizes" multiple="multiple" th:field="*{allowedAnimalSizes}" required>
-    <option th:each="size : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
-            th:value="${size}" th:text="${size}" th:selected="${editRoom.allowedAnimalSizes.contains(size)}">
-    </option>
-  </select>
-  </div>
-  <div class="form-group">
-  <label for="allowedAnimalTypes">Typ zwierzęcia:</label>
-  <select id="allowedAnimalTypes" name="allowedAnimalTypes" th:field="*{allowedAnimalTypes}" required>
-    <option th:each="type : ${T(com.hotel.pethotel.model.Type).values()}"
-            th:value="${type}" th:text="${type}" th:selected="${editRoom.allowedAnimalTypes.contains(type)}">
-    </option>
-  </select>
-  </div>
-  <div class="form-group">
-  <label for="costPerNight">Cena za noc:</label>
-  <input type="text" id="costPerNight" name="costPerNight" th:field="*{costPerNight}" required/>
-  </div>
-  <div class="form-group">
-  <label for="active">Czy aktywny:</label>
-  <input type="checkbox" id="active" name="active" th:field="*{active}"/>
-  </div>
+  <form th:action="@{'/adminpanel/editRoom/' + ${editRoom.id}}" method="post"
+        th:object="${editRoom}">
+    <input type="hidden" th:field="*{id}"/>
+    <div class="form-group">
+      <label for="name">Nazwa:</label>
+      <input type="text" id="name" name="name" th:field="*{name}" />
+    </div>
+    <div class="form-group">
+      <label for="description">Opis pokoju:</label>
+      <input type="text" id="description" name="description" th:field="*{description}" required/>
+    </div>
+    <div class="form-group">
+      <label for="standard">Standard pokoju:</label>
+      <select id="standard" name="standard" th:field="*{standard}" required>
+        <option th:each="option : ${T(com.hotel.pethotel.model.Standard).values()}"
+                th:value="${option}" th:text="${option}" th:selected="${option == editRoom.standard}">
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="allowedAnimalSizes">Wielkość zwierzęcia:</label>
+      <select id="allowedAnimalSizes" name="allowedAnimalSizes" multiple="multiple" th:field="*{allowedAnimalSizes}" required>
+        <option th:each="size : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
+                th:value="${size}" th:text="${size.label}" th:selected="${editRoom.allowedAnimalSizes.contains(size)}">
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="allowedAnimalTypes">Typ zwierzęcia:</label>
+      <select id="allowedAnimalTypes" name="allowedAnimalTypes" th:field="*{allowedAnimalTypes}" required>
+        <option th:each="type : ${T(com.hotel.pethotel.model.Type).values()}"
+                th:value="${type}" th:text="${type.label}" th:selected="${editRoom.allowedAnimalTypes.contains(type)}">
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="costPerNight">Cena za noc:</label>
+      <input type="text" id="costPerNight" name="costPerNight" th:field="*{costPerNight}" required/>
+    </div>
+    <div class="form-group">
+      <label for="active">Czy aktywny:</label>
+      <input type="checkbox" id="active" name="active" th:field="*{active}"/>
+    </div>
 
-  <div class="form-group section-button">
-    <button type="submit">Zapisz zmiany</button>
-  <a th:href="@{/adminpanel/allRooms}">
-    <button type="button">Wróć</button>
-  </a>
-  </div>
-</form>
+    <div class="form-group section-button">
+      <button type="submit">Zapisz zmiany</button>
+      <a th:href="@{/adminpanel/allRooms}">
+        <button type="button">Wróć</button>
+      </a>
+    </div>
+  </form>
 </div>
 </body>
 </html>
