@@ -47,19 +47,6 @@ public class AdminController {
         return "reservations";
     }
 
-
-//    @GetMapping("/allReservationsPage")
-//    public String getAllReservation() {
-//        return "reservations";
-//    }
-
-
-//    @GetMapping("/allRooms")
-//    public String getAllRooms() {
-//        return "rooms";
-//    }
-
-
     @GetMapping("/client/{id}")//clients/2/animals
     public String getAnimals(@PathVariable("id") Long id, Model model) {
         ClientModel clientModel = clientService.getClientById(id);

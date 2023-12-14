@@ -14,7 +14,8 @@
     <tr>
         <th>ID</th>
         <th>Numer Rezerwacji</th>
-        <th>Imię Zwierzaka</th>
+        <th>Pokój</th>
+        <th>Dla kogo</th>
         <th>Data Rozpoczęcia</th>
         <th>Data Zakończenia</th>
         <th>Cena</th>
@@ -23,6 +24,7 @@
     <tr th:each="reservation : ${clientReservations}">
         <td th:text="${reservation.id}"></td>
         <td th:text="${reservation.reservationNumber}"></td>
+        <td th:text="${reservation.room.getName()}"></td>
         <td th:text="${reservation.animal != null ? reservation.animal.name : ''}"></td>
         <td th:text="${reservation.startDate}"></td>
         <td th:text="${reservation.endDate}"></td>
