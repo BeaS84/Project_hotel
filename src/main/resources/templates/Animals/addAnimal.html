@@ -7,53 +7,54 @@
 </head>
 <body>
 <div id="form-container">
-<h2>Dodaj nowego zwierzaka</h2>
+    <h2>Dodaj nowego zwierzaka</h2>
 
-<form th:action="@{/clientpanel/clientAnimals/addAnimal}" method="post" th:object="${newAnimal}">
+    <form th:action="@{/clientpanel/clientAnimals/addAnimal}" method="post" th:object="${newAnimal}">
 
-    <div class="form-group">
-        <label for="name">Imię:</label>
-        <input type="text" id="name" name="name" th:field="*{name}" required/>
-    </div>
+        <div class="form-group">
+            <label for="name">Imię:</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required/>
+        </div>
 
-    <div class="form-group">
-        <label for="type">Rodzaj:</label>
-        <select id="type" name="type" th:field="*{type}" required>
-            <option th:each="animalType : ${T(com.hotel.pethotel.model.Type).values()}"
-                th:value="${animalType}" th:text="${#strings.capitalize(animalType.name())}">
-            </option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label for="type">Rodzaj:</label>
+            <select id="type" name="type" th:field="*{type}" required>
+                <option th:each="animalType : ${T(com.hotel.pethotel.model.Type).values()}"
+                        th:value="${animalType}" th:text="${animalType.label}">
+                </option>
+            </select>
+        </div>
 
-    <div class="form-group">
-        <label for="size">Rozmiar:</label>
-        <select id="size" name="size" th:field="*{size}" required>
-            <option th:each="animalSize : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
-                    th:value="${animalSize}" th:text="${#strings.capitalize(animalSize.name())}">
-            </option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label for="size">Rozmiar:</label>
+            <select id="size" name="size" th:field="*{size}" required>
+                <option th:each="animalSize : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
+                        th:value="${animalSize}" th:text="${animalSize.label}">
+                </option>
+            </select>
+        </div>
 
-    <div class="form-group">
-        <label for="sex">Płeć:</label>
-        <select id="sex" name="sex" th:field="*{sex}" required>
-            <option th:each="animalSex : ${T(com.hotel.pethotel.model.Sex).values()}"
-                    th:value="${animalSex}" th:text="${#strings.capitalize(animalSex.name())}">
-            </option>
-        </select>
-    </div>
-    <!-- Assuming ClientModel is a complex object -->
-    <!--
-    <label for="clientName">Opiekun:</label>
-    <input type="text" id="clientName" name="clientName" th:field="*{client.name}" required/>
-    -->
+        <div class="form-group">
+            <label for="sex">Płeć:</label>
+            <select id="sex" name="sex" th:field="*{sex}" required>
+                <option th:each="animalSex : ${T(com.hotel.pethotel.model.Sex).values()}"
+                        th:value="${animalSex}" th:text="${animalSex.label}">
+                </option>
+            </select>
+        </div>
 
-    <!-- Add more fields for other properties if needed -->
-    <div class="form-group section-button">
-        <button type="submit">Dodaj Nowego Zwierzaka</button>
-    </div>
+        <!-- Assuming ClientModel is a complex object -->
+        <!--
+        <label for="clientName">Opiekun:</label>
+        <input type="text" id="clientName" name="clientName" th:field="*{client.name}" required/>
+        -->
 
-</form>
+        <!-- Add more fields for other properties if needed -->
+        <div class="form-group section-button">
+            <button type="submit">Dodaj Nowego Zwierzaka</button>
+        </div>
+
+    </form>
     <section id="wroc" class="section-button">
         <form action="/clientpanel/clientAnimals" method="get">
             <button type="submit">Wróć</button>

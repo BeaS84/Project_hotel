@@ -22,7 +22,7 @@
         <label for="type">Rodzaj:</label>
         <select id="type" name="type" th:field="*{type}" required>
             <option th:each="animalType : ${T(com.hotel.pethotel.model.Type).values()}"
-                    th:value="${animalType}" th:text="${#strings.capitalize(animalType.name())}">
+                    th:value="${animalType}" th:text="${animalType.label}">
             </option>
         </select>
     </div>
@@ -31,7 +31,7 @@
         <label for="size">Rozmiar:</label>
         <select id="size" name="size" th:field="*{size}" required>
             <option th:each="animalSize : ${T(com.hotel.pethotel.model.AnimalSize).values()}"
-                    th:value="${animalSize}" th:text="${#strings.capitalize(animalSize.name())}">
+                    th:value="${animalSize}" th:text="${animalSize.label}">
             </option>
         </select>
     </div>
@@ -40,7 +40,7 @@
         <label for="sex">Płeć:</label>
         <select id="sex" name="sex" th:field="*{sex}" required>
             <option th:each="animalSex : ${T(com.hotel.pethotel.model.Sex).values()}"
-                    th:value="${animalSex}" th:text="${#strings.capitalize(animalSex.name())}">
+                    th:value="${animalSex}" th:text="${animalSex.label}">
             </option>
         </select>
     </div>
