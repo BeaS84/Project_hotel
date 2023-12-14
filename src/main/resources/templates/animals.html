@@ -13,11 +13,11 @@
         <th colspan="5" class="table-header">WSZYSTKIE ZWIERZĘTA</th>
     </tr>
     <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>type</th>
-        <th>sex</th>
-        <th>owner</th>
+        <th>ID</th>
+        <th>Imię</th>
+        <th>Typ zwierzęcia</th>
+        <th>Płeć</th>
+        <th>Właściciel</th>
     </tr>
 <tr th:each="animal: ${animals}">
     <td th:text="${animal.id}" />
