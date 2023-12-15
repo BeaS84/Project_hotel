@@ -68,8 +68,9 @@
         <td th:text="${room.getStandard()}"></td>
 <!--        <td th:text="${room.getAllowedAnimalSizes()}"></td>-->
         <td>
-             <span th:each="size : ${room.getAllowedAnimalSizes()}">
-            <span th:text="${size.label}"></span>
+            <ul>
+                <li th:each="size : ${room.getAllowedAnimalSizes()}" th:text="${size.label}"></li>
+            </ul>
         </td>
         <td th:text="${room.getCostPerNight()}"></td> <!-- Dodana kolumna -->
         <td th:text="${room.getActive()} ? 'Yes' : 'No'"></td>

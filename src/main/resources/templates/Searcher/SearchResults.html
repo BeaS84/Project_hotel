@@ -31,7 +31,11 @@
       <td th:text="${roomPrice.getRoom().getName()}"></td>
       <td th:text="${roomPrice.getRoom().getDescription()}"></td>
       <td th:text="${roomPrice.getRoom().getStandard()}"></td>
-      <td th:text="${roomPrice.getRoom().getAllowedAnimalSizes()}"></td>
+        <td>
+            <ul>
+                <li th:each="size : ${roomPrice.getRoom().getAllowedAnimalSizes()}" th:text="${size.label}"></li>
+            </ul>
+        </td>
       <td th:text="${roomPrice.getRoom().getCostPerNight()}"></td>
       <td th:text="${roomPrice.getPrice()}"></td> <!-- Dodana kolumna z ceną pokoju -->
       <td>
