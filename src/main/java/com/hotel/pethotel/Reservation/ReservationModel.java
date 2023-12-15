@@ -38,15 +38,6 @@ public class ReservationModel {
     @JoinColumn(name = "client_id") //
     private ClientModel client;
 
-
-
-//    @ManyToMany
-//    @JoinTable(
-//            name = "reservation_room",
-//            joinColumns = @JoinColumn(name = "reservation_id"),
-//            inverseJoinColumns = @JoinColumn(name = "room_id"))
-//    private Set<RoomModel> rooms;
-
     @ManyToOne
     @JoinColumn(name = "room_id") // wiele lączen do jednego pokoju, JoinColumn, klucz obcy id pokoju
     private RoomModel room;

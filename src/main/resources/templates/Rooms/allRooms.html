@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8"/>
@@ -50,10 +50,9 @@
         <th>Cena za noc</th> <!-- Dodana kolumna -->
         <th>Czy pokój jest aktywny</th>
 <!--        <th>Is available now</th>-->
-        <th>Czy pokój ma obecną lub przyszłą rezerwację </th>
+        <th>Pokój ma obecną/przyszłą rezerwację </th>
         <th>Akcje</th> <!-- Dodana kolumna dla przycisków "Edytuj" i "Usuń" -->
     </tr>
-    </thead>
     <tbody>
     <!-- Iteracja przez listę pokoi i generowanie wierszy tabeli -->
     <tr th:each="room : ${rooms}">

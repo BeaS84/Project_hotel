@@ -9,12 +9,12 @@ public class UserPanelController {
 
     @GetMapping("/userReservation")
     public String showUserReservation() {
-        return "userReservation";
+        return "Reservations/clientReservations";
     }
 
     @GetMapping("/userAnimals")
     public String showUserAnimals() {
-        return "userAnimals";
+        return "Animals/clientAnimals";
     }
 
 

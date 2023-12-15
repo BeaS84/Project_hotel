@@ -28,15 +28,14 @@ public class AdminController {
     public String listClients(Model model) {
         List<ClientModel> clientList = clientService.getAllClients();
         model.addAttribute("clients", clientList);
-        return "clients";
+        return "Admin/clients";
     }
 
-    @GetMapping("/allAnimals")//animals
-    // dodaj email właściciela owner=findById() później owner.email
+    @GetMapping("/allAnimals")
     public String listAnimals(Model model) {
         List<AnimalModel> animalList = animalService.getAnimalList();
         model.addAttribute("animals", animalList);
-        return "animals";
+        return "Admin/animals";
     }
 
     @GetMapping("/allReservations")
@@ -44,7 +43,7 @@ public class AdminController {
         List<ReservationModel> reservations = reservationService
                 .getAllReservationList();
         model.addAttribute("reservations", reservations);
-        return "reservations";
+        return "Reservations/reservations";
     }
 
     @GetMapping("/client/{id}")//clients/2/animals
@@ -53,7 +52,7 @@ public class AdminController {
         List<AnimalModel> animals = clientModel.getAnimals();
         model.addAttribute("animals", animals);
         model.addAttribute("client", clientModel);
-        return "animalsForClient";
+        return "Admin/animalsForClient";
     }
 
     @GetMapping("/client/{id}/reservations")
@@ -79,17 +78,11 @@ public class AdminController {
         }
 
         model.addAttribute("filteredReservations", reservationList);
-        return "filteredreservations";
+        return "Reservations/filteredReservations";
     }
 
-
-    // deleteReservationConfirm/
+    
     @DeleteMapping("/deleteReservation/{id}")
-    //@PutMapping służy do update, update całego zasobu, update całego obiektu,
-    // przekazuje id
-    //@PatchMapping, partial update, rzadkie, trudniejsze, update wybranych pól,
-    // przekazuje id + RequestBody
-    //Różnica międze @PostMapping i @DeleteMapping, tutaj/w RestController
     public RedirectView deleteReservation(@PathVariable("id") Long id) {
         reservationService.deleteReservation(id);
         return new RedirectView("/adminpanel/allReservations");
@@ -98,7 +91,7 @@ public class AdminController {
     public String showEditReservationForm(@PathVariable("id") Long id, Model model) {
         ReservationModel reservation = reservationService.getReservationById(id);
         model.addAttribute("reservation", reservation);
-        return "editReservation";
+        return "Reservations/editReservation";
     }
 
     @PostMapping("/editReservation/{id}")
@@ -112,9 +105,8 @@ public class AdminController {
             reservationService.saveReservation(editedReservation);
             return "redirect:/adminpanel/allReservations";
         } catch (IllegalArgumentException e) {
-            // Obsługa błędów
             model.addAttribute("error", "Błąd podczas zapisywania zmian");
-            return "editReservation";
+            return "Reservations/editReservation";
         }
     }
 }

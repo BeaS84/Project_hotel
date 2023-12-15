@@ -1,8 +1,6 @@
 package com.hotel.pethotel.model;
 
-import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +13,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
-//@DiscriminatorValue("admin")//usunąć, przekopiować do adminModel (extends UserModel)
+
 public abstract class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +33,6 @@ public abstract class UserModel {
     @ManyToMany
     @JoinTable (name = "user_x_roles")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<RoleModel> roles=new HashSet<>();//można wywalić i zmodyfować userDetailsServivice
-
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //relacja 1 do wielu z AnimalModel, wlasciciel relacji
-//    private List<AnimalModel> animals;
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //relacja 1 do wielu z ReservationModel, wlasciciel relacji
-//    private List<ReservationModel> reservations;
-
+    private Set<RoleModel> roles=new HashSet<>();
 
 }

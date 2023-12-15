@@ -22,7 +22,7 @@ public class AnimalModel {
 
     @Column(name = "weight")
     @Enumerated(EnumType.STRING)
-    private AnimalSize size; //Beata enum do dyskusji
+    private AnimalSize size;
 
     @Column(name = "name")
     private String name;

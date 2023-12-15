@@ -6,7 +6,7 @@ public enum AnimalSize {
     LARGE ("Duży (Pies > 25kg | Kot > 6 kg)");
 
     public final String label;
-    private AnimalSize(String label){
+    AnimalSize(String label){
         this.label = label;
     }
 }

@@ -4,7 +4,7 @@ public enum Type {
     DOG("Pies"), CAT("Kot");
 
     public final String label;
-    private Type(String label) {
+    Type(String label) {
         this.label = label;
     }
 }

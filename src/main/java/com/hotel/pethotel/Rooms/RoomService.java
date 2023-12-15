@@ -2,16 +2,14 @@ package com.hotel.pethotel.Rooms;
 import com.hotel.pethotel.Exceptions.RoomValidationException;
 import com.hotel.pethotel.Reservation.ReservationModel;
 import com.hotel.pethotel.Reservation.ReservationStatus;
-import com.hotel.pethotel.Rooms.RoomModel;
 import com.hotel.pethotel.repository.ReservationRepository;
 import com.hotel.pethotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.hotel.pethotel.Reservation.ReservationStatus.CONFIRMED;
+
 
 @Service
 @RequiredArgsConstructor
@@ -20,11 +18,7 @@ public class RoomService {
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
 
-    //dodajemy metode dodawania pokoju - korzystamy z gotowej
-//    public void addRoom(RoomModel room){
-//        //pobieramy to z repozytorium i robimy save
-//        roomRepository.save(room);
-//    }
+    private static final int MAX_NAME_LENGTH = 200;
 
     public void addRoom(RoomModel room){
         try {
@@ -40,6 +34,12 @@ public class RoomService {
     private void validateRoomFields(RoomModel room) {
         if (room.getName() == null || room.getName().trim().isEmpty()) {
             throw new RoomValidationException("Name is required");
+        }
+        if (room.getName().length() > MAX_NAME_LENGTH) {
+            throw new RoomValidationException("Name cannot exceed " + MAX_NAME_LENGTH + " characters");
+        }
+        if (room.getDescription().length() > MAX_NAME_LENGTH) {
+            throw new RoomValidationException("Description cannot exceed " + MAX_NAME_LENGTH + " characters");
         }
 
         if (room.getStandard() == null) {
@@ -59,16 +59,9 @@ public class RoomService {
         }
     }
 
-
-    //wyswietlenie listy pokoi
     public List<RoomModel> getRoomList(){
-        //pobieramy to z repozytorium i robimy find all
         return roomRepository.findAll();
     }
-
-//    public RoomModel getRoomById(Long id) {
-//        return roomRepository.findById(id).orElse(null);
-//    }
 
     public RoomModel getRoomById(Long id) {
             validateRoomId(id);
@@ -91,9 +84,11 @@ public class RoomService {
             throw new RuntimeException("Invalid room for editing");
         }
 
-        if (editRoom.getName() == null || editRoom.getName().trim().isEmpty()) {
-            throw new RuntimeException("Name field cannot be empty");
+        validateName(editRoom.getName());
+        if(editRoom.getDescription().length() > MAX_NAME_LENGTH) {
+            throw new RoomValidationException("Description cannot exceed " + MAX_NAME_LENGTH + " characters");
         }
+
         if (editRoom.getStandard() == null) {
             throw new RoomValidationException("Standard field cannot be empty");
         }
@@ -111,8 +106,17 @@ public class RoomService {
         }
     }
 
+    private void validateName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new RoomValidationException("Name field cannot be empty");
+        }
+
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new RoomValidationException("Name cannot exceed " + MAX_NAME_LENGTH + " characters");
+        }
+    }
 public boolean isRoomIsReservedNowOrInFuture(Long roomId) {
-    RoomModel room = roomRepository.findById(roomId).orElse(null);
+    RoomModel room = roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Room not found"));
     if (room == null) {
         return false;
     }
