@@ -17,7 +17,7 @@ public class TreatmentModel {
     private Integer price;
 
     @ManyToOne
-    @JoinColumn(name = "animal_id") // wiele leczen do jednego zwierzecia, JoinColumn, klucz obcy id zwierzecia
+    @JoinColumn(name = "animal_id") // wiele lączen do jednego zwierzecia, JoinColumn, klucz obcy id zwierzecia
     private AnimalModel animal;
 
 }

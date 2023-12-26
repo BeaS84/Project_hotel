@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8">
@@ -27,10 +27,10 @@
     <tr th:each="animal: ${clientAnimals}">
         <td th:text="${animal.id}"/>
         <td th:text="${animal.name}"/>
-        <td th:text="${animal.type}"/>
+        <td th:text="${animal.type.label}"/>
         <!--       tutaj mozna dodac label ustawiony na enumie i wyswietli sie wtedy pies, kot a nie DOG CAT <td th:text="${animal.type.getLabel()}" />-->
-        <td th:text="${animal.sex}"/>
-        <td th:text="${animal.size}"/>
+        <td th:text="${animal.sex.label}"/>
+        <td th:text="${animal.size.label}"/>
 <!--        <td><a th:href="@{/clientpanel/clientAnimals/editanimal/{id}(id=${animal.id})}">Edytuj</a>-->
 <!--            <button th:onclick="confirmDelete([[${animal.id}]])">Usuń</button>-->
 <!--        </td>-->

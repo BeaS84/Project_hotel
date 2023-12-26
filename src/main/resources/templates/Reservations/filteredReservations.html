@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,6 @@
         <th>Właściciel</th>
         <th>Zwierzęta</th>
     </tr>
-    </thead>
     <tbody>
     <tr th:each="reservation : ${filteredReservations}">
         <td th:text="${reservation.id}"></td>

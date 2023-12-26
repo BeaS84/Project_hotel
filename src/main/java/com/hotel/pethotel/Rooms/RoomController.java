@@ -1,7 +1,6 @@
 package com.hotel.pethotel.Rooms;
 
 import com.hotel.pethotel.Exceptions.RoomValidationException;
-import com.hotel.pethotel.Reservation.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 @Controller
@@ -66,7 +65,7 @@ public class RoomController {
             if (error != null && !error.isEmpty()) {
                 model.addAttribute("errorMessage", error);
             } else {
-                model.addAttribute("errorMessage", "Unknown error occurred");
+                model.addAttribute("errorMessage", "Wystąpił nieznany błąd");
             }
             return "Rooms/errorCreateEditRoom";
         }
@@ -82,7 +81,7 @@ public class RoomController {
             model.addAttribute("editRoom", roomModel);
             return "Rooms/editRoom";
         } catch (RuntimeException e) {
-            log.error("Error getting room for editing", e);
+            log.error("Błąd podczas uzyskiwania pokoju do edycji", e);
             return "redirect:/adminpanel/allRooms";
         }
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="/styles-tables.css">
 <head>
   <meta charset="UTF-8"/>
@@ -20,7 +20,7 @@
       <th>Opis</th>
       <th>Sandard pokoju</th>
       <th>Jakie zwierzeta sa przyjmowane</th>
-      <th>Cena za dzień</th>
+      <th>Cena za noc</th>
       <th>Całkowita cena</th> <!-- Nowa kolumna z ceną pokoju -->
       <th>Akcje</th>
     </tr>
@@ -31,7 +31,11 @@
       <td th:text="${roomPrice.getRoom().getName()}"></td>
       <td th:text="${roomPrice.getRoom().getDescription()}"></td>
       <td th:text="${roomPrice.getRoom().getStandard()}"></td>
-      <td th:text="${roomPrice.getRoom().getAllowedAnimalSizes()}"></td>
+        <td>
+            <ul>
+                <li th:each="size : ${roomPrice.getRoom().getAllowedAnimalSizes()}" th:text="${size.label}"></li>
+            </ul>
+        </td>
       <td th:text="${roomPrice.getRoom().getCostPerNight()}"></td>
       <td th:text="${roomPrice.getPrice()}"></td> <!-- Dodana kolumna z ceną pokoju -->
       <td>

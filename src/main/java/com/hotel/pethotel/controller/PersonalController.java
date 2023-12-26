@@ -23,7 +23,7 @@ public class PersonalController {
             model.addAttribute("user", user);
         }
 
-        return "personal";
+        return "Client/personal";
     }
 
     public PersonalController(UserService userService) {
@@ -36,11 +36,10 @@ public class PersonalController {
 
         if (user != null) {
             model.addAttribute("user", user);
-            return "editPersonal";
+            return "Client/editPersonal";
         } else {
-            // Dodaj logowanie, aby zobaczyć, czy użytkownik został znaleziony
             System.out.println("Nie można znaleźć użytkownika o adresie e-mail: " + userEmail);
-            return "redirect:/clientpanel/personalData"; // lub inna ścieżka, na którą chcesz przekierować w przypadku błędu
+            return "redirect:/clientpanel/personalData";
         }
     }
     @PostMapping("/personalData/editPersonal")
@@ -49,11 +48,9 @@ public class PersonalController {
         UserModel user = userService.getUserByEmail(userEmail);
 
         if (user != null) {
-            // Zaktualizuj dane użytkownika na podstawie edytowanego obiektu
             user.setSurname(editedUser.getSurname());
             user.setPhone(editedUser.getPhone());
 
-            // Użyj metody save, aby zaktualizować dane użytkownika w bazie danych
             userService.saveEditPersonalData(user);
         }
 

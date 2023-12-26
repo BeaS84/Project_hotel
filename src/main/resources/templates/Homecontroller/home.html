@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
@@ -70,13 +70,31 @@
     <div class="row">
         <h1>Cennik</h1>
     </div>
+    <div class="notice">
+        <p>
+            Doba rozpoczyna się i kończy o tej samej godzinie, tzn. jeżeli pies przyjęty zostaje o godzinie 8:00 rano, to doba kończy się o 8:00 rano dnia następnego.
+        </p>
+        <p>
+            Pobyt powyżej czterech godzin liczymy jako pobyt całodobowy.
+        </p>
+        <p>
+            W weekendy przyjęcia i odbiory psów realizowane są w następujących godzinach: 8:00 – 10:00 i 17:00 – 20:00, po uprzednim umówieniu się telefonicznym.
+        </p>
+        <p>
+            Ceny zależą od wielkości zwierzęcia i standardu pokoju.<strong> W przypadku pokoju mieszczacego większego i mniejszego zweirzaka, prawidłową ceną jest cena za wiekszę zwierzę.</strong>
+        </p>
+    </div>
+
     <!-- Wyświetl sekcję z obrazem zawsze -->
     <div class="row dog-image">
         <img src="/smalldog.jpg" alt="Small Dog Image">
         <div class="text-container">
-            <div class="hotel-text">HOTEL DLA MAŁEGO PSA</div>
-            <p class="small-text">Mały piesek będzie miał tu swój mały pokoik - zapraszamy</p>
-            <div class="price-text">50 zł/doba</div>
+            <div class="hotel-text">HOTEL DLA MAŁEGO PSA I KOTA</div>
+            <p class="small-text">Psy małe (york miniaturka, pinczer miniaturowy, pomeranian i inne podobne rozmiarem) do 10kg</p>
+            <p class="small-text">Wszystkie rasy kotów do 3kg</p>
+            <p> pokój BASIC: 50 zł/doba</p>
+            <p> pokój STANDARD: 70 zł/doba</p>
+            <p> pokój PREMIUM: 90 zł/doba</p>
         </div>
     </div>
     <hr>
@@ -84,9 +102,12 @@
     <div class="row dog-image">
         <img src="/mediumdog.jpg" alt="Medium Dog Image">
         <div class="text-container">
-            <div class="hotel-text">HOTEL DLA ŚREDNIEGO PSA</div>
-            <p class="small-text">Średni piesek będzie miał tu pokoik - zapraszamy</p>
-            <div class="price-text">80 zł/doba</div>
+            <div class="hotel-text">HOTEL DLA ŚREDNIEGO PSA I KOTA</div>
+            <p class="small-text">Psy większe (york normalny (nie miniaturowy), shihtzu, jack russel terrier, jamnik, beagle, buldogi francuskie, angielskie i inne do około 40 cm wys. w kłębie)</p>
+            <p class="small-text">Wszystkie rasy kotów do 4 - 6kg</p>
+            <p> pokój BASIC: 70 zł/doba</p>
+            <p> pokój STANDARD: 90 zł/doba</p>
+            <p> pokój PREMIUM: 110 zł/doba</p>
         </div>
     </div>
     <hr>
@@ -94,9 +115,13 @@
     <div class="row dog-image">
         <img src="/largedog.jpg" alt="Large Dog Image">
         <div class="text-container">
-            <div class="hotel-text">HOTEL DLA DUŻEGO PSA</div>
-            <p class="small-text">Duży piesek będzie miał tu pokoik - zapraszamy</p>
-            <div class="price-text">100 zł/doba</div>
+            <div class="hotel-text">HOTEL DLA DUŻEGO PSA I KOTA</div>
+            <p class="small-text">Psy duże (owczarki niemieckie, labradory, goldeny, border collie, bearded collie, airdale terriery, samoyedy i in. podobne rozmiarem</p>
+            <p class="small-text">Psy olbrzymie (podhalany, berneńczyki, wilczarze, itp.)</p>
+            <p class="small-text">Wszystkie rasy kotów powyżej 6 kg</p>
+            <p> pokój BASIC: 90 zł/doba</p>
+            <p> pokój STANDARD: 110 zł/doba</p>
+            <p> pokój PREMIUM: 130 zł/doba</p>
         </div>
     </div>
     <hr>
